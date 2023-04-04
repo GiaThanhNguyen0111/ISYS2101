@@ -82,8 +82,10 @@ app.get("/", function(req, res) {
     res.send("Hello");
 })
 
-app.post("/", function(req, res) {
-
+// Test connection to Frontend
+app.post("/post", function(req, res) {
+    console.log("Connected to React");
+  res.redirect("/");
 })
 
 
