@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer'
 import Loginform from './Components/Login/Loginform';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import Registerform from './Components/Login/Registerform';
 
+import Account from './Components/Account';
 
 
 const App = () => {
@@ -13,7 +13,8 @@ const App = () => {
       {/* <Navbar /> */}
       {/* <Loginform/> */}
       {/* <Footer/> */}
-      <Registerform />
+      {/* <Registerform /> */}
+      <Account />
     </div>
   
   );

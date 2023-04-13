@@ -1,0 +1,12 @@
+.in4box {
+  margin-left: 20px;
+  display: flex;  
+  align-items: center; 
+  padding-left: 10px;
+}
+
+
+
+.pin4 {
+  margin-left: 10px; /* Remove default margin */
+}
