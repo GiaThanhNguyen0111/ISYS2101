@@ -5,14 +5,14 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 // const passportLocalMongoose = require("passport-local-mongoose");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const findOrCreate = require("mongoose-findorcreate");
-const FacebookStrategy = require("passport-facebook");
-const userRouter = require('./routes/user');
+// const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// const findOrCreate = require("mongoose-findorcreate");
+// const FacebookStrategy = require("passport-facebook");
+const userRoute = require('./routes/user');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.set('view engine', 'ejs');
 // Create session
 app.use(session({
     secret: "Our little secret.",
@@ -28,9 +28,7 @@ app.use(passport.session());
 // DB
 mongoose.connect('mongodb://127.0.0.1:27017/test');
 
-app.use(userRouter);
-
-
+app.use(userRoute);
 // Schema for documents
 // To validate email
 // var validateEmail = function(email) {
@@ -67,12 +65,8 @@ app.use(userRouter);
 //     facebookId: String,
 //     email: {
 //         type: String,
-//         trim: true,
-//         lowercase: true,
 //         unique: true,
-//         required: 'Email address is required',
-//         validate: [validateEmail, 'Please fill a valid email address'],
-//         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+//         required: 'Email address is required'
 //     },
 //     DOB: String,
 //     Phone: Number,
@@ -219,11 +213,10 @@ app.use(userRouter);
 //                 res.redirect("/");
 //             })
 //         }
-//     });
+//     })
 // });
 
 
-// //log out
 
 // app.get("/logout", function(req, res) {
 //     req.logout(function(err) {
@@ -238,7 +231,6 @@ app.use(userRouter);
 //     console.log("Connected to React");
 //   res.redirect("/");
 // })
-
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, function() {

@@ -6,7 +6,8 @@ const methodSchema = ({
 
 const Method = new mongoose.model('Method', methodSchema);
 
+
 module.exports = {
+    methodSchema: methodSchema,
     Method: Method,
-    methodSchema: methodSchema
 }
