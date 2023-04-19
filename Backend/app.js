@@ -10,6 +10,8 @@ const passport = require("passport");
 // const FacebookStrategy = require("passport-facebook");
 const userRoute = require('./routes/user');
 const Recipe = require('./models/recipe');
+const ingredientRoute = require('./routes/ingredients');
+const recipesRoute = require('./routes/recipes');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,6 +33,10 @@ mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD
 
 
 app.use(userRoute);
+
+app.use(ingredientRoute);
+
+app.use(recipesRoute);
 
 Recipe.Recipe;
 
