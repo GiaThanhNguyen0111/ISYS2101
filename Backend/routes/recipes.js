@@ -8,4 +8,4 @@ router.route('/recipe')
 .post(recipeController.postAddRecipe)
 .delete(recipeController.deleteRecipe);
 
-module.export = router;
+module.exports = router;

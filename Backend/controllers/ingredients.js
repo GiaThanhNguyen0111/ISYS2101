@@ -3,6 +3,8 @@ const ingredient = require('../models/ingredient');
 exports.getAllIngredients = async (req, res) => {
     await ingredient.Ingredient.find({}).then(result => {
         console.log(result);
+    }).catch(err => {
+        console.log(err);
     });
 };
 
@@ -26,4 +28,5 @@ exports.deleteAllIngredient = async (req, res) => {
     await ingredient.Ingredient.delete().catch(err => {
         console.log(err);
     })
-}
+};
+

@@ -1,12 +1,41 @@
 const Recipe = require('../models/recipe');
-
+const recipe = require('./recipe');
+const ingredientModel = require('../models/ingredient');
+const ingredient = require('../models/ingredient');
 
 exports.getAllRecipe = async (req, res) => {
-    await Recipe.Recipe.find({}).then(results => {
-        console.log(results);
-    }).catch(err => {
+    try {
+        const search = req.query.search || "";
+        let ingredients = req.query.ingredients || "All";
+
+        const ingredientOptions = [
+            "Onion",
+            "Pepper",
+        ];
+
+        ingredientModel.Ingredient.find({}, "name").then(
+            results => {
+                results.forEach(result => {
+                    ingredientOptions.push(result);
+                });
+            }
+        );
+
+        ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.genre);
+        
+        const recipes = await Recipe.Recipe.find({name: {$regex: search, $options:"i"}})
+        .where("ingredients")
+        .in([...ingredients]);
+
+        const response = {recipes};
+
+        res.status(200).json(response); 
+
+    } catch (err) {
         console.log(err);
-    })
+        res.status(500).json({error: true, message: "Internal Server Error"});
+    }
+
 };
 
 exports.postAddRecipe = async (req, res) => {
@@ -50,4 +79,46 @@ exports.deleteRecipe = async (req, res) => {
     }).catch(err => {
         console.log(err);
     });
+};
+
+
+// Unfinishing function
+
+exports.postFilterByIngredient = (req, res) => {
+    const array = [];
+
+    var newArray = array.map((item) => {
+        if (array.indexOf(item) === 0) {
+            return '?ingredient='.concat(item, '&')
+        } else if (array.indexOf(item) === array.length -1) {
+            return 'ingredient='.concat(item);
+        } else {
+            return 'ingredient='.concat(item,"&");
+        }
+    });
+    console.log(newArray);
+    newArray = newArray.join('');
+    res.redirect(`/recipe${newArray}`);
+};
+
+exports.postDeleteFilterByIngredient = (req, res) => {
+    const ingredients = req.query.ingredient;
+    const unChoseIngredient = req.body.ingredientName
+
+    const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
+
+    var newArray = array.map((item) => {
+        if (array.indexOf(item) === 0) {
+            return '?ingredient='.concat(item, '&')
+        } else if (array.indexOf(item) === array.length -1) {
+            return 'ingredient='.concat(item);
+        } else {
+            return 'ingredient='.concat(item,"&");
+        }
+    });
+
+    console.log(newArray);
+    newArray = newArray.join('');
+    res.redirect(`/recipe${newArray}`);
+
 };

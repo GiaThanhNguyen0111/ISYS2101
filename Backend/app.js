@@ -38,7 +38,30 @@ app.use(ingredientRoute);
 
 app.use(recipesRoute);
 
-Recipe.Recipe;
+// Recipe.Recipe;
+
+var array = [];
+
+app.get('/test', function(req, res, next) {
+    res.render('ingredients');
+    console.log(req.session);
+    console.log(req.query.ingredient);
+  });
+app.post('/test', function(req, res, next) {
+    const array = ['onion','pepper', 'thanh'];
+    var newArray = array.map((item) => {
+        if (array.indexOf(item) === 0) {
+            return '?ingredient='.concat(item, '&')
+        } else if (array.indexOf(item) === array.length -1) {
+            return 'ingredient='.concat(item);
+        } else {
+            return 'ingredient='.concat(item,"&");
+        }
+    });
+    console.log(newArray);
+    newArray = newArray.join('');
+    res.redirect(`/test${newArray}`);
+  });
 
 
 const PORT = process.env.PORT || 3001;
@@ -46,9 +69,3 @@ app.listen(PORT, function() {
     console.log(`Connected to port ${PORT}`);
 });
 
-
-app.get("/test", (req, res) => {
-    const query = req.query.ingredient;
-
-    console.log(query);
-})
