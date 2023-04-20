@@ -15,12 +15,12 @@ exports.getAuthFacebook = passport.authenticate("facebook");
 
 exports.postAuthFacebook = passport.authenticate("facebook", { failureRedirect: "/login" });
 
-exports.getRegister = (req, res) => {
+exports.getUserRegister = (req, res) => {
     res.render('register')
 };
 
-exports.postRegister = (req, res) => {
-    userModel.User.register({username: req.body.username}, req.body.password, function(err, user) {
+exports.postUserRegister = async (req, res) => {
+    await userModel.User.register({username: req.body.username}, req.body.password, function(err, user) {
         if(err) {
             console.log(err);
             res.redirect("/register");
@@ -32,7 +32,7 @@ exports.postRegister = (req, res) => {
     })
 };
 
-exports.getLogin = (req, res) => {
+exports.getUserLogin = (req, res) => {
     res.send("Login Page");
 };
 
@@ -46,19 +46,19 @@ exports.postUserLogin = (req, res) => {
         password: password
     });
 
-    req.login(user, function(err) {
+    req.login(user, async function(err) {
         if(err) {
             console.log(err);
         } else {
-            passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
+            await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
                 res.redirect("/");
             })
         }
     });
 };
 
-exports.getLogout = (req, res, next) => {
-    req.logout(function(err) {
+exports.getUserLogout = async (req, res, next) => {
+    await req.logout(function(err) {
         if(err){
             return next(err);
         }

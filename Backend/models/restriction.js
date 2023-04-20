@@ -6,7 +6,6 @@ const restrictionSchema = ({
 
 const Restriction = new mongoose.model('Restriction', restrictionSchema);
 
-
 module.exports = {
     restrictionSchema: restrictionSchema,
     Restriction: Restriction
