@@ -6,23 +6,38 @@ const ingredient = require('../models/ingredient');
 exports.getAllRecipe = async (req, res) => {
     try {
         let ingredients = req.query.ingredients || "All";
-
+        let level = req.query.level || "All";
+        let rating = req.query.level || "All";
+        let sort = req.query.sort || 'rating';
         const ingredientOptions = [];
 
-        ingredientModel.Ingredient.find({}, "name").then(
+        ingredientModel.Ingredient.find({}).then(
             results => {
                 results.forEach(result => {
-                    ingredientOptions.push(result);
+                    ingredientOptions.push(result.name);
                 });
             }
         );
 
         ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.ingredient);
-        
-        const recipes = await Recipe.Recipe.find({})
-        .where("ingredients")
-        .in([...ingredients]);
+        level === "All" ? (level = 0) : (level = req.query.level);
+        rating === "All" ? (rating = 0 ) : (rating = req.query.rating);
+        req.query.sort ? (sort = req.query.sort ) : (sort = [sort]);
 
+        let sortBy  = {};
+
+        if (sort[1]) {
+            sortBy[sort[0]] = sort[1];
+        } else {
+            sortBy[sort[0]] = "asc";
+        };
+
+        const recipes = await Recipe.Recipe.find({})
+        .where("ingredients").in([...ingredients])
+        .where('rating').gte(rating)
+        .where('level').gte(level)
+        .sort(sortBy);
+        
         const response = {recipes};
 
         res.status(200).json(response); 
@@ -138,7 +153,7 @@ exports.getSearchByName = async (req, res) => {
         res.send(result);
     } catch (err) {
         console.log(err);
-        res.status(500).send({message: err.message});
+        res.status(500).json({message: err.message});
     }
 };
 
@@ -148,5 +163,4 @@ exports.postSearchByName = async (req, res) => {
     const newQuery = "?name".concat(recipeName);
 
     res.redirect('/recipeDetail')
-
-}
+};

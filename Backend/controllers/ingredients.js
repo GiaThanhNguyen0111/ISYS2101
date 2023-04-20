@@ -1,11 +1,14 @@
 const ingredient = require('../models/ingredient');
 
 exports.getAllIngredients = async (req, res) => {
-    await ingredient.Ingredient.find({}).then(result => {
-        console.log(result);
-    }).catch(err => {
-        console.log(err);
-    });
+
+    try {
+        await ingredient.Ingredient.find({}).then(result => {
+            res.status(200).json(result);
+        }); 
+    } catch (err) {
+        res.status(500).json({message: "Internal error!"})
+    }
 };
 
 exports.postAllIngredient = async (req, res) => {
