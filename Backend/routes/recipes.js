@@ -8,4 +8,8 @@ router.route('/recipe')
 .post(recipeController.postAddRecipe)
 .delete(recipeController.deleteRecipe);
 
+router.get('/search', recipeController.getSearchByName);
+
+router.post('/search', recipeController.postSearchByName);
+
 module.exports = router;

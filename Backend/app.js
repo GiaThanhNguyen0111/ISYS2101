@@ -4,17 +4,16 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-// const passportLocalMongoose = require("passport-local-mongoose");
-// const GoogleStrategy = require("passport-google-oauth20").Strategy;
-// const findOrCreate = require("mongoose-findorcreate");
-// const FacebookStrategy = require("passport-facebook");
 const userRoute = require('./routes/user');
-const Recipe = require('./models/recipe');
+const recipeModel = require('./models/recipe');
 const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
+const querystring = require('node:querystring');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 app.set('view engine', 'ejs');
 // Create session
 app.use(session({
@@ -40,12 +39,9 @@ app.use(recipesRoute);
 
 // Recipe.Recipe;
 
-var array = [];
 
-app.get('/test', function(req, res, next) {
-    res.render('ingredients');
-    console.log(req.session);
-    console.log(req.query.ingredient);
+app.get('/test', async function(req, res, next) {
+
   });
 app.post('/test', function(req, res, next) {
     const array = ['onion','pepper', 'thanh'];
