@@ -1,0 +1,78 @@
+.hero-wrapper {
+    position: relative;
+    background-color: #F4EDE5;
+    z-index: -3;
+}
+/* Left */
+
+.hero-left {
+    padding-top: 10%;
+    padding-left: 4%;
+    /* background-color: #F4EDE5; */
+    max-height: 29rem;
+}
+
+.hero-title {
+    z-index: 2;
+    font-weight: 700;
+    font-size: 490%;
+}
+
+.hero-subtitle {
+    margin: 2% 0%;
+    /* width: 35%; */
+    font-weight: 400;
+    font-size: 155%;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
+    padding-bottom: 4%;
+}
+
+.hero-cta {
+    margin-right: 2.5rem;
+    border: solid 1px #28161C;
+    height: 3rem;
+    width: 13rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    font-size: 100%;
+    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+#get-recipe {
+    background-color: #28161C;
+    color: #FAF8FF;
+}
+
+/* Right */
+.hero-right {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: -1;
+}
+
+.hero-img {
+    width: 40rem;
+    height: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    .hero-wrapper {
+        display: flex;
+        z-index: 0;
+    }
+
+    .hero-right {
+        z-index: 0;
+    }
+    .hero-img {
+        width: 35rem;
+        height: auto;
+    }
+
+}
