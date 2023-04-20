@@ -1,33 +1,36 @@
 const express = require('express');
+const userController = require('../controllers/user');
+const { getUserLogin, postUserLogin, getUserRegister, postUserRegister, getUserLogout } = require('../models/user');
 
 const router = express.Router();
-const userController = require('../controllers/user');
+// GET: root
+router.get("/", userController.getRoot);
 
-router.get('/', userController.getRoot);
-
-router.get('/auth/google', userController.getAuthGoogle);
-
-router.get('/auth/google/secrets', userController.postAuthGoogle, function(req, res) {
-    res.redirect('/');
-});
-
-
-router.get('/auth/facebook', userController.getAuthFacebook);
-
-router.get('/auth/facebook/secrets', userController.postAuthFacebook, function(req, res) {
-    res.redirect('/');
-});
-
-
-router.get('/register', userController.getRegister);
-
-router.post('/register', userController.postRegister);
-
-router.get('/login', userController.getLogin);
-
+// GET: login page
+router.get('/login', userController.getUserLogin);
+// POST data.
 router.post('/login', userController.postUserLogin);
 
-router.get('/logout', userController.getLogout);
+// GET: Register page.
+router.get('/register', userController.getUserRegister);
+// POST: Registered data. 
+router.post('/register', userController.postUserRegister);
 
+router.get('/logout', userController.getUserLogout);
+
+router.get("/auth/google", userController.getAuthGoogle);
+router.post("/auth/google/secrets", userController.postAuthGoogle, function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+});
+
+router.get("/auth/facebook", userController.getAuthFacebook);
+router.post("/auth/google/facebook", userController.postAuthFacebook, function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+});
 
 module.exports = router;
+
+
+
