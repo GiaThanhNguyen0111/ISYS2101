@@ -5,13 +5,9 @@ const ingredient = require('../models/ingredient');
 
 exports.getAllRecipe = async (req, res) => {
     try {
-        const search = req.query.search || "";
         let ingredients = req.query.ingredients || "All";
 
-        const ingredientOptions = [
-            "Onion",
-            "Pepper",
-        ];
+        const ingredientOptions = [];
 
         ingredientModel.Ingredient.find({}, "name").then(
             results => {
@@ -21,9 +17,9 @@ exports.getAllRecipe = async (req, res) => {
             }
         );
 
-        ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.genre);
+        ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.ingredient);
         
-        const recipes = await Recipe.Recipe.find({name: {$regex: search, $options:"i"}})
+        const recipes = await Recipe.Recipe.find({})
         .where("ingredients")
         .in([...ingredients]);
 
@@ -122,3 +118,35 @@ exports.postDeleteFilterByIngredient = (req, res) => {
     res.redirect(`/recipe${newArray}`);
 
 };
+
+
+exports.getSearchByName = async (req, res) => {
+    try {
+        let result = await recipeModel.Recipe.aggregate([
+            {
+                "$search": {
+                    "autocomplete": {
+                        "query": `${req.query.name}`,
+                        "path": "name",
+                        "fuzzy": {
+                            "maxEdits": 2
+                        }
+                    }
+                }
+            }
+        ]);
+        res.send(result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({message: err.message});
+    }
+};
+
+exports.postSearchByName = async (req, res) => {
+    const recipeName = req.body.name;
+
+    const newQuery = "?name".concat(recipeName);
+
+    res.redirect('/recipeDetail')
+
+}
