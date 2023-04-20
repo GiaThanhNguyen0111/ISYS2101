@@ -1,17 +1,22 @@
 import React from 'react'
 import '../../Css/form.css'
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 const Loginform = () => {
     return (
         <>
+        <Navbar/>
+        <h1 style={{display: 'flex', justifyContent: 'center', marginTop: '50px' }}>LOGIN</h1>
         <div className='formbox'>
+            
             <form>
                 <div>
-                    <h4 style={{marginBottom: 5, fontFamily: 'Inter', fontSize: 20}}>Username</h4>
+                    <h3 style={{marginBottom: 5, }}>Username</h3>
                     <input type='name' placeholder='Username'></input>
                 </div>
                 <div>
-                <h4 style={{marginBottom: 5, fontFamily: 'Inter', fontSize: 20}}>Password</h4>
+                <h3 style={{marginBottom: 5}}>Password</h3>
                 <input type='password' placeholder='Password'></input>
                 
                 </div>
@@ -20,6 +25,7 @@ const Loginform = () => {
             </form>
         </div>
         
+        <Footer/>
         
         </>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import '../Css/footer.css';
-import tabina from '../Image/tabina.png'
+import tabina from '../Image/logo/Tabina.png'
 
 function Footer() {
   return (
