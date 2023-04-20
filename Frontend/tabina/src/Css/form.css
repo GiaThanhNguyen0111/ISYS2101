@@ -1,36 +1,38 @@
-:root {
-    font-size: 100%;
-  }
-  
-  .formbox {
-    display: flex;
-    justify-content: center;
-    max-width: 37.5rem;
-    background: #FFFFFF;
-    border-radius: 10PX;
-    box-shadow: 3px 5px 20px rgba(0,0,0,0.25);
 
-  }
-  
-  input {
-    width: 31.25rem;
-    height: 2rem;
-    border: 0.15rem solid #000000;
-    border-radius: 0.3125rem;
-  }
-  
-  .loginbtn {
-    font-family: Inter;
-    font-size: 1.25rem;
-    background: #28161C;
-    border-radius: 2.5rem;
-    padding-top: 0.625rem;
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
-    padding-bottom: 0.625rem;
-    color: white;
-    margin-top: 2.5rem;
-    margin-left: 25rem;
-    margin-bottom: 1.25rem;
-  }
-  
+
+.formbox {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 3px 5px 20px rgba(0,0,0,0.25);
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 152px;
+}
+
+
+input {
+  width: 500px;
+  height: 32px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+}
+
+.loginbtn {
+  font-size: 20px;
+  background: #28161C;
+  border-radius: 40px;
+  padding: 10px 30px;
+  color: white;
+  margin-top: 40px;
+  margin-left: 400px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginbtn:hover {
+  background-color: #4f2b3d;
+}
