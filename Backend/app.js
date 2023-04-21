@@ -41,9 +41,15 @@ app.use(recipesRoute);
 
 
 app.get('/test', async function(req, res, next) {
-
+    res.render('ingredients');
+    console.log(req.url);
   });
 app.post('/test', function(req, res, next) {
+    const url = req.url;
+
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+    console.log(query);
     const array = ['onion','pepper', 'thanh'];
     var newArray = array.map((item) => {
         if (array.indexOf(item) === 0) {
@@ -56,7 +62,7 @@ app.post('/test', function(req, res, next) {
     });
     console.log(newArray);
     newArray = newArray.join('');
-    res.redirect(`/test${newArray}`);
+    res.redirect(`/test${query}${newArray}`);
   });
 
 
