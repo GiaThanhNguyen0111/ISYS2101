@@ -30,6 +30,16 @@ router.post("/auth/google/facebook", userController.postAuthFacebook, function(r
     res.redirect('/');
 });
 
+
+router.get('/posts');
+router.post('/post');
+router.patch('/post/:postId');
+router.delete('/post');
+
+
+
+
+
 module.exports = router;
 
 

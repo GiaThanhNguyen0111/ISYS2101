@@ -7,7 +7,7 @@ exports.getAllRecipe = async (req, res) => {
     try {
         let ingredients = req.query.ingredients || "All";
         let level = req.query.level || "All";
-        let rating = req.query.level || "All";
+        let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
         const ingredientOptions = [];
 
@@ -37,7 +37,7 @@ exports.getAllRecipe = async (req, res) => {
         .where('rating').gte(rating)
         .where('level').gte(level)
         .sort(sortBy);
-        
+
         const response = {recipes};
 
         res.status(200).json(response); 
@@ -96,31 +96,49 @@ exports.deleteRecipe = async (req, res) => {
 // Unfinishing function
 
 exports.postFilterByIngredient = (req, res) => {
+    const url = req.url;
+
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+
     const array = [];
 
     var newArray = array.map((item) => {
         if (array.indexOf(item) === 0) {
-            return '?ingredient='.concat(item, '&')
+            if (!req.query) {
+                return '?ingredient='.concat(item, '&');
+            } else {
+                return 'ingredient='.concat(item, '&');
+            }
         } else if (array.indexOf(item) === array.length -1) {
             return 'ingredient='.concat(item);
         } else {
             return 'ingredient='.concat(item,"&");
-        }
+        };
     });
     console.log(newArray);
     newArray = newArray.join('');
-    res.redirect(`/recipe${newArray}`);
+    res.redirect(`/recipe${query}${newArray}`);
 };
 
 exports.postDeleteFilterByIngredient = (req, res) => {
     const ingredients = req.query.ingredient;
-    const unChoseIngredient = req.body.ingredientName
+    const unChoseIngredient = req.body.ingredientName;
+
+    const url = req.url;
+
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
 
     const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
 
     var newArray = array.map((item) => {
         if (array.indexOf(item) === 0) {
-            return '?ingredient='.concat(item, '&')
+            if (!req.query) {
+                return '?ingredient='.concat(item, '&');
+            } else {
+                return '&ingredient='.concat(item, '&')
+            }
         } else if (array.indexOf(item) === array.length -1) {
             return 'ingredient='.concat(item);
         } else {
@@ -130,7 +148,7 @@ exports.postDeleteFilterByIngredient = (req, res) => {
 
     console.log(newArray);
     newArray = newArray.join('');
-    res.redirect(`/recipe${newArray}`);
+    res.redirect(`/recipe${query}${newArray}`);
 
 };
 
@@ -160,7 +178,42 @@ exports.getSearchByName = async (req, res) => {
 exports.postSearchByName = async (req, res) => {
     const recipeName = req.body.name;
 
-    const newQuery = "?name".concat(recipeName);
+    const newQuery = "?name=".concat(recipeName);
+    req.query ? newQuery = "&name=".concat(recipeName) : newQuery = "?name=".concat(recipeName);
+    const url = req.url;
 
-    res.redirect('/recipeDetail')
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+
+    res.redirect(`/recipe${query}${newQuery}`);
+};
+
+exports.postFilterByLevel = (req, res) => {
+    const url = req.url;
+
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+
+    const chosenLevel = req.body.level;
+
+    const newQuery = "?level=".concat(chosenLevel);
+
+    req.query ? newQuery = "&level=".concat(chosenLevel) : "?level=".concat(chosenLevel);
+
+    res.redirect(`/recipe${query}${newQuery}`);
+};
+
+exports.postFilterByRating = (req, res) => {
+    const url = req.url;
+
+    var query = url.slice(url.indexOf('?') + 1, url.length);
+    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+
+    const chosenRating = req.body.rating;
+
+    const newQuery = "?level=".concat(chosenRating);
+
+    req.query ? newQuery = "&level=".concat(chosenRating) : "?level=".concat(chosenRating);
+
+    res.redirect(`/recipe${query}${newQuery}`);
 };
