@@ -9,7 +9,6 @@
 }
 
 .recipe-card {
-    margin: 2rem 2rem;
     height: auto;
     border-radius: 1.5rem;
     background-color: #F4EDE5;
@@ -30,19 +29,22 @@
 .recipe-card h3 {
     font-size: 1.85rem;
     margin-bottom: 0.5rem;
+    max-width: 100%;
 }
 
-@media only screen and (max-width: 1200px) {
-    .recipe-card {
-        margin: 2rem 0rem;
-    }
+.star-ratings {
+    margin: 1rem 0;
 }
 
+.recipe-card p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 90%;
+}
 
-@media only screen and (max-width: 750px) {
-    .recipe-card {
-        margin: 2rem 4rem;
-    }
+.bolded { 
+    font-weight: bold; 
 }
 
 

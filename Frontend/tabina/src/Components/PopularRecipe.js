@@ -2,6 +2,7 @@ import React from "react";
 import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import "../Css/popularRecipe.css"; //import component-specific CSS
+import StarRatings from 'react-star-ratings';
 
 const PopularRecipe = () => {
   const recipeData = [
@@ -9,25 +10,37 @@ const PopularRecipe = () => {
       id: 1,
       title: "Spicy Chicken Pasta",
       image: "https://source.unsplash.com/800x600/?chicken,pasta",
-      description: "A delicious pasta dish with a spicy kick!",
+      rating: 5,
+      prepTime: '20 mins',
+      cookingTime: '20 to 40 mins',
+      difficulty: 'Intermediate',
     },
     {
       id: 2,
       title: "Cheeseburger Sliders",
       image: "https://source.unsplash.com/800x600/?burger,sliders",
-      description: "Miniature cheeseburgers that are perfect for a party!",
+      rating: 4,
+      prepTime: '18 mins',
+      cookingTime: '20 to 60 mins',
+      difficulty: 'Expert',
     },
     {
       id: 3,
       title: "Chocolate Chip Cookies",
       image: "https://source.unsplash.com/800x600/?cookies,chocolate",
-      description: "A classic cookie recipe that everyone loves.",
+      rating: 4,
+      prepTime: '10 mins',
+      cookingTime: '30 mins',
+      difficulty: 'Beginner',
     },
     {
       id: 4,
       title: "Chocolate Chip Cookies",
       image: "https://source.unsplash.com/800x600/?cookies,chocolate",
-      description: "A classic cookie recipe that everyone loves.",
+      rating: 3,
+      prepTime: '20 mins',
+      cookingTime: '20 to 40 mins',
+      difficulty: 'Intermediate',
     },
   ];
 
@@ -51,7 +64,7 @@ const PopularRecipe = () => {
               perPage: 2,
               gap: "5rem",
             },
-            750: {
+            820: {
               perPage: 1,
             },
           },
@@ -63,9 +76,15 @@ const PopularRecipe = () => {
             <div className="recipe-card">
               <img src={recipe.image} alt={recipe.title} />
               <h3>{recipe.title}</h3>
+              <StarRatings 
+                rating={recipe.rating}
+                starDimension="2.5rem"
+              />
+              <p><span className="text">Preparation time:</span> <span class="bolded">{recipe.prepTime}</span></p>
+              <p><span className="text">Cooking time:</span> <span class="bolded">{recipe.cookingTime}</span></p>
+              <p><span className="text">Difficulty:</span> <span class="bolded">{recipe.difficulty}</span></p>
             </div>
           </SplideSlide>
-          
         ))}
       </Splide>
 
