@@ -1,0 +1,48 @@
+.popular-recipe-container {
+    margin: 20rem 0 10rem 0;
+}
+
+.popular-recipe-container h2 {
+    font-size: 2rem;
+    margin-left: 4%;
+    margin-bottom: 3%;
+}
+
+.recipe-card {
+    margin: 2rem 2rem;
+    height: auto;
+    border-radius: 1.5rem;
+    background-color: #F4EDE5;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-card img {
+    margin: 0;
+    border-radius: 1.5rem;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.recipe-card h3 {
+    font-size: 1.85rem;
+    margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .recipe-card {
+        margin: 2rem 0rem;
+    }
+}
+
+
+@media only screen and (max-width: 750px) {
+    .recipe-card {
+        margin: 2rem 4rem;
+    }
+}
+
+

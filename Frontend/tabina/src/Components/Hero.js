@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/hero.css';
 import bookImg from '../Image/img/recipe/Hero book image.png';
-import curveShape from '../Image/img/recipe/Curve Shape.png';
+import curveShape from '../Image/img/recipe/Curve Shape (Hero).png';
 // import bookImg from '../Image/img/recipe/Tabina (3).png'
 
 function Hero() {
