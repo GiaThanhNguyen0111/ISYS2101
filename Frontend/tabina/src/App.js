@@ -13,10 +13,10 @@ const App = () => {
   return (
     <div>
       <>
-    {/* <Hero />
+    <Hero />
       <PopularRecipe />
-      <MoreThanRecipe  /> */}
-    <RecipeItem />
+      <MoreThanRecipe  />
+    {/* <RecipeItem /> */}
     </>
     </div>
   );
