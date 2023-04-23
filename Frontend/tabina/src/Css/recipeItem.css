@@ -1,4 +1,4 @@
-p {
+* {
     font-family: 'Inter', sans-serif;
 }
 
@@ -8,21 +8,67 @@ p {
     height: 521px;
     background-color: #F4EDE5;
     border-radius: 20px;
+    text-align: center;
+
+    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15) ;
+
+    /* for testing */
+    margin: 100px 100px;
 }
 
 .recipe-item-img {
-    padding: 20px 30px 30px 31px;
-}
-
-.recipe-item-img-food {
     width: 339px;
     height: 259px;
     border-radius: 20px;
     margin: 0;
     object-fit: cover;
     object-position: 100%;
+    margin: 20px 30px 30px 31px;
 }
 
-.recipe-item-body {
-    
+h3 {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 25px;
+    height: 60px;
+    margin: 0 30px 10px 31px;
+    text-transform: uppercase;
+    line-height: 30.26px;
+}
+
+.recipe-item-rating {
+    display: inline-block;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.star-color {
+    margin-right: 10px;
+}
+
+.star-color:last-child {
+    margin-right: 0px;
+}
+
+.recipe-item-desc-line {
+    margin: 0 30px 0px 31px;
+}
+
+.recipe-item-desc-line:last-child {
+    margin: 0 30px 20px 31px;
+}
+
+.recipe-item-desc-line > span{
+    font-size: 20px;
+    line-height: 24.2px;
+}
+
+.recipe-item-desc-line-1 {
+    text-align: left;
+    float: left;
+}
+
+.recipe-item-desc-line-2 {
+    font-weight: 600;
+    float: right;
 }

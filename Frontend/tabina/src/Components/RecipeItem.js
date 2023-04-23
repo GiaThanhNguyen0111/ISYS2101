@@ -1,34 +1,73 @@
 import React from 'react';
 import '../Css/recipeItem.css'
 import food from '../Image/img/recipe/salmon.jpg'
+import StarColor from './StarColor';
+import StarBlank from './StarBlank';
 
 const RecipeItem = () => {
+    const recipe = {
+        id: 1,
+        title: "SAUTÉ BUTTER \n SALMON",
+        image: food,
+        rating: 4,
+        prepTime: '20 mins',
+        cookingTime: '20 to 40 mins',
+        difficulty: 'Medium',
+    }
+
+
     return (
         <>
         <div className='recipe-item'>
-            <div className='recipe-item-img'>
-                <img src = {food} className='recipe-item-img-food' />
+            <img src = {recipe.image} className='recipe-item-img' />
+            <h3>{recipe.title}</h3>
+            <div className='recipe-item-rating'>
+            {
+                [
+                    ...Array(recipe.rating),
+                ].map((value) => (
+                    <StarColor />
+                ))
+            }
+            {
+                [
+                    ...Array(5 - recipe.rating),
+                ].map((value) => (
+                    <StarBlank />
+                ))
+            }
             </div>
-            <div className='recipe-item-body'>
-                <div className='recipe-item-body-title'>
-
+            
+                <div className='recipe-item-desc-line'>
+                    <span className='recipe-item-desc-line-1'>
+                        Preparation time:
+                    </span>
+                    <span className='recipe-item-desc-line-2'>
+                        {recipe.prepTime}
+                    </span>
                 </div>
-                <div className='recipe-item-body-rating'>
-
+                <div className='recipe-item-desc-line'>
+                    <span className='recipe-item-desc-line-1'>
+                        Cooking time:
+                    </span>
+                    <span className='recipe-item-desc-line-2'>
+                        {recipe.cookingTime}
+                    </span>
                 </div>
-                <div className='recipe-item-body-desc'>
-                    <div className='recipe-item-body-desc-text'>
-
-                    </div>
-                    <div className='recipe-item-body-desc-value'>
-
-                    </div>
+                <div className='recipe-item-desc-line'>
+                    <span className='recipe-item-desc-line-1'>
+                        Difficulty:
+                    </span>
+                    <span className='recipe-item-desc-line-2'>
+                        {recipe.difficulty}
+                    </span>
                 </div>
-            </div>
+            
+
         </div>
         </>
     )
-
 }
+
 
 export default RecipeItem;
