@@ -19,8 +19,6 @@ const App = () => {
       <PopularRecipe />
       <MoreThanRecipe  /> */}
     <RecipeItem />
-    {/* <StarColor />
-    <StarBlank /> */}
     </>
     </div>
   );
