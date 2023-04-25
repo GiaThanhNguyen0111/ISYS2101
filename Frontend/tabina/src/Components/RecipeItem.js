@@ -12,7 +12,7 @@ const RecipeItem = () => {
         rating: 4,
         prepTime: '20 mins',
         cookingTime: '20 to 40 mins',
-        difficulty: 'Medium',
+        difficulty: 'Expert',
     }
 
 
