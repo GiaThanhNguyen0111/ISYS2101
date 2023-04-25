@@ -6,6 +6,12 @@ const App = () => {
   return (
     <div>
       <Home />
+      <>
+    {/* <Hero />
+      <PopularRecipe />
+      <MoreThanRecipe  /> */}
+    <RecipeItem />
+    </>
     </div>
   );
 };

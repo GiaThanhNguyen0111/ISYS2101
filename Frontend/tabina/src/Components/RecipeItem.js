@@ -19,7 +19,7 @@ const RecipeItem = () => {
     return (
         <>
         <div className='recipe-item'>
-            <img src = {recipe.image} className='recipe-item-img' />
+            <img src = {recipe.image} className='recipe-item-img' alt={recipe.title}/>
             <h3>{recipe.title}</h3>
             <div className='recipe-item-rating'>
             {
@@ -38,32 +38,30 @@ const RecipeItem = () => {
             }
             </div>
             
-                <div className='recipe-item-desc-line'>
-                    <span className='recipe-item-desc-line-1'>
-                        Preparation time:
-                    </span>
-                    <span className='recipe-item-desc-line-2'>
-                        {recipe.prepTime}
-                    </span>
-                </div>
-                <div className='recipe-item-desc-line'>
-                    <span className='recipe-item-desc-line-1'>
-                        Cooking time:
-                    </span>
-                    <span className='recipe-item-desc-line-2'>
-                        {recipe.cookingTime}
-                    </span>
-                </div>
-                <div className='recipe-item-desc-line'>
-                    <span className='recipe-item-desc-line-1'>
-                        Difficulty:
-                    </span>
-                    <span className='recipe-item-desc-line-2'>
-                        {recipe.difficulty}
-                    </span>
-                </div>
-            
-
+            <div className='recipe-item-desc-line'>
+                <span className='recipe-item-desc-line-1'>
+                    Preparation time:
+                </span>
+                <span className='recipe-item-desc-line-2'>
+                    {recipe.prepTime}
+                </span>
+            </div>
+            <div className='recipe-item-desc-line'>
+                <span className='recipe-item-desc-line-1'>
+                    Cooking time:
+                </span>
+                <span className='recipe-item-desc-line-2'>
+                    {recipe.cookingTime}
+                </span>
+            </div>
+            <div className='recipe-item-desc-line'>
+                <span className='recipe-item-desc-line-1'>
+                    Difficulty:
+                </span>
+                <span className='recipe-item-desc-line-2'>
+                    {recipe.difficulty}
+                </span>
+            </div>
         </div>
         </>
     )
