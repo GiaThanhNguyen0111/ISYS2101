@@ -16,9 +16,9 @@ function MoreThanRecipe() {
     <div className='mtr-container'>
       <div className='mtr-left-side'>
         <div className='mtr-left-background'></div>
-        <img src={Shape} className='mtr-shape'/>
-        <img src={Meal1} className='mtr-bowl1'/>
-        <img src={Meal2} className='mtr-bowl2'/>
+        <img src={Shape} className='mtr-shape' alt=''/>
+        <img src={Meal1} className='mtr-bowl1' alt=''/>
+        <img src={Meal2} className='mtr-bowl2'alt=''/>
       </div>
 
       <div className='mtr-right-side'>
@@ -26,15 +26,15 @@ function MoreThanRecipe() {
         <p className='mtr-description'>While being the best option for you when it comes to create best dishes from anywhere in the planet, Tabina is also the #1 leading food community web application with 10.000+ users.</p>
 
         <ul className='mtr-list'>
-          <li>Cohesive instruction<img src={requirement}/></li> 
-          <li>Sharing community<img src={people}/></li>
-          <li>Pleasing interface<img src={dashboard}/></li>
-          <li>Detailed super chefs food<img src={cooking}/></li>
-          <li>1000+ recipes database<img src={recipe}/></li>
-          <li>Diverse food labels<img src={fastFood}/></li>
+          <li>Cohesive instruction<img src={requirement} alt='icon'/></li> 
+          <li>Detailed super chefs food<img src={cooking} alt='icon'/></li>
+          <li>Sharing community<img src={people} alt='icon'/></li>
+          <li>1000+ recipes database<img src={recipe} alt='icon'/></li>
+          <li>Pleasing interface<img src={dashboard} alt='icon'/></li>
+          <li>Diverse food labels<img src={fastFood} alt='icon'/></li>
         </ul>
 
-        <button>ABOUT</button>
+        <button className='mtr-about-btn'>ABOUT</button>
       </div>
     </div>
   )
