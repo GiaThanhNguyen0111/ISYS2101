@@ -1,8 +1,9 @@
 import React from "react";
 import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import "../Css/popularRecipe.css"; //import component-specific CSS
+import "../../Css/popularRecipe.css"; //import component-specific CSS
 import StarRatings from 'react-star-ratings';
+import RecipeItem from "../RecipeItem";
 
 const PopularRecipe = () => {
   const recipeData = [
@@ -73,7 +74,7 @@ const PopularRecipe = () => {
         {recipeData.map((recipe) => (
 
           <SplideSlide key={recipe.id}>
-            <div className="recipe-card">
+            {/* <div className="recipe-card">
               <img src={recipe.image} alt={recipe.title} />
               <h3>{recipe.title}</h3>
               <StarRatings 
@@ -83,7 +84,8 @@ const PopularRecipe = () => {
               <p><span className="text">Preparation time:</span> <span class="bolded">{recipe.prepTime}</span></p>
               <p><span className="text">Cooking time:</span> <span class="bolded">{recipe.cookingTime}</span></p>
               <p><span className="text">Difficulty:</span> <span class="bolded">{recipe.difficulty}</span></p>
-            </div>
+            </div> */}
+            <RecipeItem recipe = {recipe}/>
           </SplideSlide>
         ))}
       </Splide>

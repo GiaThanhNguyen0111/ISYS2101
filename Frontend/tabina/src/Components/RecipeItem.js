@@ -4,6 +4,7 @@ import food from '../Image/img/recipe/salmon.jpg'
 import StarColor from './StarColor';
 import StarBlank from './StarBlank';
 
+<<<<<<< HEAD
 const RecipeItem = () => {
     const recipe = {
         id: 1,
@@ -14,24 +15,36 @@ const RecipeItem = () => {
         cookingTime: '20 to 40 mins',
         difficulty: 'Expert',
     }
+=======
+const RecipeItem = (props) => {
+    // const recipe = {
+    //     id: 1,
+    //     title: "SAUTÉ BUTTER \n SALMON",
+    //     image: food,
+    //     rating: 4,
+    //     prepTime: '20 mins',
+    //     cookingTime: '20 to 40 mins',
+    //     difficulty: 'Medium',
+    // }
+>>>>>>> 4074fd437e18f9ed9a54913c6a4ef66b4a15bbc0
 
 
     return (
         <>
         <div className='recipe-item'>
-            <img src = {recipe.image} className='recipe-item-img' alt={recipe.title}/>
-            <h3>{recipe.title}</h3>
+            <img src = {props.recipe.image} className='recipe-item-img' alt={props.recipe.title}/>
+            <h3>{props.recipe.title}</h3>
             <div className='recipe-item-rating'>
             {
                 [
-                    ...Array(recipe.rating),
+                    ...Array(props.recipe.rating),
                 ].map((value) => (
                     <StarColor />
                 ))
             }
             {
                 [
-                    ...Array(5 - recipe.rating),
+                    ...Array(5 - props.recipe.rating),
                 ].map((value) => (
                     <StarBlank />
                 ))
@@ -43,7 +56,7 @@ const RecipeItem = () => {
                     Preparation time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {recipe.prepTime}
+                    {props.recipe.prepTime}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
@@ -51,7 +64,7 @@ const RecipeItem = () => {
                     Cooking time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {recipe.cookingTime}
+                    {props.recipe.cookingTime}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
@@ -59,7 +72,7 @@ const RecipeItem = () => {
                     Difficulty:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {recipe.difficulty}
+                    {props.recipe.difficulty}
                 </span>
             </div>
         </div>
