@@ -1,17 +1,21 @@
 import React from 'react';
 import './Css/app.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
-import RecipeItem from './Components/RecipeItem'
 
 const App = () => {
   return (
-    <div>
-      <Home />
-    {/* <Hero />
-      <PopularRecipe />
-      <MoreThanRecipe  /> */}
-    {/* <RecipeItem /> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/detail" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
 };
 
