@@ -9,7 +9,13 @@ import Hero from './Components/Hero';
 import MoreThanRecipe from './Components/MoreThanRecipe';
 import StarColor from './Components/StarColor';
 import StarBlank from './Components/StarBlank';
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
+import RecipeDetail from './Components/RecipeDetail';
 
 const App = () => {
   return (
@@ -18,8 +24,15 @@ const App = () => {
     {/* <Hero />
       <PopularRecipe />
       <MoreThanRecipe  /> */}
-    <RecipeItem />
+    {/* <RecipeItem /> */}
     </>
+
+    <Router>
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/detail" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
     </div>
   );
 };

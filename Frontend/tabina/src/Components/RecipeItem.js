@@ -7,7 +7,7 @@ import StarBlank from './StarBlank';
 const RecipeItem = () => {
     const recipe = {
         id: 1,
-        title: "SAUTÉ BUTTER \n SALMON",
+        title: "SAUTÉ BUTTER SALMON",
         image: food,
         rating: 4,
         prepTime: '20 mins',
