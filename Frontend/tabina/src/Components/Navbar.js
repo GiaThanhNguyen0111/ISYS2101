@@ -5,8 +5,8 @@ import tabina from '../Image/tabina.png'
 const Navbar = () => {
   return (
     <Router>
-      <nav className='nav'>
-      <img src={tabina}  />
+      <nav className='navigationbar'>
+      <img className='tbnlogo' src={tabina}  />
       
        <div className='btnlist'>
        
@@ -18,7 +18,7 @@ const Navbar = () => {
  
     <Link to="/contact" className='nav-link'>Contact</Link>
  
-  <button className='nav-link' id = 'button'>Login</button>
+  <button className='nav-link' id = 'button-login'>LOGIN</button>
        </div>
           
         

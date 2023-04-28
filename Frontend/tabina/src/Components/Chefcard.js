@@ -3,7 +3,6 @@ import gordon from '../Image/img/recipe/gordon_ramsay.png'
 import jamie from '../Image/img/recipe/jamie.png'
 import jock from '../Image/img/recipe/jock.png'
 import peter from '../Image/img/recipe/peter.png'
-import shape1 from '../Image/img/recipe/Shape.png'
 import Navbar from './Navbar';
 import Footer from './Footer';
 import '../Css/chefcard.css'
@@ -11,7 +10,7 @@ import '../Css/chefcard.css'
 const Chefcard = () => {
     return (
         <>
-        <Navbar/>
+        <p style={{display: 'flex', justifyContent: 'center', fontSize: '30px', fontWeight: 600}}>Our sponsor chef</p>
         <div className='sponsor-area'>
         <div className='sponsorchef'>
         <div className='chefcard'>

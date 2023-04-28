@@ -9,16 +9,18 @@ import Hero from './Components/Hero';
 import MoreThanRecipe from './Components/MoreThanRecipe';
 import StarColor from './Components/StarColor';
 import StarBlank from './Components/StarBlank';
+import Navbar from './Components/Navbar';
 
 
 const App = () => {
   return (
     <div>
       <>
-    {/* <Hero />
+      <Navbar/>
+    <Hero />
       <PopularRecipe />
-      <MoreThanRecipe  /> */}
-    <RecipeItem />
+      <MoreThanRecipe/>
+      <Chefcard/>
     </>
     </div>
   );
