@@ -4,31 +4,7 @@ import food from '../Image/img/recipe/salmon.jpg'
 import StarColor from './StarColor';
 import StarBlank from './StarBlank';
 
-<<<<<<< HEAD
-const RecipeItem = () => {
-    const recipe = {
-        id: 1,
-        title: "SAUTÉ BUTTER SALMON",
-        image: food,
-        rating: 4,
-        prepTime: '20 mins',
-        cookingTime: '20 to 40 mins',
-        difficulty: 'Expert',
-    }
-=======
 const RecipeItem = (props) => {
-    // const recipe = {
-    //     id: 1,
-    //     title: "SAUTÉ BUTTER \n SALMON",
-    //     image: food,
-    //     rating: 4,
-    //     prepTime: '20 mins',
-    //     cookingTime: '20 to 40 mins',
-    //     difficulty: 'Medium',
-    // }
->>>>>>> 4074fd437e18f9ed9a54913c6a4ef66b4a15bbc0
-
-
     return (
         <>
         <div className='recipe-item'>

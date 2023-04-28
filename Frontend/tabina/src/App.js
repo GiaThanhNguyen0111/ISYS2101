@@ -5,7 +5,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import RecipeDetail from './Components/RecipeDetail';
+import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
 
 const App = () => {
