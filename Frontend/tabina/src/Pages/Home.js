@@ -1,7 +1,7 @@
 import React from 'react'
-import Hero from '../Components/Hero';
-import PopularRecipe from '../Components/PopularRecipe';
-import MoreThanRecipe from '../Components/MoreThanRecipe';
+import Hero from '../Components/Home/Hero';
+import PopularRecipe from '../Components/Home/PopularRecipe';
+import MoreThanRecipe from '../Components/Home/MoreThanRecipe';
 
 function Home() {
     return (

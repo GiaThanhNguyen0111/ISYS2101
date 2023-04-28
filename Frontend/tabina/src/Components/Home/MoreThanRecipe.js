@@ -1,14 +1,14 @@
 import React from 'react'
-import Shape from '../Image/img/recipe/Curve Shape (MoreThanRecipe).png';
-import Meal1 from '../Image/img/recipe/Meal1.png';
-import Meal2 from '../Image/img/recipe/Meal2.png';
-import requirement from '../Image/img/recipe/requirement.png';
-import people from '../Image/img/recipe/people.png';
-import dashboard from '../Image/img/recipe/dashboard.png';
-import cooking from '../Image/img/recipe/cooking.png';
-import recipe from '../Image/img/recipe/recipe.png';
-import fastFood from '../Image/img/recipe/fast-food.png';
-import "../Css/moreThanRecipe.css";
+import Shape from '../../Image/img/recipe/Curve Shape (MoreThanRecipe).png';
+import Meal1 from '../../Image/img/recipe/Meal1.png';
+import Meal2 from '../../Image/img/recipe/Meal2.png';
+import requirement from '../../Image/img/recipe/requirement.png';
+import people from '../../Image/img/recipe/people.png';
+import dashboard from '../../Image/img/recipe/dashboard.png';
+import cooking from '../../Image/img/recipe/cooking.png';
+import recipe from '../../Image/img/recipe/recipe.png';
+import fastFood from '../../Image/img/recipe/fast-food.png';
+import "../../Css/moreThanRecipe.css";
 
 
 function MoreThanRecipe() {
