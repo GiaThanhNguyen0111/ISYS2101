@@ -10,17 +10,15 @@ import MoreThanRecipe from './Components/MoreThanRecipe';
 import StarColor from './Components/StarColor';
 import StarBlank from './Components/StarBlank';
 import Navbar from './Components/Navbar';
+import SearchBar from './Components/Searchbar';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const App = () => {
   return (
     <div>
       <>
-      <Navbar/>
-    <Hero />
-      <PopularRecipe />
-      <MoreThanRecipe/>
-      <Chefcard/>
+      <SearchBar/>
     </>
     </div>
   );
