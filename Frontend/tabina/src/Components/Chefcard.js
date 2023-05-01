@@ -10,39 +10,32 @@ import '../Css/chefcard.css'
 const Chefcard = () => {
     return (
         <>
-        <p style={{display: 'flex', justifyContent: 'center', fontSize: '30px', fontWeight: 600}}>Our sponsor chef</p>
         <div className='sponsor-area'>
-        <div className='sponsorchef'>
-        <div className='chefcard'>
-            <img src = {gordon} className='chefimg' />
-            <p className='chefname'>Gordon Ramsay</p>
-        </div>
-        <div className='chefcard'>
-            <img src = {jamie} className='chefimg' />
-            <p className='chefname'>Jamie Oliver</p>
-        </div>
-        <div className='chefcard'>
-            <img src = {jock} className='chefimg' />
-            <p className='chefname'>Jock Zonfrillo</p>
-        </div>
-        <div className='chefcard'>
-            <img src = {peter} className='chefimg' />
-            <p className='chefname'>Peter Gilmore</p>
-        </div>
+
+            <div className='sponsorchef'>
+                <div className='chefcard'>
+                    <img src = {gordon} className='chefimg' />
+                    <p className='chefname'>Gordon Ramsay</p>
+                </div>
+                <div className='chefcard'>
+                    <img src = {jamie} className='chefimg' />
+                    <p className='chefname'>Jamie Oliver</p>
+                </div>
+                <div className='chefcard'>
+                    <img src = {jock} className='chefimg' />
+                    <p className='chefname'>Jock Zonfrillo</p>
+                </div>
+                <div className='chefcard'>
+                    <img src = {peter} className='chefimg' />
+                    <p className='chefname'>Peter Gilmore</p>
+                </div>
+            </div>
+
+            <div>
+                <button className='rcpbtn'>VIEW MORE RECIPE</button>
+            </div>
 
         </div>
-
-        <div>
-        <button className='rcpbtn'>VIEW MORE RECIPE</button>
-
-        </div>
-
-
-        </div>
-   
-
-       
-        <Footer/>
         </>
 
     )

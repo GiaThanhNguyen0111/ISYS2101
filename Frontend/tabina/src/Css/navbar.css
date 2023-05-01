@@ -1,5 +1,5 @@
-.navigationbar {
-display: flex;
+.nav {
+    display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1%;
@@ -10,6 +10,7 @@ display: flex;
 
 
 .nav-link {
+    font-family: Inter;
     margin-left: 50px;
     text-decoration: none;
     font-size: 25px;
@@ -20,18 +21,16 @@ display: flex;
 
 }
 
-#button-login {
+#button {
     border-radius: 40px;
     color: #FAF8FF;
     padding-left: 40px;
     padding-right: 40px;
+    background-color: #28161C;
     cursor: pointer;
-    background: #28161C;
-box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-border-radius: 40px;
    
 }
-.tbnlogo {
+.nav img {
     width: 100px;
     height: 100px;
     margin-left: 3%;
