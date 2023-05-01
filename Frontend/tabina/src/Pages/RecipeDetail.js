@@ -1,5 +1,6 @@
 import React from 'react';
 import RecipeItem from '../Components/RecipeItem';
+import '../Css/page/recipe-detail.css';
 import food from '../Image/img/recipe/salmon.jpg'
 
 const RecipeDetail = () => {
