@@ -4,46 +4,51 @@ import '@splidejs/react-splide/css';
 import "../../Css/popularRecipe.css"; //import component-specific CSS
 import StarRatings from 'react-star-ratings';
 import RecipeItem from "../RecipeItem";
+import { Link } from "react-router-dom";
+
+import recipesData from "../../test-data/recipesData";
 
 const PopularRecipe = () => {
-  const recipeData = [
-    {
-      id: 1,
-      title: "Spicy Chicken Pasta",
-      image: "https://source.unsplash.com/800x600/?chicken,pasta",
-      rating: 5,
-      prepTime: '20 mins',
-      cookingTime: '20 to 40 mins',
-      difficulty: 'Intermediate',
-    },
-    {
-      id: 2,
-      title: "Cheeseburger Sliders",
-      image: "https://source.unsplash.com/800x600/?burger,sliders",
-      rating: 4,
-      prepTime: '18 mins',
-      cookingTime: '20 to 60 mins',
-      difficulty: 'Expert',
-    },
-    {
-      id: 3,
-      title: "Chocolate Chip Cookies",
-      image: "https://source.unsplash.com/800x600/?cookies,chocolate",
-      rating: 4,
-      prepTime: '10 mins',
-      cookingTime: '30 mins',
-      difficulty: 'Beginner',
-    },
-    {
-      id: 4,
-      title: "Chocolate Chip Cookies",
-      image: "https://source.unsplash.com/800x600/?cookies,chocolate",
-      rating: 3,
-      prepTime: '20 mins',
-      cookingTime: '20 to 40 mins',
-      difficulty: 'Intermediate',
-    },
-  ];
+
+  // const recipesData = [
+  //   {
+  //     id: 1,
+  //     title: "Spicy Chicken Pasta",
+  //     image: "https://source.unsplash.com/800x600/?chicken,pasta",
+  //     rating: 5,
+  //     prepTime: '20 mins',
+  //     cookingTime: '20 to 40 mins',
+  //     difficulty: 'Intermediate',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Cheeseburger Sliders",
+  //     image: "https://source.unsplash.com/800x600/?burger,sliders",
+  //     rating: 4,
+  //     prepTime: '18 mins',
+  //     cookingTime: '20 to 60 mins',
+  //     difficulty: 'Expert',
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Chocolate Chip Cookies",
+  //     image: "https://source.unsplash.com/800x600/?cookies,chocolate",
+  //     rating: 4,
+  //     prepTime: '10 mins',
+  //     cookingTime: '30 mins',
+  //     difficulty: 'Beginner',
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Chocolate Chip Cookies",
+  //     image: "https://source.unsplash.com/800x600/?cookies,chocolate",
+  //     rating: 3,
+  //     prepTime: '20 mins',
+  //     cookingTime: '20 to 40 mins',
+  //     difficulty: 'Intermediate',
+  //   },
+  // ];
+  
 
   return (
     <div className="popular-recipe-container">
@@ -71,7 +76,7 @@ const PopularRecipe = () => {
           },
         }}
       >
-        {recipeData.map((recipe) => (
+        {recipesData.map((recipe) => (
 
           <SplideSlide key={recipe.id}>
             {/* <div className="recipe-card">
@@ -85,7 +90,8 @@ const PopularRecipe = () => {
               <p><span className="text">Cooking time:</span> <span class="bolded">{recipe.cookingTime}</span></p>
               <p><span className="text">Difficulty:</span> <span class="bolded">{recipe.difficulty}</span></p>
             </div> */}
-            <RecipeItem recipe = {recipe}/>
+            {/* <RecipeItem recipe = {recipe}/> */}
+            <Link to={`/recipes/${recipe.id}`}><RecipeItem recipe = {recipe}/></Link>
           </SplideSlide>
         ))}
       </Splide>

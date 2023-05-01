@@ -10,12 +10,17 @@ import Home from './Pages/Home';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
+    <>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail" element={<RecipeDetail />} />
+      </Routes> */}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
