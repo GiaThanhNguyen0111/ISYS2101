@@ -1,1 +1,28 @@
-h1 {}
+.recipe-detail {
+    display: block;
+    margin: 0px 50px;
+}
+
+.recipe-detail-breadcrumb {
+    display: block;
+    margin-top: 39px;
+    margin-bottom: 39px;
+}
+
+.recipe-detail-breadcrumb p {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24.2px;
+    margin: 0;
+}
+
+.recipe-detail-breadcrumb p a {
+    text-decoration: underline;
+    /* color: #F8DEC3;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #28161C; */
+}
+
+/* .recipe-detail-breadcrumb p a:hover {
+    color: #F8DEC3;
+} */

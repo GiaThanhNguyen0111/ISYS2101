@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Css/star-color.css'
+import '../Css/star.css'
 import starColor from '../Image/img/recipe/starColor.png'
 
 const StarColor = () => {

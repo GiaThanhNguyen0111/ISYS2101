@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Css/star-color.css'
+import '../Css/star.css'
 import starBlank from '../Image/img/recipe/starBlank.png'
 
 const StarBlank = () => {

@@ -8,6 +8,7 @@ import {
 import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
 import Searchbar from './Components/Searchbar';
+import LevelLastBlank from './Components/RecipeDetail/LevelLastBlank';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Searchbar/>} />
+        <Route path="/component-test" element={<LevelLastBlank />} />
       </Routes>
     </>
   );
