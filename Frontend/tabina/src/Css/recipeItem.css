@@ -54,11 +54,11 @@
 }
 
 .star-color {
-    margin-right: 10px;
+    margin-right: 10px !important; 
 }
 
 .star-color:last-child {
-    margin-right: 0px;
+    margin-right: 0px !important;
 }
 
 .recipe-item-desc-line {
