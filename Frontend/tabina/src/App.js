@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
+import Searchbar from './Components/Searchbar';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
+        <Route path='/search' element={<Searchbar/>} />
       </Routes>
     </>
   );
