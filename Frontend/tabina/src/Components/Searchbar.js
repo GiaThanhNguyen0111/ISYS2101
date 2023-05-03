@@ -4,6 +4,7 @@ import '../Css/searchbar.css';
 
 
 
+
 const Searchbar = () => {
   const [relavance, setRelavance] = useState('');
 
@@ -26,7 +27,6 @@ const Searchbar = () => {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </select>
-
 
       </div>
     </>

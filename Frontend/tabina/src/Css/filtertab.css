@@ -1,0 +1,77 @@
+.ingred {
+width: 80px;
+padding-left: 10px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 20px;
+display: flex;
+justify-content: space-evenly;
+}
+
+.filter-tab {
+width: 400px;
+background: #FFFFFF;
+box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.canc {
+    cursor: pointer;
+}
+
+.heading-tab {
+    background: #F4EDE5;
+}
+
+.heading-tab p {
+    font-size: 25px;
+    font-weight: 600;
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-bottom: 15px;
+}
+
+.diff {
+    text-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+    padding-left: 50px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.diff-level {
+    padding-left: 50px;
+    display: block;
+}
+
+.diff-option {
+    background: #FFFFFF;
+border: 1px solid #000000;
+box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+width: 20px;
+height: 20px;
+}
+
+.sep-tab {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.class-lvl {
+    font-size: 22px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+
+.star-rat {
+    display: inline-block;
+   
+}
+
+.st-cl {
+    width: 22px;
+    height: 22px;
+    margin-left: 15px;
+
+}
