@@ -9,7 +9,7 @@ import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
 import Searchbar from './Components/Searchbar';
 import LevelLastBlank from './Components/RecipeDetail/LevelLastBlank';
-import Filtertab from './Components/Filtertab';
+import Filtertab from './Components/Searchpage';
 
 const App = () => {
   return (

@@ -23,12 +23,15 @@ width: 1200px;
     font-size: 20px;
     position: relative;
     right: 42px;
-    top: 2.1px
-
+    top: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition effect */
 
   }
 
-
+  .searchbtn:hover {
+    background-color: #e67e22; /* Change the background color on hover */
+  }
  
  
   .relchoice {
@@ -44,8 +47,11 @@ border: none;
 
 .searchbar  {
   border: none;
+  outline: none;
 }
 
 .searchbtn {
   border: none;
 }
+
+
