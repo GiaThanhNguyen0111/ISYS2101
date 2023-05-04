@@ -13,11 +13,11 @@ const Loginform = () => {
             <form>
                 <div>
                     <h3 style={{marginBottom: 5, }}>Username</h3>
-                    <input type='name' placeholder='Username'></input>
+                    <input type='name' placeholder='Username'  className='input-lg'></input>
                 </div>
                 <div>
                 <h3 style={{marginBottom: 5}}>Password</h3>
-                <input type='password' placeholder='Password'></input>
+                <input type='password' placeholder='Password' className='input-lg'></input>
                 
                 </div>
                 <button className='loginbtn'>Login</button>

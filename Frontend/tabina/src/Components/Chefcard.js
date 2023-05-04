@@ -3,7 +3,6 @@ import gordon from '../Image/img/recipe/gordon_ramsay.png'
 import jamie from '../Image/img/recipe/jamie.png'
 import jock from '../Image/img/recipe/jock.png'
 import peter from '../Image/img/recipe/peter.png'
-import shape1 from '../Image/img/recipe/Shape.png'
 import Navbar from './Navbar';
 import Footer from './Footer';
 import '../Css/chefcard.css'
