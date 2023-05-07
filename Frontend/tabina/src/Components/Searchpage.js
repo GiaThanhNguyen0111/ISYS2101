@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, lazy, Suspense} from 'react'
 import '../Css/searchbar.css';
 import '../Css/filtertab.css'
 import starBlank from '../Image/img/recipe/starBlank.png'
@@ -10,9 +10,28 @@ import Home from '../Pages/Home';
 
 
 
-
+const LazyRecipeItem = React.lazy(() => import('./RecipeItem'));
 
 const Filtertab = () => {
+
+  
+  const [loadedItems, setLoadedItems] = useState(10);
+  const recipesToLoad = recipesData.slice(0, loadedItems);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      setLoadedItems((prevLoadedItems) => prevLoadedItems + 10);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navigate = useNavigate();
   const [relavance, setRelavance] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -247,21 +266,17 @@ const Filtertab = () => {
           </div>
         
         
-<div className='recipe-area'>
-
-
-
-{recipesData.map((recipe) => (
-
-<div key={recipe.id} className='repcard' >
-
-<Link  to={`/recipes/${recipe.id}`}><RecipeItem recipe = {recipe}/></Link>
-</div>
-
-
-
-))}
-</div>
+          <div className='recipe-area'>
+        {recipesToLoad.map((recipe) => (
+          <div key={recipe.id} className='repcard'>
+            <Link to={`/recipes/${recipe.id}`}>
+              <Suspense fallback={<RecipeItem recipe={recipe} />}>
+                <LazyRecipeItem recipe={recipe} />
+              </Suspense>
+            </Link>
+          </div>
+        ))}
+      </div>
         </div>
 </div>
         
