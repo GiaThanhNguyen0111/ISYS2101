@@ -3,18 +3,18 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 1%;
-  margin-right: 5%;
- 
+  padding: 0 5% 1% 0;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
 
 
 
 .nav-link {
-    font-family: Inter;
     margin-left: 50px;
     text-decoration: none;
     font-size: 25px;
-    margin-top: 10px;
+    font-weight: 400;
+    /* margin-top: 10px; */
     line-height: 40px;
     color: #28161C;
 
