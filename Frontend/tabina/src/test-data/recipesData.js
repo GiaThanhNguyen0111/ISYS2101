@@ -46,5 +46,23 @@ export default [
         cookingTime: '20 to 40 mins',
         difficulty: 'Intermediate',
     },
+    {
+        id: 5,
+        title: "Chocolate Chip Cookies",
+        image: "https://source.unsplash.com/800x600/?cookies,chocolate",
+        rating: 3,
+        prepTime: '20 mins',
+        cookingTime: '20 to 40 mins',
+        difficulty: 'Intermediate',
+    },
+    {
+        id: 6,
+        title: "Chocolate Chip Cookies",
+        image: "https://source.unsplash.com/800x600/?cookies,chocolate",
+        rating: 3,
+        prepTime: '20 mins',
+        cookingTime: '20 to 40 mins',
+        difficulty: 'Intermediate',
+    },
   ];
   

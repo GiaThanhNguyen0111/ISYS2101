@@ -1,29 +1,60 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import '../Css/searchbar.css';
 import '../Css/filtertab.css'
 import starBlank from '../Image/img/recipe/starBlank.png'
 import starColor from '../Image/img/recipe/starColor.png'
+import recipesData from "../test-data/recipesData";
+import RecipeItem from './RecipeItem';
+import { Link, useNavigate } from 'react-router-dom';
+import Home from '../Pages/Home';
+
 
 
 
 
 const Filtertab = () => {
-
-const [relavance, setRelavance] = useState('');
+  const navigate = useNavigate();
+  const [relavance, setRelavance] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+    const query = search.get("query");
+    if (query) {
+      setSearchResults(query.split(","));
+    }
+  }, []);
 
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
   };
 
   const handleButtonClick = () => {
-    const userInput = document.querySelector('.searchbar').value;
-    setSearchResults([...searchResults, userInput]);
-  }
+    const userInput = document.querySelector(".searchbar").value;
+    const newResults = [...searchResults, userInput];
+    setSearchResults(newResults);
+    const query = newResults.join("&");
+    navigate(`?query=${query}`);
+  };
+
+  const handleTagRemove = (index) => {
+    const newResults = [...searchResults];
+    newResults.splice(index, 1);
+    setSearchResults(newResults);
+    const query = newResults.join(",");
+    navigate(`?query=${query}`);
+  };
+
+  
+
 
     return (
 
         <>
+<div className='page-contain'>
 
+    
+  
 <div className="searchbar-container">
         <input type="text" placeholder="Add Ingredients" className='searchbar' />
         <button className='searchbtn' onClick={handleButtonClick}>+</button>
@@ -49,7 +80,9 @@ const [relavance, setRelavance] = useState('');
             
       <div className="result-container">
         {searchResults.map((result, index) => (
-        <p className='ingred' key={index}>{result}<span className='canc'>x</span></p>
+        <p className='ingred' key={index}>{result}
+                    <span className='canc' onClick={() => handleTagRemove(index)}>x</span>
+</p>
        
 
           
@@ -85,12 +118,7 @@ const [relavance, setRelavance] = useState('');
         </div>
         <p className='sep-tab'>___________________________________</p>
 
-        <div>
-        <p className='diff'>Number of Ingredients</p>
 
-
-        </div>
-        <p className='sep-tab'>___________________________________</p>
 
 
         {/* Star rating tab */}
@@ -211,6 +239,32 @@ const [relavance, setRelavance] = useState('');
 
 
         </div>
+        <div>
+          <div style={{marginTop: '10px', paddingLeft: '1000px', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
+     
+          <p >478 Recipe Found!</p>
+
+          </div>
+        
+        
+<div className='recipe-area'>
+
+
+
+{recipesData.map((recipe) => (
+
+<div key={recipe.id} className='repcard' >
+
+<Link  to={`/recipes/${recipe.id}`}><RecipeItem recipe = {recipe}/></Link>
+</div>
+
+
+
+))}
+</div>
+        </div>
+</div>
+        
         
        
         </>
