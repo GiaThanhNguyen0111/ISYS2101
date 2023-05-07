@@ -42,5 +42,3 @@ const Chefcard = () => {
     )
 
 }
-
-export default Chefcard;
