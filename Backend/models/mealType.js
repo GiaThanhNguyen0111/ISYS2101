@@ -4,7 +4,9 @@ const mealTypeSchema = ({
     name: String
 });
 
-const MealType = new mongoose.model('Meal_type', mealTypeSchema);
+const MealType = mongoose.model('Meal_type', mealTypeSchema);
+
+MealType.createCollection();
 
 module.exports = {
     mealTypeSchema: mealTypeSchema,
