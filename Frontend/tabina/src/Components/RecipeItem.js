@@ -19,8 +19,8 @@ const RecipeItem = (props) => {
     return (
         <>
         <div className='recipe-item'>
-            <img src = {props.recipe.image} className='recipe-item-img' alt={props.recipe.title}/>
-            <h3>{props.recipe.title}</h3>
+            <img src = {props.recipe.image} className='recipe-item-img' alt={props.recipe.name}/>
+            <h3>{props.recipe.name}</h3>
             <div className='recipe-item-rating'>
             {
                 [
@@ -59,7 +59,7 @@ const RecipeItem = (props) => {
                     Difficulty:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {props.recipe.difficulty}
+                    {props.recipe.level}
                 </span>
             </div>
         </div>

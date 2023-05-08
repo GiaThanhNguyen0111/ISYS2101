@@ -155,7 +155,7 @@ exports.postDeleteFilterByIngredient = (req, res) => {
 
 exports.getSearchByName = async (req, res) => {
     try {
-        let result = await recipeModel.Recipe.aggregate([
+        let recipes = await recipeModel.Recipe.aggregate([
             {
                 "$search": {
                     "autocomplete": {
@@ -163,12 +163,15 @@ exports.getSearchByName = async (req, res) => {
                         "path": "name",
                         "fuzzy": {
                             "maxEdits": 2
-                        }
+                        },
                     }
                 }
             }
-        ]);
-        res.send(result);
+        ]).limit(10);
+
+        const response = {recipes}
+
+        res.status(200).json(response);
     } catch (err) {
         console.log(err);
         res.status(500).json({message: err.message});
