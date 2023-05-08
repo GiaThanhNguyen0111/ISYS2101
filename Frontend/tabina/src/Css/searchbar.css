@@ -1,36 +1,41 @@
 .searchbar {
+    
     width: 700px;
-    height: 40px;
+    height: 30px;
     background: #FFFFFF;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     margin-left: 50px;
-    margin-top: 17px;
+    margin-top: 12px;
   }
  
   .searchbar-container {
 background: #F4EDE5;
-border-radius: 10px;
-height: 80px;
+height: 60px;
 width: 1200px;
+margin-left: 400px;
+position: absolute;
+grid-column: 1 / 3; /* span across both columns */
+
+
   }
  
   .searchbtn {
-    height: 42.1px;
-    width: 42px;
+    height: 31.8px;
+    width: 30px;
     background: #F8DEC3;
     border-radius:  5px;
     font-size: 20px;
     position: relative;
-    right: 42px;
+    right: 30px;
     top: 2px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add transition effect */
+    transition: background-color 0.3s ease; 
 
   }
 
   .searchbtn:hover {
-    background-color: #e67e22; /* Change the background color on hover */
+    background-color: #e67e22; 
   }
  
  
@@ -38,11 +43,12 @@ width: 1200px;
     background: #FFFFFF;
 box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px;
-width: 150px;
-height: 45px;
+width: 180px;
+height: 35px;
 margin-left: 200px;
-font-size: 18px;
+font-size: 15px;
 border: none;
+outline: none;
   }
 
 .searchbar  {
@@ -54,4 +60,40 @@ border: none;
   border: none;
 }
 
+
+
+
+.searchbar-container {
+  background: #F4EDE5;
+  border-radius: 10px;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin-top: 100px;
+}
+
+.filter-tab {
+  width: 400px;
+  background: #FFFFFF;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 60px; 
+  left: 0;
+  height: calc(100% - 60px);
+  margin-top: 40px;
+  overflow: scroll;
+}
+
+.recipe-area {
+  display: flex;
+  flex-direction: row;
+  max-width: 200px;
+  margin-top: 200px;
+  margin-left: 400px; 
+  padding-top: 150px; 
+  margin-bottom: 40px;
+}
 
