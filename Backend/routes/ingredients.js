@@ -8,4 +8,7 @@ router.route('/ingredient')
 .post(ingredientController.postAllIngredient)
 .delete(ingredientController.deleteAllIngredient);
 
+
+router.get('/searchIngredient', ingredientController.getSearchByIngredientName);
+
 module.exports = router;

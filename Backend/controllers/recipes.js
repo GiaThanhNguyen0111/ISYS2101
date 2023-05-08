@@ -91,64 +91,64 @@ exports.deleteRecipe = async (req, res) => {
 };
 
 
-// Unfinishing function
 
-exports.postFilterByIngredient = (req, res) => {
-    const url = req.url;
 
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+// exports.postFilterByIngredient = (req, res) => {
+//     const url = req.url;
 
-    const array = [];
+//     var query = url.slice(url.indexOf('?') + 1, url.length);
+//     req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
 
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            if (!req.query) {
-                return '?ingredient='.concat(item, '&');
-            } else {
-                return 'ingredient='.concat(item, '&');
-            }
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        };
-    });
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/recipe${query}${newArray}`);
-};
+//     const array = [];
 
-exports.postDeleteFilterByIngredient = (req, res) => {
-    const ingredients = req.query.ingredient;
-    const unChoseIngredient = req.body.ingredientName;
+//     var newArray = array.map((item) => {
+//         if (array.indexOf(item) === 0) {
+//             if (!req.query) {
+//                 return '?ingredient='.concat(item, '&');
+//             } else {
+//                 return 'ingredient='.concat(item, '&');
+//             }
+//         } else if (array.indexOf(item) === array.length -1) {
+//             return 'ingredient='.concat(item);
+//         } else {
+//             return 'ingredient='.concat(item,"&");
+//         };
+//     });
+//     console.log(newArray);
+//     newArray = newArray.join('');
+//     res.redirect(`/recipe${query}${newArray}`);
+// };
 
-    const url = req.url;
+// exports.postDeleteFilterByIngredient = (req, res) => {
+//     const ingredients = req.query.ingredient;
+//     const unChoseIngredient = req.body.ingredientName;
 
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+//     const url = req.url;
 
-    const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
+//     var query = url.slice(url.indexOf('?') + 1, url.length);
+//     req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
 
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            if (!req.query) {
-                return '?ingredient='.concat(item, '&');
-            } else {
-                return '&ingredient='.concat(item, '&')
-            }
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        }
-    });
+//     const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
 
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/recipe${query}${newArray}`);
+//     var newArray = array.map((item) => {
+//         if (array.indexOf(item) === 0) {
+//             if (!req.query) {
+//                 return '?ingredient='.concat(item, '&');
+//             } else {
+//                 return '&ingredient='.concat(item, '&')
+//             }
+//         } else if (array.indexOf(item) === array.length -1) {
+//             return 'ingredient='.concat(item);
+//         } else {
+//             return 'ingredient='.concat(item,"&");
+//         }
+//     });
 
-};
+//     console.log(newArray);
+//     newArray = newArray.join('');
+//     res.redirect(`/recipe${query}${newArray}`);
+
+// };
 
 
 exports.getSearchByName = async (req, res) => {
