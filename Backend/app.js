@@ -28,7 +28,13 @@ app.use(passport.session());
 
 
 // DB
-mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB?retryWrites=true&w=majority`)
+.then(result => {
+    console.log(result);
+})
+.catch(err => {
+    console.log(err)
+});
 
 
 app.use(userRoute);
@@ -36,34 +42,6 @@ app.use(userRoute);
 app.use(ingredientRoute);
 
 app.use(recipesRoute);
-
-// Recipe.Recipe;
-
-
-app.get('/test', async function(req, res, next) {
-    res.render('ingredients');
-    console.log(req.url);
-  });
-app.post('/test', function(req, res, next) {
-    const url = req.url;
-
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
-    console.log(query);
-    const array = ['onion','pepper', 'thanh'];
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            return '?ingredient='.concat(item, '&')
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        }
-    });
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/test${query}${newArray}`);
-  });
 
 
 const PORT = process.env.PORT || 3001;

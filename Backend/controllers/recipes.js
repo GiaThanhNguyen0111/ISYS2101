@@ -1,7 +1,6 @@
-const Recipe = require('../models/recipe');
-const recipe = require('./recipe');
+const recipeModel = require('../models/recipe');
 const ingredientModel = require('../models/ingredient');
-const ingredient = require('../models/ingredient');
+
 
 exports.getAllRecipe = async (req, res) => {
     try {
@@ -11,13 +10,13 @@ exports.getAllRecipe = async (req, res) => {
         let sort = req.query.sort || 'rating';
         const ingredientOptions = [];
 
-        ingredientModel.Ingredient.find({}).then(
-            results => {
-                results.forEach(result => {
-                    ingredientOptions.push(result.name);
-                });
-            }
-        );
+        // ingredientModel.Ingredient.find({}).then(
+        //     results => {
+        //         results.forEach(result => {
+        //             ingredientOptions.push(result.name);
+        //         });
+        //     }
+        // );
 
         ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.ingredient);
         level === "All" ? (level = 0) : (level = req.query.level);
@@ -32,14 +31,15 @@ exports.getAllRecipe = async (req, res) => {
             sortBy[sort[0]] = "asc";
         };
 
-        const recipes = await Recipe.Recipe.find({})
-        .where("ingredients").in([...ingredients])
+        const recipes = await recipeModel.Recipe.find({})
+        // .where("ingredients").in([...ingredients])
         .where('rating').gte(rating)
         .where('level').gte(level)
-        .sort(sortBy);
+        .sort(sortBy)
+        .limit(100);
 
         const response = {recipes};
-
+        console.log(response)
         res.status(200).json(response); 
 
     } catch (err) {
@@ -69,7 +69,7 @@ exports.postAddRecipe = async (req, res) => {
         await newRecipe.save().catch(err => {
             console.log(err);
         });
-    } else if (currentRoute === `/recipe/${prodId0}`) {
+    } else if (currentRoute === `/recipe/${prodId}`) {
         const productId = req.body.productId;
         await Recipe.Recipe.updateOne({_id: productId}, 
             { $set: {

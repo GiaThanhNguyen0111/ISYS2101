@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../Css/filtertab.css'
 import starBlank from '../Image/img/recipe/starBlank.png'
 import starColor from '../Image/img/recipe/starColor.png'
-
+import axios from 'axios'
 
 
 
 const Filtertab = () => {
 
-const [relavance, setRelavance] = useState('');
+  const [relavance, setRelavance] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
+  const [dataSet, setDataSet] = useState(null);
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
   };
@@ -18,12 +18,24 @@ const [relavance, setRelavance] = useState('');
   const handleButtonClick = () => {
     const userInput = document.querySelector('.searchbar').value;
     setSearchResults([...searchResults, userInput]);
+  };
+
+
+
+  const fetchData = () => {
+  return axios.get("http://localhost:3001/recipe")
+    .then((response) => console.log(response.data))
+    .catch(err => console.log(err));
   }
+  fetchData();
+  useEffect(() => {
+    fetchData();
+  }, []);
 
     return (
 
         <>
-
+       
 <div className="searchbar-container">
         <input type="text" placeholder="Add Ingredients" className='searchbar' />
         <button className='searchbtn' onClick={handleButtonClick}>+</button>
@@ -190,6 +202,7 @@ const [relavance, setRelavance] = useState('');
         <p className='sep-tab'>___________________________________</p>
        <div>
        <p className='diff'>Meal type</p>
+       <div> {dataSet} </div>
 
        </div>
        <label className='diff-level'>
