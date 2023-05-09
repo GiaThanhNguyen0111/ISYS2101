@@ -5,21 +5,57 @@ import StarColor from './StarColor';
 import StarBlank from './StarBlank';
 
 const RecipeItem = (props) => {
-    // const recipe = {
-    //     id: 1,
-    //     title: "SAUTÉ BUTTER \n SALMON",
-    //     image: food,
-    //     rating: 4,
-    //     prepTime: '20 mins',
-    //     cookingTime: '20 to 40 mins',
-    //     difficulty: 'Medium',
-    // }
+    const testData = {
+        "id": 240488,
+        "name": "SAUTÉ BUTTER SALMON",
+        "ingredients": [
+            "salmon",
+            "butter",
+            "olive oil",
+            "parsley",
+            "lemon juice",
+            "black pepper",
+            "salt"
+        ],
+        "image_url": food,
+        "cooking_directions": "Prep\n15 m\nCook\n2 h 30m\nReady In\n2h 45m\nInstructions\nStep 1\nthis is step 1\nStep 2\nthis is step 2",
+        "nutritions": {
+            "niacin": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+            "sugars": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+            "sodium": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+            "carbohydrates": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+            "vitaminB6": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+            "vitaminC": {
+                "displayValue": "120",
+                "unit": "mg"
+            },
+        },
+        "level": 5,
+        "rating": 801
+    }
 
+    const instructions = props.recipe.cooking_directions.split(/\r?\n/);
+    const level_num = props.recipe.level;
 
     return (
         <>
         <div className='recipe-item'>
-            <img src = {props.recipe.image} className='recipe-item-img' alt={props.recipe.name}/>
+            <img src = {props.recipe.image_url} className='recipe-item-img' alt={props.recipe.name}/>
             <h3>{props.recipe.name}</h3>
             <div className='recipe-item-rating'>
             {
@@ -43,7 +79,7 @@ const RecipeItem = (props) => {
                     Preparation time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {props.recipe.prepTime}
+                    {instructions[1]}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
@@ -51,16 +87,41 @@ const RecipeItem = (props) => {
                     Cooking time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {props.recipe.cookingTime}
+                    {instructions[3]}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
                 <span className='recipe-item-desc-line-1'>
                     Difficulty:
                 </span>
-                <span className='recipe-item-desc-line-2'>
-                    {props.recipe.level}
-                </span>
+                {/* <span className='recipe-item-desc-line-2'>
+                    {difficulty}
+                </span> */}
+                {level_num == 1 &&
+                    <span className='recipe-item-desc-line-2'>
+                        Beginner
+                    </span>
+                }
+                {level_num == 2 &&
+                    <span className='recipe-item-desc-line-2'>
+                        Average
+                    </span>
+                }
+                {level_num == 3 &&
+                    <span className='recipe-item-desc-line-2'>
+                        Intermediate
+                    </span>
+                }
+                {level_num == 4 &&
+                    <span className='recipe-item-desc-line-2'>
+                        Expert
+                    </span>
+                }
+                {level_num == 5 &&
+                    <span className='recipe-item-desc-line-2'>
+                        World-class
+                    </span>
+                }
             </div>
         </div>
         </>
