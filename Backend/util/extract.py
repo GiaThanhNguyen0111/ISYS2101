@@ -91,18 +91,18 @@ def extractedIngredientList(filename):
     return ingredientList
 
 def writeFile(filename):
-    recipeList = csv_to_JSON('./util/raw-data_recipe.csv')
+    recipeList = csv_to_JSON('./util/core-data_recipe.csv')
     file = open(filename, 'a')
 
     for recipe in recipeList:
         file.write(recipe+ ",\n")
 
 def writeFileIngredient(filename):
-    ingredientList = extractedIngredientList('./util/raw-data_recipe.csv')
+    ingredientList = extractedIngredientList('./util/core-data_recipe.csv')
     file = open(filename, 'a')
 
     for ingredient in ingredientList:
         file.write(ingredient+ ",\n")
 
 writeFile('./util/recipes.json')
-writeFileIngredient('./util/ingredients.json')
+# writeFileIngredient('./util/ingredients.json')

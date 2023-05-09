@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const ingredient = require('./ingredient');
+// const ingredient = require('./ingredient');
 
 
 const recipeSchema = new mongoose.Schema({
     name: String,
+    image_url: String,
     ingredients: Array,
     cooking_directions: String,
     nutritions: Array,
@@ -11,9 +12,9 @@ const recipeSchema = new mongoose.Schema({
     rating: Number
 });
 
-const Recipe = new mongoose.model("Recipe", recipeSchema);
+const Recipe = mongoose.model("Recipe", recipeSchema);
 
-
+ Recipe.createCollection();
 
 module.exports = {
     recipeSchema: recipeSchema,
