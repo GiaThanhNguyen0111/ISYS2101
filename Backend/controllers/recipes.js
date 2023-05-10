@@ -10,9 +10,9 @@ exports.getAllRecipe = async (req, res) => {
         let level = req.query.level || "All";
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
-        const ingredientOptions = [];
         console.log(isString(ingredients));
-        console.log(ingredients);
+        console.log([...ingredients]);
+
         
 
         level === "All" ? (level = 0) : (level = req.query.level);
@@ -32,10 +32,10 @@ exports.getAllRecipe = async (req, res) => {
             {$match: {"level": {$gte: level}}},
             {$sort: sortBy},
             {$limit: 100},
-            !(ingredients === "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
+            !(ingredients == "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
         ].filter(Boolean);
-
-        var recipes = await recipeModel.Recipe.aggregate(aggregate);
+        console.log(aggregate);
+        const recipes = await recipeModel.Recipe.aggregate(aggregate);
 
         const response = {recipes};
         res.status(200).json(response); 
@@ -218,3 +218,17 @@ exports.postFilterByRating = (req, res) => {
 
     res.redirect(`/recipe${query}${newQuery}`);
 };
+
+exports.getRecipeById = async (req, res) => {
+    const recipeId = req.query.recipeID;
+    try {
+        let recipes = await recipeModel.Recipe.find({_id: recipeId});
+        
+        const response = {recipes}
+        console.log(response);
+        res.status(200).json(response);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: err.message});
+    }
+}

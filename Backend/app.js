@@ -44,8 +44,7 @@ const importData = async () => {
 
 mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
 .then(result => {
-    // importData();
-    // console.log(result);
+    console.log("Connect to MongoDB successfully")
 })
 .catch(err => {
     console.log(err)
