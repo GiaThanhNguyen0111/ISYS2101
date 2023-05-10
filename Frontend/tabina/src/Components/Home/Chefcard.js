@@ -13,6 +13,8 @@ const Chefcard = () => {
         <>
         <div className='sponsor-area'>
 
+            <div className='sponsor-title'>Our Sponsor Chefs</div>
+
             <div className='sponsorchef'>
                 <div className='chefcard'>
                     <img src = {gordon} className='chefimg' />
@@ -42,3 +44,5 @@ const Chefcard = () => {
     )
 
 }
+
+export default Chefcard

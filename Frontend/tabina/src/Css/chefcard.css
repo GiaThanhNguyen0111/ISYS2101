@@ -1,71 +1,78 @@
 /* styles for desktop screens */
 .chefcard {
-    box-sizing: border-box;
-    width: 300px;
-    height: 450px;
-    background: #F4EDE5;
-    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
-  }
+  box-sizing: border-box;
+  width: 300px;
+  height: 450px;
+  background: #F4EDE5;
+  box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
   
-  .chefimg {
-    display: flex;
-    justify-content: center;
-    width: 300px;
-    height: 300px;
-    padding-top: 30px;
-    padding-left: 10px;
-  }
+.chefimg {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
   
-  .chefname {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  
-  .sponsorchef {
-    margin-top: 13rem;
-    display: flex;
-    flex-direction:row;
-    gap: 50px;
-    margin-bottom: 3rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  @media screen and (max-width: 800px) {
-    .sponsorchef {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .chefcard {
-      margin-left: 10px;
-      margin-bottom: 50px;
-    }
-  }
+.chefname {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: 700;
+}
 
-  .rcpbtn {
-    background: #FAF8FF;
-    border: 2px solid #28161C;
-    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-    border-radius: 40px;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    font-size: 20px;
-    padding-left: 25px;
-    padding-top: 10px;
-    padding-right: 25px;
-    padding-bottom: 10px;
-    font-weight: 700;
-    
+.sponsorchef {
+  display: flex;
+  flex-direction:row;
+  gap: 50px;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .sponsorchef {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  
+  .chefcard {
+    margin-left: 10px;
+    margin-bottom: 50px;
+  }
+}
+
+.rcpbtn {
+  background: #FAF8FF;
+  border: 2px solid #28161C;
+  box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  font-size: 20px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+  font-weight: 700;
+  
+}
 
 .sponsor-area {
-    margin-bottom: 50px;
+  margin: 13rem 0 4rem 0;
+}
+
+.sponsor-title {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 2rem 0
 }
