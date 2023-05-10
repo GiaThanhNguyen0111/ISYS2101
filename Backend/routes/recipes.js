@@ -12,4 +12,6 @@ router.get('/search', recipeController.getSearchByName);
 
 router.post('/search', recipeController.postSearchByName);
 
+router.get('/getRecipeDetail', recipeController.getrecipeById);
+
 module.exports = router;

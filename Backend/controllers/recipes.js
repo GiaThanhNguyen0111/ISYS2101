@@ -10,7 +10,6 @@ exports.getAllRecipe = async (req, res) => {
         let level = req.query.level || "All";
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
-        const ingredientOptions = [];
         console.log(isString(ingredients));
         console.log(ingredients);
         
@@ -35,7 +34,12 @@ exports.getAllRecipe = async (req, res) => {
             !(ingredients === "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
         ].filter(Boolean);
 
-        var recipes = await recipeModel.Recipe.aggregate(aggregate);
+        var recipes = await recipeModel.Recipe.aggregate(aggregate).then(result => {
+            console.log("Success")
+        })
+        .catch(err => {
+            console.log("err");
+        });
 
         const response = {recipes};
         res.status(200).json(response); 
@@ -218,3 +222,22 @@ exports.postFilterByRating = (req, res) => {
 
     res.redirect(`/recipe${query}${newQuery}`);
 };
+
+exports.getrecipeById = async (req, res) => {
+    const recipeId = req.query.recipeID;
+    try {
+        let recipes = await recipeModel.Recipe.find({_id: recipeId})
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+        const response = {recipes}
+        res.status(200).json(response);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: err.message});
+    }
+}
