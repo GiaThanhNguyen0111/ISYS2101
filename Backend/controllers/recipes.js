@@ -11,7 +11,8 @@ exports.getAllRecipe = async (req, res) => {
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
         console.log(isString(ingredients));
-        console.log(ingredients);
+        console.log([...ingredients]);
+
         
 
         level === "All" ? (level = 0) : (level = req.query.level);
@@ -31,15 +32,10 @@ exports.getAllRecipe = async (req, res) => {
             {$match: {"level": {$gte: level}}},
             {$sort: sortBy},
             {$limit: 100},
-            !(ingredients === "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
+            !(ingredients == "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
         ].filter(Boolean);
-
-        var recipes = await recipeModel.Recipe.aggregate(aggregate).then(result => {
-            console.log("Success")
-        })
-        .catch(err => {
-            console.log("err");
-        });
+        console.log(aggregate);
+        const recipes = await recipeModel.Recipe.aggregate(aggregate);
 
         const response = {recipes};
         res.status(200).json(response); 
