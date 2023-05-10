@@ -1,5 +1,6 @@
 import json;
 import pandas as pd
+import random as rd
 pd.options.display.max_rows = 1
 # recipe_id = 240488
 # recipe_name = "Foolproof Rosemary Chicken Wings"
@@ -32,14 +33,16 @@ def extractNutritions(nutritions):
         
     return nutrition
 
-def toJSON(recipe_id,recipe_name, ingredients, image_url, cooking_direction, nutritions):
+def toJSON(recipe_id,recipe_name, ingredients, image_url, cooking_direction, nutritions, level, rating):
     dict_object = {
         'id': recipe_id,
         'name': recipe_name,
         'ingredients': extractedIngredients(ingredients),
         'image_url': image_url,
         'cooking_directions': extractedCookingDirections(cooking_direction),
-        'nutritions': extractNutritions(nutritions) 
+        'nutritions': extractNutritions(nutritions),
+        'level': level,
+        'rating': rating
     }
 
     json_object = json.dumps(dict_object, indent=4)
@@ -64,18 +67,42 @@ def csv_to_JSON(filename):
         ingredients = record['ingredients']
         cooking_directions = record['cooking_directions']
         nutritions = record['nutritions']
-        recipe = toJSON(recipe_id,recipe_name, ingredients, image_url, cooking_directions, nutritions)
+        recipe = toJSON(recipe_id,recipe_name, ingredients, image_url, cooking_directions, nutritions, rd.randint(1,5), rd.randint(1,5))
         recipeList.append(recipe)
 
     return recipeList
 
+def ingredientJSON(ingredientName):
+    dict_object = {
+        'name': ingredientName
+    }
+
+    json_object = json.dumps(dict_object, indent=4)
+
+    return json_object
+def extractedIngredientList(filename):
+    lines = readFile(filename)
+    ingredientList = []
+
+    for index, record in lines.iterrows():
+        if record not in ingredientList:
+            record = ingredientJSON(record)
+            ingredientList.append(record)
+    return ingredientList
 
 def writeFile(filename):
-    recipeList = csv_to_JSON('D:\Extract files\core-data_recipe.csv')
+    recipeList = csv_to_JSON('./util/core-data_recipe.csv')
     file = open(filename, 'a')
 
     for recipe in recipeList:
         file.write(recipe+ ",\n")
 
+def writeFileIngredient(filename):
+    ingredientList = extractedIngredientList('./util/core-data_recipe.csv')
+    file = open(filename, 'a')
 
-writeFile('D:/Extract files/recipes.json')
+    for ingredient in ingredientList:
+        file.write(ingredient+ ",\n")
+
+writeFile('./util/recipes.json')
+# writeFileIngredient('./util/ingredients.json')

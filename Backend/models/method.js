@@ -4,8 +4,9 @@ const methodSchema = ({
     name: String
 });
 
-const Method = new mongoose.model('Method', methodSchema);
+const Method = mongoose.model('Method', methodSchema);
 
+Method.createCollection();
 
 module.exports = {
     methodSchema: methodSchema,

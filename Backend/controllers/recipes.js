@@ -1,25 +1,20 @@
-const Recipe = require('../models/recipe');
-const recipe = require('./recipe');
+const recipeModel = require('../models/recipe');
 const ingredientModel = require('../models/ingredient');
-const ingredient = require('../models/ingredient');
+const { isString } = require('lodash');
+
 
 exports.getAllRecipe = async (req, res) => {
     try {
-        let ingredients = req.query.ingredients || "All";
+        let ingredients = req.query.ingredient || "All";
+        isString(ingredients) ? ingredients = ingredients.split() : ingredients = ingredients;
         let level = req.query.level || "All";
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
-        const ingredientOptions = [];
+        console.log(isString(ingredients));
+        console.log([...ingredients]);
 
-        ingredientModel.Ingredient.find({}).then(
-            results => {
-                results.forEach(result => {
-                    ingredientOptions.push(result.name);
-                });
-            }
-        );
+        
 
-        ingredients === "All" ? (ingredients = [...ingredientOptions]) : (ingredients = req.query.ingredient);
         level === "All" ? (level = 0) : (level = req.query.level);
         rating === "All" ? (rating = 0 ) : (rating = req.query.rating);
         req.query.sort ? (sort = req.query.sort ) : (sort = [sort]);
@@ -29,17 +24,20 @@ exports.getAllRecipe = async (req, res) => {
         if (sort[1]) {
             sortBy[sort[0]] = sort[1];
         } else {
-            sortBy[sort[0]] = "asc";
+            sortBy[sort[0]] = 1;
         };
 
-        const recipes = await Recipe.Recipe.find({})
-        .where("ingredients").in([...ingredients])
-        .where('rating').gte(rating)
-        .where('level').gte(level)
-        .sort(sortBy);
+        const aggregate = [
+            {$match: {"rating": {$gte: rating}}},
+            {$match: {"level": {$gte: level}}},
+            {$sort: sortBy},
+            {$limit: 100},
+            !(ingredients == "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
+        ].filter(Boolean);
+        console.log(aggregate);
+        const recipes = await recipeModel.Recipe.aggregate(aggregate);
 
         const response = {recipes};
-
         res.status(200).json(response); 
 
     } catch (err) {
@@ -69,7 +67,7 @@ exports.postAddRecipe = async (req, res) => {
         await newRecipe.save().catch(err => {
             console.log(err);
         });
-    } else if (currentRoute === `/recipe/${prodId0}`) {
+    } else if (currentRoute === `/recipe/${prodId}`) {
         const productId = req.body.productId;
         await Recipe.Recipe.updateOne({_id: productId}, 
             { $set: {
@@ -93,69 +91,69 @@ exports.deleteRecipe = async (req, res) => {
 };
 
 
-// Unfinishing function
 
-exports.postFilterByIngredient = (req, res) => {
-    const url = req.url;
 
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+// exports.postFilterByIngredient = (req, res) => {
+//     const url = req.url;
 
-    const array = [];
+//     var query = url.slice(url.indexOf('?') + 1, url.length);
+//     req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
 
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            if (!req.query) {
-                return '?ingredient='.concat(item, '&');
-            } else {
-                return 'ingredient='.concat(item, '&');
-            }
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        };
-    });
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/recipe${query}${newArray}`);
-};
+//     const array = [];
 
-exports.postDeleteFilterByIngredient = (req, res) => {
-    const ingredients = req.query.ingredient;
-    const unChoseIngredient = req.body.ingredientName;
+//     var newArray = array.map((item) => {
+//         if (array.indexOf(item) === 0) {
+//             if (!req.query) {
+//                 return '?ingredient='.concat(item, '&');
+//             } else {
+//                 return 'ingredient='.concat(item, '&');
+//             }
+//         } else if (array.indexOf(item) === array.length -1) {
+//             return 'ingredient='.concat(item);
+//         } else {
+//             return 'ingredient='.concat(item,"&");
+//         };
+//     });
+//     console.log(newArray);
+//     newArray = newArray.join('');
+//     res.redirect(`/recipe${query}${newArray}`);
+// };
 
-    const url = req.url;
+// exports.postDeleteFilterByIngredient = (req, res) => {
+//     const ingredients = req.query.ingredient;
+//     const unChoseIngredient = req.body.ingredientName;
 
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
+//     const url = req.url;
 
-    const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
+//     var query = url.slice(url.indexOf('?') + 1, url.length);
+//     req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
 
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            if (!req.query) {
-                return '?ingredient='.concat(item, '&');
-            } else {
-                return '&ingredient='.concat(item, '&')
-            }
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        }
-    });
+//     const array = ingredients.filter(ingredient => ingredient !== unChoseIngredient);
 
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/recipe${query}${newArray}`);
+//     var newArray = array.map((item) => {
+//         if (array.indexOf(item) === 0) {
+//             if (!req.query) {
+//                 return '?ingredient='.concat(item, '&');
+//             } else {
+//                 return '&ingredient='.concat(item, '&')
+//             }
+//         } else if (array.indexOf(item) === array.length -1) {
+//             return 'ingredient='.concat(item);
+//         } else {
+//             return 'ingredient='.concat(item,"&");
+//         }
+//     });
 
-};
+//     console.log(newArray);
+//     newArray = newArray.join('');
+//     res.redirect(`/recipe${query}${newArray}`);
+
+// };
 
 
 exports.getSearchByName = async (req, res) => {
     try {
-        let result = await recipeModel.Recipe.aggregate([
+        let recipes = await recipeModel.Recipe.aggregate([
             {
                 "$search": {
                     "autocomplete": {
@@ -163,12 +161,15 @@ exports.getSearchByName = async (req, res) => {
                         "path": "name",
                         "fuzzy": {
                             "maxEdits": 2
-                        }
+                        },
                     }
                 }
             }
-        ]);
-        res.send(result);
+        ]).limit(10);
+
+        const response = {recipes}
+
+        res.status(200).json(response);
     } catch (err) {
         console.log(err);
         res.status(500).json({message: err.message});
@@ -217,3 +218,17 @@ exports.postFilterByRating = (req, res) => {
 
     res.redirect(`/recipe${query}${newQuery}`);
 };
+
+exports.getRecipeById = async (req, res) => {
+    const recipeId = req.query.recipeID;
+    try {
+        let recipes = await recipeModel.Recipe.find({_id: recipeId});
+        
+        const response = {recipes}
+        console.log(response);
+        res.status(200).json(response);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: err.message});
+    }
+}

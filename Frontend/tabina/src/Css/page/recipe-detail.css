@@ -1,10 +1,15 @@
+.nav {
+    position: sticky !important;
+}
+
 .recipe-detail {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: 0px 50px;
 }
 
 .recipe-detail-breadcrumb {
-    display: block;
+    display: flex;
     margin-top: 39px;
     margin-bottom: 39px;
 }
@@ -28,11 +33,14 @@
 } */
 
 .recipe-detail-content {
-
+    display: flex;
 }
 
 .recipe-detail-content-left {
     max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-right: 106px;
 }
 
 .recipe-detail-img {
@@ -45,22 +53,22 @@
     margin-bottom: 60px;
 }
 
-.recipe-detail-content-left-ingredients {
+.recipe-detail-content-left-nutritions {
     max-width: 633px;
 }
 
-.recipe-detail-content-left-ingredients-title {
+.recipe-detail-content-left-nutritions-title {
     display: flex;
     margin-bottom: 30px;
 }
 
-.recipe-detail-content-left-ingredients-title-head {
+.recipe-detail-content-left-nutritions-title-head {
     font-weight: 700;
     font-size: 40px;
     line-height: 48.41px;
 }
 
-.recipe-detail-content-left-ingredients-title-number {
+.recipe-detail-content-left-nutritions-title-number {
     font-weight: 500;
     font-size: 40px;
     line-height: 48.41px;
@@ -79,14 +87,16 @@
     box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
-.recipe-detail-content-left-ingredients-list {
+.recipe-detail-content-left-nutritions-list {
     max-height: 328px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 .recipe-detail-content-right {
-    
+    display: flex;
+    flex-direction: column;
+    max-width: 1081px;
 }
 
 .recipe-detail-content-right-title {
@@ -98,11 +108,31 @@
 }
 
 .recipe-detail-content-right-title-stat-rating {
+    display: inline-block;
+    height: 50px;
+    margin-bottom: 10px;
+}
 
+.recipe-detail .star-color {
+    width: 50px;
+    height: 50px;
+    margin-right: 16.67px; 
+}
+
+.recipe-detail .star-color:last-child {
+    margin-right: 0px !important;
 }
 
 .recipe-detail-content-right-title-stat-level {
 
+}
+
+.recipe-detail .level-color {
+    margin-right: 10px;
+}
+
+.recipe-detail .level-color:last-child {
+    margin-right: 0px;
 }
 
 .recipe-detail-content-right-info {
@@ -110,6 +140,10 @@
 }
 
 .recipe-detail-content-right-info-time {
+
+}
+
+.recipe-detail-content-right-info-ingredients {
 
 }
 

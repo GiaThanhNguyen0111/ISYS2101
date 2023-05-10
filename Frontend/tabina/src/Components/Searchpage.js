@@ -1,31 +1,104 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, lazy, Suspense} from 'react'
+import '../Css/searchbar.css';
 import '../Css/filtertab.css'
 import starBlank from '../Image/img/recipe/starBlank.png'
 import starColor from '../Image/img/recipe/starColor.png'
+import recipesData from "../test-data/recipesData";
+import RecipeItem from './RecipeItem';
+import { Link, useNavigate } from 'react-router-dom';
+import Home from '../Pages/Home';
+import axios from 'axios';
 
 
-
+const LazyRecipeItem = React.lazy(() => import('./RecipeItem'));
 
 const Filtertab = () => {
 
-const [relavance, setRelavance] = useState('');
+  const recipesToLoad = [];
+  const [count , setCount] = useState(0);
+  const [loadedItems, setLoadedItems] = useState(10);
+
+  useEffect(() => {
+      axios.get('http://localhost:3001/recipe').then(response => {
+        setCount(response.data.recipes.length);
+        console.log(response.data.recipes);
+      });
+    
+  }, []);
+  
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      setLoadedItems((prevLoadedItems) => prevLoadedItems + 10);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navigate = useNavigate();
+  const [relavance, setRelavance] = useState("");
+  const [findRecipe, setFindRecipe] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+    const query = search.get("query");
+    if (query) {
+      setSearchResults(query.split(","));
+    }
+  }, []);
 
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
   };
 
+  
   const handleButtonClick = () => {
-    const userInput = document.querySelector('.searchbar').value;
-    setSearchResults([...searchResults, userInput]);
-  }
+    const userInput = document.querySelector(".searchbar").value;
+    setFindRecipe(userInput);
+    const newResults = [userInput];
+    setSearchResults(newResults);
+  };
 
+  useEffect(() => {
+    const query = searchResults.join("&");
+    const newQuery = `?name=${query}`;
+    var uri = `http://localhost:3001/search${newQuery}`;
+    !query ? uri = 'http://localhost:3001/recipe' : uri = `http://localhost:3001/search${newQuery}`;
+    navigate(newQuery);
+    axios.get(uri).then(response => {
+      setCount(response.data.recipes.length);
+      console.log(response.data.recipes);
+    });
+  }, [searchResults]);
+  
+  const handleTagRemove = (index) => {
+    searchResults.splice(index, 1);
+    setSearchResults(searchResults);
+  };
+
+  
+
+  // useEffect(() => {
+  //   const query = searchResults.join(",");
+  //   navigate('');
+  // }, [handleTagRemove]);
+  
     return (
 
         <>
+<div className='page-contain'>
 
+    
+  
 <div className="searchbar-container">
-        <input type="text" placeholder="Add Ingredients" className='searchbar' />
+        <input type="text" placeholder="Add Ingredients" className='searchbar'/>
         <button className='searchbtn' onClick={handleButtonClick}>+</button>
         <select value={relavance} onChange={handleRelavance} className='relchoice'>
           <option value="">Relavance</option>
@@ -49,7 +122,9 @@ const [relavance, setRelavance] = useState('');
             
       <div className="result-container">
         {searchResults.map((result, index) => (
-        <p className='ingred' key={index}>{result}<span className='canc'>x</span></p>
+        <p className='ingred' key={index}>{result}
+                    <span className='canc' onClick={() => handleTagRemove(index)}>x</span>
+</p>
        
 
           
@@ -85,12 +160,7 @@ const [relavance, setRelavance] = useState('');
         </div>
         <p className='sep-tab'>___________________________________</p>
 
-        <div>
-        <p className='diff'>Number of Ingredients</p>
 
-
-        </div>
-        <p className='sep-tab'>___________________________________</p>
 
 
         {/* Star rating tab */}
@@ -211,6 +281,28 @@ const [relavance, setRelavance] = useState('');
 
 
         </div>
+        <div>
+          <div style={{marginTop: '10px', paddingLeft: '1000px', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
+     
+          <p >{count} Recipe Found!</p>
+
+          </div>
+        
+        
+          <div className='recipe-area'>
+        {recipesToLoad.map((recipe) => (
+          <div key={recipe.id} className='repcard'>
+            <Link to={`/recipes/${recipe.id}`}>
+              <Suspense fallback={<RecipeItem recipe={recipe} />}>
+                <LazyRecipeItem recipe={recipe} />
+              </Suspense>
+            </Link>
+          </div>
+        ))}
+      </div>
+        </div>
+</div>
+        
         
        
         </>

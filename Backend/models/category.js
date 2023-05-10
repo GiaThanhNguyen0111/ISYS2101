@@ -7,10 +7,12 @@ const categorySchema = new mongoose.Schema({
     mealType: [mealType.mealTypeSchema],
     restriction: [restriction.restrictionSchema],
     method: [method.methodSchema],
-});
+}
+);
 
-const Category = new mongoose.model("Category", categorySchema);
+const Category = mongoose.model("Category", categorySchema);
 
+Category.createCollection();
 
 module.exports = {
     categorySchema: categorySchema,

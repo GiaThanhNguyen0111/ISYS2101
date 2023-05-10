@@ -6,10 +6,12 @@ const session = require("express-session");
 const passport = require("passport");
 const userRoute = require('./routes/user');
 const recipeModel = require('./models/recipe');
+const ingredientModel = require('./models/ingredient');
 const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 const querystring = require('node:querystring');
 const cors = require('cors');
+const fs = require('fs')
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,7 +30,27 @@ app.use(passport.session());
 
 
 // DB
-mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/?retryWrites=true&w=majority`);
+const importData = async () => {
+    try {
+      await recipeModel.Recipe.insertMany(data)
+      console.log('data successfully imported')
+      // to exit the process
+      process.exit()
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+  
+
+mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
+.then(result => {
+    console.log("Connect to MongoDB successfully")
+})
+.catch(err => {
+    console.log(err)
+});
+
+mongoose.set('bufferCommands', false);
 
 
 app.use(userRoute);
@@ -37,33 +59,9 @@ app.use(ingredientRoute);
 
 app.use(recipesRoute);
 
-// Recipe.Recipe;
+// const data = JSON.parse(fs.readFileSync('./util/recipes.json', 'utf-8'))
 
-
-app.get('/test', async function(req, res, next) {
-    res.render('ingredients');
-    console.log(req.url);
-  });
-app.post('/test', function(req, res, next) {
-    const url = req.url;
-
-    var query = url.slice(url.indexOf('?') + 1, url.length);
-    req.query ? query = '' : query = url.slice(url.indexOf('?') + 1, url.length);
-    console.log(query);
-    const array = ['onion','pepper', 'thanh'];
-    var newArray = array.map((item) => {
-        if (array.indexOf(item) === 0) {
-            return '?ingredient='.concat(item, '&')
-        } else if (array.indexOf(item) === array.length -1) {
-            return 'ingredient='.concat(item);
-        } else {
-            return 'ingredient='.concat(item,"&");
-        }
-    });
-    console.log(newArray);
-    newArray = newArray.join('');
-    res.redirect(`/test${query}${newArray}`);
-  });
+// console.log(data)
 
 
 const PORT = process.env.PORT || 3001;
