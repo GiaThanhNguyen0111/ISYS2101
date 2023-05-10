@@ -10,13 +10,14 @@ exports.getAllRecipe = async (req, res) => {
         let level = req.query.level || "All";
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
+        let name = req.query.name;
         console.log(isString(ingredients));
         console.log([...ingredients]);
 
         
 
-        level === "All" ? (level = 0) : (level = req.query.level);
-        rating === "All" ? (rating = 0 ) : (rating = req.query.rating);
+        level === "All" ? (level = 0) : (level = Number(req.query.level));
+        rating === "All" ? (rating = 0 ) : (rating = Number(req.query.rating));
         req.query.sort ? (sort = req.query.sort ) : (sort = [sort]);
 
         let sortBy  = {};
@@ -28,7 +29,7 @@ exports.getAllRecipe = async (req, res) => {
         };
 
         const aggregate = [
-            {
+            name ? {
                 "$search": {
                     "autocomplete": {
                         "query": `${req.query.name}`,
@@ -38,7 +39,7 @@ exports.getAllRecipe = async (req, res) => {
                         },
                     }
                 }
-            },
+            } : null,
             {$match: {"rating": {$gte: rating}}},
             {$match: {"level": {$gte: level}}},
             {$sort: sortBy},

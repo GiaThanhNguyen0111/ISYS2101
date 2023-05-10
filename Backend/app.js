@@ -9,9 +9,8 @@ const recipeModel = require('./models/recipe');
 const ingredientModel = require('./models/ingredient');
 const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
-const querystring = require('node:querystring');
 const cors = require('cors');
-const fs = require('fs')
+// const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
