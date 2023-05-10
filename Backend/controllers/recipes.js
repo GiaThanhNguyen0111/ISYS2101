@@ -223,18 +223,13 @@ exports.postFilterByRating = (req, res) => {
     res.redirect(`/recipe${query}${newQuery}`);
 };
 
-exports.getrecipeById = async (req, res) => {
+exports.getRecipeById = async (req, res) => {
     const recipeId = req.query.recipeID;
     try {
-        let recipes = await recipeModel.Recipe.find({_id: recipeId})
-        .then(result => {
-            console.log(result);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-
+        let recipes = await recipeModel.Recipe.find({_id: recipeId});
+        
         const response = {recipes}
+        console.log(response);
         res.status(200).json(response);
     } catch (err) {
         console.log(err);
