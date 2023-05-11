@@ -20,7 +20,17 @@ exports.getUserRegister = (req, res) => {
 };
 
 exports.postUserRegister = async (req, res) => {
-    await userModel.User.register({username: req.body.username}, req.body.password, function(err, user) {
+    var currentUser = new userModel.User({
+        username: req.body.username,
+        googleId: req.body.googleId,
+        facebookId: req.body.facebookId,
+        fullName: req.body.fullName,
+        DOB: req.body.DOB,
+        Phone: req.body.phoneNumber,
+        Address: req.body.address
+    })
+
+    await userModel.User.register(currentUser, req.body.password, function(err, user) {
         if(err) {
             console.log(err);
             res.redirect("/register");
@@ -40,6 +50,7 @@ exports.getUserLogin = (req, res) => {
 exports.postUserLogin = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+
 
     const user = new userModel.User({
         username: username,
