@@ -11,6 +11,7 @@ import LevelLastBlank from './Components/RecipeDetail/LevelLastBlank';
 import Filtertab from './Components/Searchpage';
 import NutritionItem from './Components/RecipeDetail/NutritionItem';
 import Registerform from './Components/Login/Registerform';
+import Loginform from './Components/Login/Loginform';
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Loginform />} />
         <Route path="/register" element={<Registerform />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Filtertab/>} />

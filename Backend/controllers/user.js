@@ -63,6 +63,8 @@ exports.postUserLogin = (req, res) => {
         } else {
             await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
                 res.redirect("/");
+                console.log("login Successfully");
+                console.log(req.session.passport);
             })
         }
     });
