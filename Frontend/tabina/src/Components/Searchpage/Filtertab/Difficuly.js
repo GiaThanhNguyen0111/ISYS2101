@@ -3,28 +3,34 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Difficulty = () => {
-    const [selectedDifficulties, setSelectedDifficulties] = useState([]);
-
+    const [selectedDifficulties, setSelectedDifficulties] = useState(null);
+    const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxClick = (event) => {
         const difficulty = event.target.nextSibling.innerText;
         const isChecked =  event.target.checked;
       
         if (isChecked) {
-          setSelectedDifficulties([...selectedDifficulties, difficulty]);
+          setSelectedDifficulties(difficulty);
+          setIsChecked(true);
         } else {
-          setSelectedDifficulties(selectedDifficulties.filter((d) => d !== difficulty));
+          setSelectedDifficulties(null);
+          setIsChecked(false);
         }
       };
       
       
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-useEffect(() => {
-  const query = selectedDifficulties.join('&difficulty=');
-  const newQuery = query ? `?difficulty=${query}` : '';
-  navigate(newQuery);
-}, [selectedDifficulties, navigate]);
+    useEffect(() => {
+        const currentSearch = window.location.search;
+        let newQuery = "";
+        !currentSearch ? newQuery = `?level=${selectedDifficulties}` : newQuery = `&level=${selectedDifficulties}`;
+        let finalQuery = currentSearch.concat(newQuery);
+        selectedDifficulties === null ? finalQuery = currentSearch : finalQuery = currentSearch.concat(newQuery);
+        console.log(selectedDifficulties);  
+        navigate(finalQuery);
+    }, [selectedDifficulties]);
 
       
 

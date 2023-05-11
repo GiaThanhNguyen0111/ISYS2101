@@ -4,16 +4,16 @@ import starColor from '../../../Image/img/recipe/starColor.png'
 import { useNavigate } from 'react-router-dom'
 
 const StarRating = () => {
-    const [selectedRating, setSelectedRating] = useState([]);
+    const [selectedRating, setSelectedRating] = useState(null);
 
     const handleCheckRating = (event) => {
-        const rating = event.target.nextSibling.innerText;
+        const rating = event.target.nextSibling.innerHTML;
         const isChecked = event.target.checked;
-      
+
         if (isChecked) {
-          setSelectedRating([...selectedRating, rating]);
+          setSelectedRating(rating);
         } else {
-          setSelectedRating(selectedRating.filter((d) => d !== rating));
+          setSelectedRating(null);
         }
       };
       
@@ -22,10 +22,14 @@ const StarRating = () => {
 const navigate = useNavigate();
 
 useEffect(() => {
-  const query = selectedRating.join('&rating=');
-  const newQuery = query ? `?rating=${query}` : '';
-  navigate(newQuery);
-}, [selectedRating, navigate]);
+  const currentSearch = window.location.search; 
+  let newQuery = '';
+  !currentSearch ? newQuery = `?rating=${selectedRating}` : newQuery = `&rating=${selectedRating}`;
+  let finalQuery = currentSearch.concat(newQuery);
+  selectedRating === null ? finalQuery = currentSearch : finalQuery = currentSearch.concat(newQuery);
+  navigate(finalQuery);
+  
+}, [selectedRating]);
       
     
 
@@ -73,7 +77,7 @@ useEffect(() => {
 {/* 3 star */}
 
 <label className='diff-level'>
-<input type='checkbox'  className='diff-option' onChange={handleCheckRating} />
+<input type='checkbox'  className='diff-option' onChange={handleCheckRating}/>
 <p style={{display: "none"}}>3</p>
 
 <div className='star-rat'>

@@ -10,14 +10,14 @@ const Loginform = () => {
         <h1 style={{display: 'flex', justifyContent: 'center', marginTop: '50px' }}>LOGIN</h1>
         <div className='formbox'>
             
-            <form>
+            <form action='/login' method='post'>
                 <div>
-                    <h3 style={{marginBottom: 5, }}>Username</h3>
-                    <input type='name' placeholder='Username'  className='input-lg'></input>
+                    <h3 style={{marginBottom: 5, }}>Email</h3>
+                    <input type='name' placeholder='Username' name='username' className='input-lg'></input>
                 </div>
                 <div>
                 <h3 style={{marginBottom: 5}}>Password</h3>
-                <input type='password' placeholder='Password' className='input-lg'></input>
+                <input type='password' placeholder='Password' name='password' className='input-lg'></input>
                 
                 </div>
                 <button className='loginbtn'>Login</button>

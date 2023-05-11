@@ -13,56 +13,17 @@ import Mealtype from './Searchpage/Filtertab/Mealtype';
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
 const Filtertab = () => {
+  const navigate = useNavigate();
 
-  
   const [relavance, setRelavance] = useState("");
-  const handleRelavance = (event) => {
-      setRelavance(event.target.value);
-    };
-
-
-  const recipesToLoad = [];
   const [count , setCount] = useState(0);
   const [loadedItems, setLoadedItems] = useState(10);
-
-  useEffect(() => {
-      axios.get('http://localhost:3001/recipe').then(response => {
-        setCount(response.data.recipes.length);
-        console.log(response.data.recipes);
-      });
-    
-  }, []);
-  
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      setLoadedItems((prevLoadedItems) => prevLoadedItems + 10);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navigate = useNavigate();
- 
   const [findRecipe, setFindRecipe] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    const search = new URLSearchParams(window.location.search);
-    const query = search.get("query");
-    if (query) {
-      setSearchResults(query.split(","));
-    }
-  }, []);
-
-
-
+  
+  const handleRelavance = (event) => {
+    setRelavance(event.target.value);
+  };
   
   const handleButtonClick = () => {
     const userInput = document.querySelector(".searchbar").value;
@@ -74,22 +35,83 @@ const Filtertab = () => {
       newResults = [...searchResults, userInput];
     } else {
       newResults = [userInput];
-    }
+    };
   
     setSearchResults(newResults);
   
     let newQuery = "";
-  
+    
+    const currentSearch = window.location.search;
+
     if (relavance === "ingred") {
-      const query = newResults.join("&ingredient=");
-      newQuery = `?ingredient=${query}`;
-      navigate(newQuery);
+      !currentSearch ? newQuery = `?ingredient=${searchResults}` : newQuery = `&ingredient=${searchResults}`;
+      const finalQuery = currentSearch.concat(newQuery);
+      navigate(finalQuery);
     } else {
-      newQuery = `?name=${userInput}`;
-      navigate(newQuery);
-    }
-  }
+      !currentSearch ? newQuery = `?name=${newResults}` : newQuery = `&name=${newResults}`;
+      const finalQuery = currentSearch.concat(newQuery);
+      navigate(finalQuery);
+    };
+  };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+      ) {
+        setLoadedItems((prevLoadedItems) => prevLoadedItems + 10);
+      }
+    };
+    
+    
+  const handleTagRemove = (index) => {
+    const newResults = [...searchResults];
+    newResults.splice(index, 1);
+    setSearchResults(newResults);
+    
+    const currentSearch = window.location.search;
+    let newQuery = "";
+
+    if (relavance === "ingred") {
+      !currentSearch ? newQuery = `?ingredient=${searchResults}` : newQuery = `&ingredient=${searchResults}`;
+      const finalQuery = currentSearch.concat(newQuery);
+      navigate(finalQuery);
+    } else {
+      !currentSearch ? newQuery = `?name=${searchResults}` : newQuery = `&name=${searchResults}`;
+      const finalQuery = currentSearch.concat(newQuery);
+      navigate(finalQuery);
+    };
+    
+    if (newResults.length === 0) {
+      window.location.href = window.location.origin + window.location.pathname;
+    };
+    };
+
+
+  useEffect(() => {
+    const currentSearch = window.location.search;
+
+    axios.get(`http://localhost:3001/recipe${currentSearch}`).then(response => {
+      setCount(response.data.recipes.length);
+      console.log(response.data.recipes);
+    });
+  }, [searchResults]);
+    
+      
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
+  
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+    const query = search.get("query");
+    if (query) {
+      setSearchResults(query.split(","));
+    }
+  }, []);
+
 
   useEffect(() => {
     
@@ -100,14 +122,6 @@ const Filtertab = () => {
     
     const query = searchResults.join("&");
     const newQuery = `?${queryParam}=${query}`;
-    var uri = `http://localhost:3001/search${newQuery}`;
-    !query & newQuery === null ? uri = 'http://localhost:3001/recipe' : uri = `http://localhost:3001/search${newQuery}`;
- 
-  
-    axios.get(uri).then((response) => {
-      setCount(response.data.recipes.length);
-      console.log(response.data.recipes);
-    });
   }, [searchResults, relavance]);
   
   
@@ -131,42 +145,6 @@ const Filtertab = () => {
 
   //   navigate(newQuery);
   // };
-
-  const handleTagRemove = (index) => {
-    const newResults = [...searchResults];
-    newResults.splice(index, 1);
-    setSearchResults(newResults);
-  
-    let newQuery = "";
-    if (relavance === "ingred") {
-      const query = newResults.join("&ingredient=");
-      newQuery = `?ingredient=${query}`
-      navigate(newQuery);
-    } else {
-      const query = newResults.join("&name=");
-      newQuery = `?name=${query}`
-      navigate(newQuery);
-    }
-  
-    if (newResults.length === 0) {
-      window.location.href = window.location.origin + window.location.pathname;
-    }
-  };
-  
-
-  
-
-  // const handleTagRemove = (index) => {
-  //   const newResults = [...searchResults];
-  //   newResults.splice(index, 1);
-  //   setSearchResults(newResults);
-  //   const query = newResults.join(",");
-  //   navigate(`?ingredient=${query}`);
-  // };
-
-
-
-  
 
   // useEffect(() => {
   //   const query = searchResults.join(",");
@@ -238,7 +216,7 @@ const Filtertab = () => {
         
         
           <div className='recipe-area'>
-        {recipesToLoad.map((recipe) => (
+        {/* {recipesToLoad.map((recipe) => (
           <div key={recipe.id} className='repcard'>
             <Link to={`/recipes/${recipe.id}`}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
@@ -246,7 +224,7 @@ const Filtertab = () => {
               </Suspense>
             </Link>
           </div>
-        ))}
+        ))} */}
       </div>
         </div>
 </div>
