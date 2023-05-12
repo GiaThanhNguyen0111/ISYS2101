@@ -8,6 +8,7 @@ import parsley from '../Image/img/recipe/IgParsley.png'
 import pepper from '../Image/img/recipe/IgPepper.png'
 import salt from '../Image/img/recipe/IgSalt.png'
 import lemon from '../Image/img/recipe/IgLemon.png'
+import question from '../Image/img/recipe/question-mark.png'
 
 import {useParams, Link} from "react-router-dom";
 
@@ -66,12 +67,24 @@ const RecipeDetail = () => {
             total = instructions[index + 1];
         }
     }
+
+    
     const level_num = thisRecipe.level;
+
+    var choosenNutrition = "";
+    var choosenValue = 0;
+    for (const [key, value] of Object.entries(thisRecipe.nutritions[0])) {
+        console.log(`${key}: ${value}`);
+        if (value.amount > choosenValue) {
+            choosenNutrition = key;
+            choosenValue = value.amount;
+        }
+    }
 
     return (
         <>
         {/* this one is 6458f1e9e53e500f2252bc86 ? */}
-        <h1>{recieveId}</h1>
+        {/* <h1>{recieveId}</h1> */}
         <div className='recipe-detail'>
             <div className='recipe-detail-breadcrumb'>
                 <p><Link to={`/`}>Home</Link> &gt; <Link to={`/`}>Recipe</Link> &gt; {thisRecipe.name}</p>
@@ -85,7 +98,7 @@ const RecipeDetail = () => {
                             {/* <span className='recipe-detail-content-left-nutritions-title-number'>{thisRecipe.nutritions.length}</span> */}
                         </div>
                         <div className='recipe-detail-content-left-nutritions-list'>
-                            {Object.entries(thisRecipe.nutritions).map(([key, value]) => (
+                            {Object.entries(thisRecipe.nutritions[0]).map(([key, value]) => (
                                 <NutritiontItem item = {[key, value]} key={[key, value]}/>
                             ))}
                         </div>
@@ -127,7 +140,7 @@ const RecipeDetail = () => {
                                 {level_num === 2 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
-                                            Beginner
+                                            Average
                                         </span>
                                         <LevelStartColor />
                                         <LevelColor />
@@ -151,7 +164,7 @@ const RecipeDetail = () => {
                                 {level_num === 4 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
-                                            Beginner
+                                            Expert
                                         </span>
                                         <LevelStartColor />
                                         <LevelColor />
@@ -163,7 +176,7 @@ const RecipeDetail = () => {
                                 {level_num === 5 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
-                                            Beginner
+                                            World-class
                                         </span>
                                         <LevelStartColor />
                                         <LevelColor />
@@ -202,7 +215,13 @@ const RecipeDetail = () => {
                             </div>    
                         </div>
                         <div className='recipe-detail-content-right-info-calo'>
-                            
+                            <img src={question} className='recipe-detail-content-right-info-calo-img-left' alt="fun fact"/>
+                            <span className='recipe-detail-content-right-info-calo-span'>
+                                This recipe has <strong>{thisRecipe.nutritions[0][choosenNutrition].displayValue}</strong>&nbsp;
+                                {thisRecipe.nutritions[0][choosenNutrition].unit} of&nbsp;
+                                {thisRecipe.nutritions[0][choosenNutrition].name}
+                            </span>
+                            <img src = {question} className='recipe-detail-content-right-info-calo-img-right' alt="fun fact"/>
                         </div>
                     </div>
                     <div className='recipe-detail-content-right-instructions'>
@@ -211,8 +230,6 @@ const RecipeDetail = () => {
                 </div>
             </div>
         </div> 
-
-        {/* <h1>{recipeId}</h1> */}
         </>
     )
 }
