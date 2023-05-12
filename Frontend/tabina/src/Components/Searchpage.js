@@ -101,7 +101,7 @@ const Filtertab = () => {
 
     axios.get(`http://localhost:3001/recipe${currentSearch}`).then(response => {
       setCount(response.data.recipes.length);
-      
+      setRecievedRecipes(response.data.recipes);
       console.log(response.data.recipes);
     });
   }, [searchResults]);
@@ -224,7 +224,7 @@ const Filtertab = () => {
         
         
           <div className='recipe-area'>
-        {/* {recipesToLoad.map((recipe) => (
+        {recievedRecipes.map((recipe) => (
           <div key={recipe.id} className='repcard'>
             <Link to={`/recipes/${recipe._id}`}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
@@ -232,7 +232,7 @@ const Filtertab = () => {
               </Suspense>
             </Link>
           </div>
-        ))} */}
+        ))}
       </div>
         </div>
 </div>
