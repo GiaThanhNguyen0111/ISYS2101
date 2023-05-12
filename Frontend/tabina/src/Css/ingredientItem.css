@@ -1,0 +1,21 @@
+.ingredient-item {
+    width: fit-content;
+    height: 40px;
+
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 1);
+
+    display: flex;
+    flex-direction: row;
+    padding: 8px 15px;
+}
+
+.ingredient-item-name {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #28161C;
+}

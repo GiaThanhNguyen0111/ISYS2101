@@ -159,7 +159,7 @@ import lemon from '../Image/img/recipe/IgLemon.png'
   
 export default [
     {
-        "id": 240488,
+        "_id": 240488,
         "name": "SAUTÉ BUTTER SALMON",
         "ingredients": [
             "salmon",
@@ -171,7 +171,7 @@ export default [
             "salt"
         ],
         "image_url": food,
-        "cooking_directions": "Prep\n15 m\nCook\n2 h 30m\nReady In\n2h 45m\nInstructions\nStep 1\nthis is step 1\nStep 2\nthis is step 2",
+        "cooking_directions": "Prep\n15 m\nCook\n2 h 30m\nReady In\n2h 45m\nInstructions\nthis is step 1\nthis is step 2",
         "nutritions": {
             "niacin": {
                 "displayValue": "16",
@@ -202,7 +202,7 @@ export default [
         "rating": 4
     },
     {
-        "id": 2,
+        "_id": 2,
         "name": "Spicy Chicken Pasta",
         "ingredients": [
             "salmon",
@@ -245,7 +245,7 @@ export default [
         "rating": 4
     },
     {
-        "id": 3,
+        "_id": 3,
         "name": "Cheeseburger Sliders",
         "ingredients": [
             "salmon",
@@ -288,7 +288,7 @@ export default [
         "rating": 3
     },
     {
-        "id": 4,
+        "_id": 4,
         "name": "Chocolate Chip Cookies",
         "ingredients": [
             "salmon",
@@ -331,7 +331,7 @@ export default [
         "rating": 2
     },
     {
-        "id": 1,
+        "_id": 1,
         "name": "Chocolate Chip Cookies",
         "ingredients": [
             "salmon",

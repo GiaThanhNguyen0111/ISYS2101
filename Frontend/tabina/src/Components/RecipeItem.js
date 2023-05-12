@@ -50,6 +50,7 @@ const RecipeItem = (props) => {
     }
 
     const instructions = props.recipe.cooking_directions.split(/\r?\n/);
+    console.log(typeof(instructions));
     const level_num = props.recipe.level;
 
     return (

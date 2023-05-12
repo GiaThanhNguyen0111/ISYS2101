@@ -22,8 +22,7 @@ const Filtertab = () => {
       axios.get('http://localhost:3001/recipe').then(response => {
         setCount(response.data.recipes.length);
         console.log(response.data.recipes);
-      });
-    
+      }); 
   }, []);
   
 
@@ -45,6 +44,7 @@ const Filtertab = () => {
   const [relavance, setRelavance] = useState("");
   const [findRecipe, setFindRecipe] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [recievedRecipes, setRecievedRecipes] = useState([]);
 
   useEffect(() => {
     const search = new URLSearchParams(window.location.search);
@@ -75,8 +75,11 @@ const Filtertab = () => {
     axios.get(uri).then(response => {
       setCount(response.data.recipes.length);
       console.log(response.data.recipes);
+      setRecievedRecipes(response.data.recipes);
     });
   }, [searchResults]);
+  
+  console.log(recievedRecipes);
   
   const handleTagRemove = (index) => {
     searchResults.splice(index, 1);
@@ -290,9 +293,9 @@ const Filtertab = () => {
         
         
           <div className='recipe-area'>
-        {recipesToLoad.map((recipe) => (
+        {recievedRecipes.map((recipe) => (
           <div key={recipe.id} className='repcard'>
-            <Link to={`/recipes/${recipe.id}`}>
+            <Link to={`/recipes/${recipe._id}`}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
                 <LazyRecipeItem recipe={recipe} />
               </Suspense>
