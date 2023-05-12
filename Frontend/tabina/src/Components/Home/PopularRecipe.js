@@ -1,7 +1,7 @@
 import React from "react";
 import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import "../../Css/popularRecipe.css"; //import component-specific CSS
+import "../../Css/page/home/popularRecipe.css"; //import component-specific CSS
 import StarRatings from 'react-star-ratings';
 import RecipeItem from "../RecipeItem";
 import { Link } from "react-router-dom";
@@ -23,14 +23,11 @@ const PopularRecipe = () => {
           pagination: false,
           perPage: 3,
           perMove: 1,
-          gap: "6rem",
-          padding: '4rem',
           breakpoints: {
-            1200: {
+            1330: {
               perPage: 2,
-              gap: "5rem",
             },
-            820: {
+            860: {
               perPage: 1,
             },
           },

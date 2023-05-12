@@ -9,8 +9,9 @@ import RecipeDetail from './Pages/RecipeDetail';
 import Home from './Pages/Home';
 import LevelLastBlank from './Components/RecipeDetail/LevelLastBlank';
 import Filtertab from './Components/Searchpage';
-import IngredientItem from './Components/RecipeDetail/IngredientItem';
+import NutritionItem from './Components/RecipeDetail/NutritionItem';
 import MyAccount from './Pages/MyAccount';
+import AboutUs from './Pages/PoliciesPage'
 
 
 const App = () => {
@@ -21,13 +22,13 @@ const App = () => {
         <Route path="/detail" element={<RecipeDetail />} />
       </Routes> */}
 
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Filtertab/>} />
         <Route path="/component-test" element={<NutritionItem />} />
         <Route path='/filter' element={< Filtertab/>} />
-      </Routes> */}
+      </Routes>
 
       <MyAccount />
     </>

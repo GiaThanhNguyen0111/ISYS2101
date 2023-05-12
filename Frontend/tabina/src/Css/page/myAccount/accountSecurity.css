@@ -18,6 +18,7 @@
 
 .login-title {
     font-weight: 700;
+    margin: 25px 0 0 0;
 }
 
 .accountsecurity-form input[type=text] {
@@ -34,57 +35,26 @@
     border-radius: 20px;
     font-weight: 700;
     box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-    margin-top: 25px;
 }
 
 .account-radio-container {
     display: flex;
     flex-direction: column;
-}
-
-.login-radio {
-    display: none;
+    margin: 15px 0;
 }
 
 .account-radio-container label {
-    display: inline-block;
-    padding: 5px 0px;
-    cursor: pointer;
+    display: flex;
+    height: 20px;
+    align-items: center;
+    gap: 10px;
 }
 
 .account-radio-container label span {
-    position: relative;
-    line-height: 22px;
+    font-size: 15px;
 }
 
-.account-radio-container label span:before,
-.account-radio-container label span:after {
-  content: '';
-}
-
-.account-radio-container label span:before {
-    border: 1px solid #222021;
-    border-radius: 5px ;
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-    display: inline-block;
-    vertical-align: top;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
-}
-  
-.account-radio-container label span:after {
-    background-color: #28161C;
-    border-radius: 4px; 
-    width: 19px;
-    height: 19px;
-    position: absolute;
-    top: 2px;
-    left: 4px;
-    transition: 300ms;
-    opacity: 0;
-}
-
-.account-radio-container label input:checked+span:after {
-    opacity: 1;
+.account-radio-container label input {
+    height: 15px;
+    width: 15px;
 }

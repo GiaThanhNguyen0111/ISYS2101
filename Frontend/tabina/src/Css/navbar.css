@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1% 5% 1% 0;
+    padding: 1% 5% 1% 3%;
     box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
     background-color: #FFFFFF;
 }
@@ -12,11 +12,11 @@
 .nav-link {
     margin-left: 50px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 400;
-    /* margin-top: 10px; */
     line-height: 40px;
     color: #28161C;
+    text-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 #button {
@@ -26,11 +26,9 @@
     padding-right: 40px;
     background-color: #28161C;
     cursor: pointer;
-   
 }
 .nav img {
     width: 100px;
     height: 100px;
-    margin-left: 3%;
 }
 

@@ -6,33 +6,61 @@ import peter from '../../Image/img/recipe/peter.png'
 import shape1 from '../../Image/img/recipe/Shape.png'
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import '../../Css/chefcard.css'
+import '../../Css/page/home/chefcard.css'
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const Chefcard = () => {
     return (
         <>
-        <div className='sponsor-area'>
+        <div className='chefcard-container'>
 
-            <div className='sponsor-title'>Our Sponsor Chefs</div>
+            <div className='chefcard-title'>Our Sponsor Chefs</div>
 
-            <div className='sponsorchef'>
-                <div className='chefcard'>
-                    <img src = {gordon} className='chefimg' />
-                    <p className='chefname'>Gordon Ramsay</p>
-                </div>
-                <div className='chefcard'>
-                    <img src = {jamie} className='chefimg' />
-                    <p className='chefname'>Jamie Oliver</p>
-                </div>
-                <div className='chefcard'>
-                    <img src = {jock} className='chefimg' />
-                    <p className='chefname'>Jock Zonfrillo</p>
-                </div>
-                <div className='chefcard'>
-                    <img src = {peter} className='chefimg' />
-                    <p className='chefname'>Peter Gilmore</p>
-                </div>
-            </div>
+            <Splide className='chefcard-chefs'
+            options={{
+                type: "slide",
+                rewind: true,
+                arrows: false,
+                pagination: false,
+                perPage: 4,
+                perMove: 1,
+                breakpoints: {
+                  1330: {
+                    perPage: 3,
+                  },
+                  1200: {
+                    perPage: 2,
+                  },
+                  685: {
+                    perPage: 1,
+                  }
+                },
+              }}>
+                <SplideSlide>
+                    <div className='chefcard'>
+                        <img src = {gordon} className='chefimg' />
+                        <p className='chefname'>Gordon Ramsay</p>
+                    </div>
+                </SplideSlide>
+                <SplideSlide>
+                    <div className='chefcard'>
+                        <img src = {jamie} className='chefimg' />
+                        <p className='chefname'>Jamie Oliver</p>
+                    </div>
+                </SplideSlide>
+                <SplideSlide>
+                    <div className='chefcard'>
+                        <img src = {jock} className='chefimg' />
+                        <p className='chefname'>Jock Zonfrillo</p>
+                    </div>
+                </SplideSlide>
+                <SplideSlide>
+                    <div className='chefcard'>
+                        <img src = {peter} className='chefimg' />
+                        <p className='chefname'>Peter Gilmore</p>
+                    </div>  
+                </SplideSlide>
+            </Splide>
 
             <div>
                 <button className='rcpbtn'>VIEW MORE RECIPE</button>
