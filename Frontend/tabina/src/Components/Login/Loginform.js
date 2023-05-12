@@ -1,31 +1,30 @@
 import React from 'react'
 import '../../Css/form.css'
-import Navbar from '../Navbar';
 import Footer from '../Footer';
 
 const Loginform = () => {
     return (
         <>
-        <Navbar/>
-        <h1 style={{display: 'flex', justifyContent: 'center', marginTop: '50px' }}>LOGIN</h1>
+
+        <p style={{display: 'flex', justifyContent: 'center', marginTop: '50px', fontSize: '30px', fontWeight: 550 }}>Login</p>
         <div className='formbox'>
             
             <form action='/login' method='post'>
-                <div>
-                    <h3 style={{marginBottom: 5, }}>Email</h3>
+                <div style={{marginTop: '30px'}}>
+                   <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}} >Email</p>
                     <input type='name' placeholder='Username' name='username' className='input-lg'></input>
                 </div>
                 <div>
-                <h3 style={{marginBottom: 5}}>Password</h3>
+                 <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}}>Password</p>
                 <input type='password' placeholder='Password' name='password' className='input-lg'></input>
                 
                 </div>
-                <button className='loginbtn'>Login</button>
+                <button className='loginbtn'>LOGIN</button>
 
             </form>
         </div>
         
-        <Footer/>
+    
         
         </>
     );

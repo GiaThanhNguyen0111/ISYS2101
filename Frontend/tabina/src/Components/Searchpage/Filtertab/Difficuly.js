@@ -7,9 +7,17 @@ const Difficulty = () => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxClick = (event) => {
         const difficulty = event.target.nextSibling.innerText;
-        const isChecked =  event.target.checked;
+        const isChecked = event.target.checked;
       
         if (isChecked) {
+          // clear selection of other checkboxes
+          const checkboxes = document.querySelectorAll('.diff-option');
+          checkboxes.forEach((checkbox) => {
+            if (checkbox !== event.target) {
+              checkbox.checked = false;
+            }
+          });
+      
           setSelectedDifficulties(difficulty);
           setIsChecked(true);
         } else {
@@ -17,6 +25,7 @@ const Difficulty = () => {
           setIsChecked(false);
         }
       };
+      
       
       
 
@@ -30,7 +39,7 @@ const Difficulty = () => {
         selectedDifficulties === null ? finalQuery = currentSearch : finalQuery = currentSearch.concat(newQuery);
         console.log(selectedDifficulties);  
         navigate(finalQuery);
-    }, [selectedDifficulties]);
+    }, [selectedDifficulties, navigate]);
 
       
 
