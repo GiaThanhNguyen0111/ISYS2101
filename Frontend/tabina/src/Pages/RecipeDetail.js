@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../Css/page/recipe-detail.css';
 import food from '../Image/img/recipe/salmon.jpg';
 import salmon from '../Image/img/recipe/IgSalmon.png'
@@ -20,55 +20,35 @@ import LevelStartColor from '../Components/RecipeDetail/LevelStartColor';
 import LevelLastColor from '../Components/RecipeDetail/LevelLastColor';
 import LevelLastBlank from '../Components/RecipeDetail/LevelLastBlank';
 import LevelBlank from '../Components/RecipeDetail/LevelBlank';
+import IngredientItem from '../Components/RecipeDetail/IngredientItem';
+import axios from 'axios';
 
 const RecipeDetail = () => {
     const {recipeId} = useParams()
-    const thisRecipe = recipesData.find(rep => rep.id == recipeId)
-    const testData = {
-        "id": 240488,
-        "name": "SAUTÉ BUTTER SALMON",
-        "ingredients": [
-            "salmon",
-            "butter",
-            "olive oil",
-            "parsley",
-            "lemon juice",
-            "black pepper",
-            "salt"
-        ],
-        "image_url": food,
-        "cooking_directions": "Prep\n15 m\nCook\n2 h 30m\nReady In\n2h 45m\nInstructions\nStep 1\nthis is step 1\nStep 2\nthis is step 2",
-        "nutritions": {
-            "niacin": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-            "sugars": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-            "sodium": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-            "carbohydrates": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-            "vitaminB6": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-            "vitaminC": {
-                "displayValue": "120",
-                "unit": "mg"
-            },
-        },
-        "level": 5,
-        "rating": 801
-    }
+    // const thisRecipe = recipesData.find(rep => rep._id == recipeId)
+
+    console.log(recipeId);
+    const [test, setTest] = useState("test");
+    const [recieveId, setRecieveId] = useState("hello");
+    const [thisRecipe, setThisRecipe] = useState({});
+
+    
+    console.log(test);
+    
+
+    console.log(recieveId);
+
+    useEffect(async () => {
+        setTest("this is test");
+        const myData = await axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${recipeId}`);
+        const newRecipe = await myData.response.data.recipes[0];
+        setThisRecipe(newRecipe);
+    }, []);
+
+    console.log(thisRecipe);
 
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);
+    console.log(typeof(instructions));
     const level_num = thisRecipe.level;
 
     return (
@@ -115,7 +95,7 @@ const RecipeDetail = () => {
                             {/* <div className='recipe-detail-content-right-title-stat-level'> */}
                                 {level_num == 1 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
-                                        <span className='recipe-item-desc-line-2'>
+                                        <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
                                         </span>
                                         <LevelStartColor />
@@ -127,7 +107,7 @@ const RecipeDetail = () => {
                                 }
                                 {level_num == 2 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
-                                        <span className='recipe-item-desc-line-2'>
+                                        <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
                                         </span>
                                         <LevelStartColor />
@@ -139,7 +119,7 @@ const RecipeDetail = () => {
                                 }
                                 {level_num == 3 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
-                                        <span className='recipe-item-desc-line-2'>
+                                        <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Intermediate
                                         </span>
                                         <LevelStartColor />
@@ -151,7 +131,7 @@ const RecipeDetail = () => {
                                 }
                                 {level_num == 4 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
-                                        <span className='recipe-item-desc-line-2'>
+                                        <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
                                         </span>
                                         <LevelStartColor />
@@ -163,7 +143,7 @@ const RecipeDetail = () => {
                                 }
                                 {level_num == 5 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
-                                        <span className='recipe-item-desc-line-2'>
+                                        <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
                                         </span>
                                         <LevelStartColor />
@@ -178,13 +158,32 @@ const RecipeDetail = () => {
                     </div>
                     <div className='recipe-detail-content-right-info'>
                         <div className='recipe-detail-content-right-info-time'>
-                            {/* Time  */}
+                            <span className='recipe-detail-content-right-info-title'>Time</span>
+                            <div className='recipe-detail-content-right-info-time-container'>
+                                <div className='recipe-detail-content-right-info-time-total'>
+                                    <span className='recipe-detail-content-right-info-time-total-title'>Total</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[5]}</span>
+                                </div>
+                                <div className='recipe-detail-content-right-info-time-total'>
+                                    <span className='recipe-detail-content-right-info-time-total-title'>Prep</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[1]}</span>
+                                </div>
+                                <div className='recipe-detail-content-right-info-time-total'>
+                                    <span className='recipe-detail-content-right-info-time-total-title'>Cook</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[3]}</span>
+                                </div>
+                            </div>        
                         </div>
                         <div className='recipe-detail-content-right-info-ingredients'>
-                        
+                            <span className='recipe-detail-content-right-info-title'>Ingredients</span>
+                            <div className='recipe-detail-content-right-info-ingredients-list'>
+                                {thisRecipe.ingredients.map((value) => (
+                                    <IngredientItem value = {value} />
+                                ))}
+                            </div>    
                         </div>
                         <div className='recipe-detail-content-right-info-calo'>
-                        
+                            
                         </div>
                     </div>
                     <div className='recipe-detail-content-right-instructions'>

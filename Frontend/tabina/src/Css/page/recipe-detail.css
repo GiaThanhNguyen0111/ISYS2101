@@ -96,21 +96,31 @@
 .recipe-detail-content-right {
     display: flex;
     flex-direction: column;
-    max-width: 1081px;
+    width: 1081px;
 }
 
 .recipe-detail-content-right-title {
+    padding-bottom: 50px;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 40px;
+}
 
+.recipe-detail-content-right-title h2 {
+    font-weight: 800;
+    font-size: 70px;
+    line-height: 84.72px;
+    margin: 0 0 23px 0;
 }
 
 .recipe-detail-content-right-title-stat {
-
+    display: flex;
 }
 
 .recipe-detail-content-right-title-stat-rating {
     display: inline-block;
     height: 50px;
-    margin-bottom: 10px;
+    padding-right: 127.33px;
+    border-right: 1px solid #000000;
 }
 
 .recipe-detail .star-color {
@@ -124,7 +134,18 @@
 }
 
 .recipe-detail-content-right-title-stat-level {
+    display: flex;
+    align-items: center;
 
+    flex-grow: 1;
+}
+
+.recipe-detail-content-right-title-stat-level-name {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48.41px;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .recipe-detail .level-color {
@@ -136,15 +157,62 @@
 }
 
 .recipe-detail-content-right-info {
-
+    display: flex;
+    flex-direction: column;
 }
 
 .recipe-detail-content-right-info-time {
+    display: flex;
+    margin-bottom: 30px;
+}
 
+.recipe-detail-content-right-info-title {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 42px;
+    width: 317px;
+    /* flex-grow: 1; */
+}
+
+.recipe-detail-content-right-info-time-container {
+    display: flex;
+    align-items: baseline;
+}
+
+.recipe-detail-content-right-info-time-total {
+    margin-right: 30px;
+}
+
+.recipe-detail-content-right-info-time-total:last-child {
+    margin-right: 0px;
+}
+
+.recipe-detail-content-right-info-time-total-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24.2px;
+    margin-right: 15px;
+}       
+
+.recipe-detail-content-right-info-time-total-value {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 36.31px;
 }
 
 .recipe-detail-content-right-info-ingredients {
+    display: flex;
+}
 
+.recipe-detail-content-right-info-ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.recipe-detail .ingredient-item {
+    /* margin-right: 30px; */
+    margin-bottom: 20px;
 }
 
 .recipe-detail-content-right-info-calo {

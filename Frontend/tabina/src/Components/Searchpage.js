@@ -20,6 +20,14 @@ const Filtertab = () => {
   const [loadedItems, setLoadedItems] = useState(10);
   const [findRecipe, setFindRecipe] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [recievedRecipes, setRecievedRecipes] = useState([]);
+
+  // useEffect(() => {
+  //     axios.get('http://localhost:3001/recipe').then(response => {
+  //       setCount(response.data.recipes.length);
+  //       console.log(response.data.recipes);
+  //     }); 
+  // }, []);
   
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
@@ -93,17 +101,17 @@ const Filtertab = () => {
 
     axios.get(`http://localhost:3001/recipe${currentSearch}`).then(response => {
       setCount(response.data.recipes.length);
+      setRecievedRecipes(response.data.recipes);
       console.log(response.data.recipes);
     });
   }, [searchResults]);
-    
       
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  
+
   useEffect(() => {
     const search = new URLSearchParams(window.location.search);
     const query = search.get("query");
@@ -216,15 +224,15 @@ const Filtertab = () => {
         
         
           <div className='recipe-area'>
-        {/* {recipesToLoad.map((recipe) => (
+        {recievedRecipes.map((recipe) => (
           <div key={recipe.id} className='repcard'>
-            <Link to={`/recipes/${recipe.id}`}>
+            <Link to={`/recipes/${recipe._id}`}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
                 <LazyRecipeItem recipe={recipe} />
               </Suspense>
             </Link>
           </div>
-        ))} */}
+        ))}
       </div>
         </div>
 </div>
