@@ -14,7 +14,7 @@ const recipeSchema = new mongoose.Schema({
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
- Recipe.createCollection();
+Recipe.createCollection();
 
 module.exports = {
     recipeSchema: recipeSchema,

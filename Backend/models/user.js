@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     googleId: String,
     facebookId: String,
+    fullName: String,
     DOB: String,
     Phone: Number,
     Address: String,
