@@ -18,13 +18,16 @@ const Filtertab = () => {
   const [relavance, setRelavance] = useState("");
   const [count , setCount] = useState(0);
   const [loadedItems, setLoadedItems] = useState(10);
+  const [findRecipe, setFindRecipe] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [recievedRecipes, setRecievedRecipes] = useState([]);
 
-  useEffect(() => {
-      axios.get('http://localhost:3001/recipe').then(response => {
-        setCount(response.data.recipes.length);
-        console.log(response.data.recipes);
-      }); 
-  }, []);
+  // useEffect(() => {
+  //     axios.get('http://localhost:3001/recipe').then(response => {
+  //       setCount(response.data.recipes.length);
+  //       console.log(response.data.recipes);
+  //     }); 
+  // }, []);
   
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
@@ -98,21 +101,16 @@ const Filtertab = () => {
 
     axios.get(`http://localhost:3001/recipe${currentSearch}`).then(response => {
       setCount(response.data.recipes.length);
+      
       console.log(response.data.recipes);
     });
   }, [searchResults]);
-    
       
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // const navigate = useNavigate();
-  // const [relavance, setRelavance] = useState("");
-  const [findRecipe, setFindRecipe] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [recievedRecipes, setRecievedRecipes] = useState([]);
+  
 
   useEffect(() => {
     const search = new URLSearchParams(window.location.search);
