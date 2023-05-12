@@ -24,35 +24,54 @@ import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
 
 const RecipeDetail = () => {
-    const {recipeId} = useParams()
-    // const thisRecipe = recipesData.find(rep => rep._id == recipeId)
+    const {recipeId} = useParams();
 
-    console.log(recipeId);
-    const [test, setTest] = useState("test");
-    const [recieveId, setRecieveId] = useState("hello");
-    const [thisRecipe, setThisRecipe] = useState({});
+    const [recieveId, setRecieveId] = useState("test id");
+    // const [thisRecipe, setThisRecipe] = useState({});
 
-    
-    console.log(test);
-    
+    const thisRecipe = recipesData.find(rep => rep._id === recipeId)
 
+    useEffect(() => {
+        setRecieveId(recipeId);
+    }, []);
+
+    // can set but why there are 2 console lines with 2 different value
+    console.log(recieveId);
     console.log(recieveId);
 
-    useEffect(async () => {
-        setTest("this is test");
-        const myData = await axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${recipeId}`);
-        const newRecipe = await myData.response.data.recipes[0];
-        setThisRecipe(newRecipe);
-    }, []);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${recieveId}`).then(response => {
+    //         setThisRecipe(response.data.recipes[0]);
+    //     });
+    // }, []);
 
     console.log(thisRecipe);
 
+    // handle properties from the recieved recipe
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);
-    console.log(typeof(instructions));
+    var prep = "10m";
+    var cook = "15m";
+    var total = "25m";
+
+    for (let index = 0; index < instructions.length; index++) {
+        if (instructions[index] === "Prep") {
+            prep = instructions[index + 1];
+        }
+
+        if (instructions[index] === "Cook") {
+            cook = instructions[index + 1];
+        }
+
+        if (instructions[index] === "Ready In") {
+            total = instructions[index + 1];
+        }
+    }
     const level_num = thisRecipe.level;
 
     return (
         <>
+        {/* this one is 6458f1e9e53e500f2252bc86 ? */}
+        <h1>{recieveId}</h1>
         <div className='recipe-detail'>
             <div className='recipe-detail-breadcrumb'>
                 <p><Link to={`/`}>Home</Link> &gt; <Link to={`/`}>Recipe</Link> &gt; {thisRecipe.name}</p>
@@ -93,7 +112,7 @@ const RecipeDetail = () => {
                             }
                             </div>
                             {/* <div className='recipe-detail-content-right-title-stat-level'> */}
-                                {level_num == 1 &&
+                                {level_num === 1 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
@@ -105,7 +124,7 @@ const RecipeDetail = () => {
                                         <LevelLastBlank />
                                     </div>
                                 }
-                                {level_num == 2 &&
+                                {level_num === 2 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
@@ -117,7 +136,7 @@ const RecipeDetail = () => {
                                         <LevelLastBlank />
                                     </div>
                                 }
-                                {level_num == 3 &&
+                                {level_num === 3 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Intermediate
@@ -129,7 +148,7 @@ const RecipeDetail = () => {
                                         <LevelLastBlank />
                                     </div>
                                 }
-                                {level_num == 4 &&
+                                {level_num === 4 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
@@ -141,7 +160,7 @@ const RecipeDetail = () => {
                                         <LevelLastBlank />
                                     </div>
                                 }
-                                {level_num == 5 &&
+                                {level_num === 5 &&
                                     <div className='recipe-detail-content-right-title-stat-level'>
                                         <span className='recipe-detail-content-right-title-stat-level-name'>
                                             Beginner
@@ -192,6 +211,8 @@ const RecipeDetail = () => {
                 </div>
             </div>
         </div> 
+
+        {/* <h1>{recipeId}</h1> */}
         </>
     )
 }
