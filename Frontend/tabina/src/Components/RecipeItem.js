@@ -50,20 +50,29 @@ const RecipeItem = (props) => {
     }
 
     const instructions = props.recipe.cooking_directions.split(/\r?\n/);
-    var prep, cook, total = "";
+    console.log(instructions);
+    var prep = "10m";
+    var cook = "15m";
+    var total = "25m";
 
     for (let index = 0; index < instructions.length; index++) {
         if (instructions[index] === "Prep") {
             prep = instructions[index + 1];
-        } else prep = "15 m";
+        }
 
         if (instructions[index] === "Cook") {
             cook = instructions[index + 1];
-        } else cook = "15 m";
+        }
 
         if (instructions[index] === "Ready In") {
             total = instructions[index + 1];
-        } else total = "30 m";
+        }
+
+        // if (index == instructions.length - 1) {
+        //     if (prep === "") prep = "16 m";
+        //     if (cook === "") cook = "17 m";
+        //     if (total === "") total = "33 m";
+        // }
     }
 
     const level_num = props.recipe.level;
