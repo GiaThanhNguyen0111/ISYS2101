@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import '../Css/page/recipe-detail.css';
 import food from '../Image/img/recipe/salmon.jpg';
 import salmon from '../Image/img/recipe/IgSalmon.png'
@@ -9,6 +10,8 @@ import pepper from '../Image/img/recipe/IgPepper.png'
 import salt from '../Image/img/recipe/IgSalt.png'
 import lemon from '../Image/img/recipe/IgLemon.png'
 import question from '../Image/img/recipe/question-mark.png'
+import bulb from '../Image/img/recipe/bulb.png'
+import ribbon from '../Image/img/recipe/ribbon.png'
 
 import {useParams, Link} from "react-router-dom";
 
@@ -25,20 +28,24 @@ import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
 
 const RecipeDetail = () => {
-    const {recipeId} = useParams();
+    const { state } = useLocation(); // <-- access route state
 
-    const [recieveId, setRecieveId] = useState("test id");
+    const { recipe } = state || {}; // <-- unpack the item from state
+
+    // const {recipeId} = useParams();
+
+    // const [recieveId, setRecieveId] = useState("test id");
     // const [thisRecipe, setThisRecipe] = useState({});
 
-    const thisRecipe = recipesData.find(rep => rep._id === recipeId)
+    // const thisRecipe = recipesData.find(rep => rep._id === recipeId)
 
-    useEffect(() => {
-        setRecieveId(recipeId);
-    }, []);
+    // useEffect(() => {
+    //     setRecieveId(recipeId);
+    // }, []);
 
     // can set but why there are 2 console lines with 2 different value
-    console.log(recieveId);
-    console.log(recieveId);
+    // console.log(recieveId);
+    // console.log(recieveId);
 
     // useEffect(() => {
     //     axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${recieveId}`).then(response => {
@@ -46,10 +53,12 @@ const RecipeDetail = () => {
     //     });
     // }, []);
 
-    console.log(thisRecipe);
+    console.log(recipe);
+    const thisRecipe = recipe;
 
     // handle properties from the recieved recipe
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);
+    var steps = [];
     var prep = "10m";
     var cook = "15m";
     var total = "25m";
@@ -66,22 +75,39 @@ const RecipeDetail = () => {
         if (instructions[index] === "Ready In") {
             total = instructions[index + 1];
         }
-    }
 
+        if (instructions[index].length > 10) {
+            steps.push(instructions[index]);
+        }
+    }
     
+    console.log(steps);
+
     const level_num = thisRecipe.level;
 
     var choosenNutrition = "";
     var choosenValue = 0;
     for (const [key, value] of Object.entries(thisRecipe.nutritions[0])) {
-        console.log(`${key}: ${value}`);
         if (value.amount > choosenValue) {
             choosenNutrition = key;
             choosenValue = value.amount;
         }
     }
 
-    return (
+    const stepRender = steps.map((item, index) => 
+        <div className='recipe-detail-content-right-instructions-list-item' key={index}>
+            <div className='recipe-detail-content-right-instructions-list-item-number'>
+                <span>{index + 1}</span>
+            </div>
+            <span className='recipe-detail-content-right-instructions-list-item-content'>
+                {item}
+            </span>
+        </div>
+    );
+
+    // document.getElementById("recipe-detail-content-left-id").style.height = document.getElementById("recipe-detail-content-right-id").clientHeight;
+
+    return thisRecipe ? (
         <>
         {/* this one is 6458f1e9e53e500f2252bc86 ? */}
         {/* <h1>{recieveId}</h1> */}
@@ -89,6 +115,7 @@ const RecipeDetail = () => {
             <div className='recipe-detail-breadcrumb'>
                 <p><Link to={`/`}>Home</Link> &gt; <Link to={`/`}>Recipe</Link> &gt; {thisRecipe.name}</p>
             </div>
+            {}
             <div className='recipe-detail-content'>
                 <div className='recipe-detail-content-left'>
                     <img src = {thisRecipe.image_url} className='recipe-detail-img' alt={thisRecipe.name}/>
@@ -194,15 +221,15 @@ const RecipeDetail = () => {
                             <div className='recipe-detail-content-right-info-time-container'>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Total</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[5]}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{total}</span>
                                 </div>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Prep</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[1]}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{prep}</span>
                                 </div>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Cook</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{instructions[3]}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{cook}</span>
                                 </div>
                             </div>        
                         </div>
@@ -215,23 +242,26 @@ const RecipeDetail = () => {
                             </div>    
                         </div>
                         <div className='recipe-detail-content-right-info-calo'>
-                            <img src={question} className='recipe-detail-content-right-info-calo-img-left' alt="fun fact"/>
+                            <img src={bulb} className='recipe-detail-content-right-info-calo-img-left' alt="fun fact"/>
                             <span className='recipe-detail-content-right-info-calo-span'>
                                 This recipe has <strong>{thisRecipe.nutritions[0][choosenNutrition].displayValue}</strong>&nbsp;
                                 {thisRecipe.nutritions[0][choosenNutrition].unit} of&nbsp;
                                 {thisRecipe.nutritions[0][choosenNutrition].name}
                             </span>
-                            <img src = {question} className='recipe-detail-content-right-info-calo-img-right' alt="fun fact"/>
+                            <img src = {ribbon} className='recipe-detail-content-right-info-calo-img-right' alt="fun fact"/>
                         </div>
                     </div>
                     <div className='recipe-detail-content-right-instructions'>
-                    
+                        <span className='recipe-detail-content-right-instructions-title'>Instructions</span>
+                        <div className='recipe-detail-content-right-instructions-list'>
+                            {stepRender}
+                        </div>
                     </div>
                 </div>
             </div>
         </div> 
         </>
-    )
+    ): "No item"
 }
 
 
