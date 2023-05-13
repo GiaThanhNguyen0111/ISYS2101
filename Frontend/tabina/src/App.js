@@ -12,7 +12,7 @@ import Filtertab from './Components/Searchpage';
 import NutritionItem from './Components/RecipeDetail/NutritionItem';
 import Registerform from './Components/Login/Registerform';
 import Loginform from './Components/Login/Loginform';
-
+import MyAccount from './Pages/MyAccount'
 
 const App = () => {
   return (
