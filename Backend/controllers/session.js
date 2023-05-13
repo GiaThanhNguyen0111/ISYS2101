@@ -1,5 +1,6 @@
-exports.sessionCheck = (req, res, next) => {
+module.exports = (req, res, next) => {
     if (!req.session.passport) {
-        return next();
+        return res.redirect('/');
     }
+    next();
 }
