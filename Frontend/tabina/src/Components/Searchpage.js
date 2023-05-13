@@ -250,7 +250,7 @@ const Filtertab = () => {
           <div className='recipe-area'>
         {recievedRecipes.map((recipe) => (
           <div key={recipe.id} className='repcard'>
-            <Link to={`/recipes/${recipe._id}`}>
+            <Link to={`/recipes/${recipe._id}`} state={{ recipe }}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
                 <LazyRecipeItem recipe={recipe} />
               </Suspense>
