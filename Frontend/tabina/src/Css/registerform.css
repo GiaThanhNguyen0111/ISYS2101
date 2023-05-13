@@ -1,29 +1,64 @@
 .formboxre {
-    display: flex;
-    justify-content: center;
-    width: 37.5rem;
-    background: #FFFFFF;
-    border-radius: 10PX;
-    box-shadow: 3px 5px 20px rgba(0,0,0,0.25);
-    margin: 0 auto;
-    margin-bottom: 80px;
-    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 3px 5px 20px rgba(0,0,0,0.25);
+  margin: 0 auto;
+  margin-bottom: 80px;
+  margin-top: 50px;
+}
+
+.input-reg {
+  width: 650px;
+  height: 40px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  font-size: 17px;
+  background-color: white;
+  padding-left: 10px;
+}
+
+.loginbtnr {
+  font-size: 20px;
+  background: #28161C;
+  box-sizing: border-box;
+  border-radius: 40px;
+  padding: 10px 30px;
+  color: #FAF8FF;
+  margin-top: 40px;
+  margin-left: 81%;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+
+  /* adjust the width for smaller screens */
+@media screen and (max-width: 767px)  {
+  .input-reg {
+    width: 330px;
+    margin-left: 10px;
+    height: 30px;
+    font-size: 15px;
+    
 
   }
 
+  .reg-title {
+    margin-left: 10px;
+  }
+
   .loginbtnr {
-    font-family: Inter;
-    font-size: 1.25rem;
-    background: #28161C;
-    border-radius: 2.5rem;
-    padding: 0.625rem 1.875rem;
-    color: white;
-    margin-top: 2.5rem;
-    margin-left: 24rem;
-    margin-bottom: 1.25rem;
-    cursor: pointer;
+    margin-left: 60%;
+  }
+  
 }
 
-.loginbtnr:hover {
-    background: #452D3D;
-}
+
+
+

@@ -11,11 +11,11 @@ const Loginform = () => {
             
             <form action='/login' method='post'>
                 <div style={{marginTop: '30px'}}>
-                   <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}} >Email</p>
+                   <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}} className='form-title' >Email</p>
                     <input type='name' placeholder='Username' name='username' className='input-lg'></input>
                 </div>
                 <div>
-                 <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}}>Password</p>
+                 <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}} className='form-title'>Password</p>
                 <input type='password' placeholder='Password' name='password' className='input-lg'></input>
                 
                 </div>
