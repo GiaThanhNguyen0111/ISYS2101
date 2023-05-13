@@ -19,8 +19,11 @@ const Filtertab = () => {
   const [count , setCount] = useState(0);
   const [loadedItems, setLoadedItems] = useState(10);
   const [findRecipe, setFindRecipe] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchIngredientResults, setSearchIngredientResults] = useState([]);
+  const [searchNameResult, setSearchNameResult] = useState('');
   const [recievedRecipes, setRecievedRecipes] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState('');
+  const [level, setLevel] = useState(0);
 
   // useEffect(() => {
   //     axios.get('http://localhost:3001/recipe').then(response => {
@@ -32,34 +35,40 @@ const Filtertab = () => {
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
   };
+
+  const handleCheckboxClick = (value) => {
+    setLevel(value);
+  }
   
   const handleButtonClick = () => {
     const userInput = document.querySelector(".searchbar").value;
     setFindRecipe(userInput);
   
-    let newResults = [];
-  
-    if (relavance === "ingred") {
-      newResults = [...searchResults, userInput];
-    } else {
-      newResults = [userInput];
-    };
-  
-    setSearchResults(newResults);
-  
-    let newQuery = "";
-    
-    const currentSearch = window.location.search;
+    let newIngredientResults = [];
+    let newNameResult = '';
 
     if (relavance === "ingred") {
-      !currentSearch ? newQuery = `?ingredient=${searchResults}` : newQuery = `&ingredient=${searchResults}`;
-      const finalQuery = currentSearch.concat(newQuery);
-      navigate(finalQuery);
+      newIngredientResults = [...searchIngredientResults, userInput];
+      setSearchIngredientResults(newIngredientResults);
     } else {
-      !currentSearch ? newQuery = `?name=${newResults}` : newQuery = `&name=${newResults}`;
-      const finalQuery = currentSearch.concat(newQuery);
-      navigate(finalQuery);
+      newNameResult = userInput;
+      setSearchNameResult(newNameResult)
     };
+  
+  
+    // let newQuery = "";
+    
+    // const currentSearch = window.location.search;
+
+    // if (relavance === "ingred") {
+    //   !currentSearch ? newQuery = `?ingredient=${newIngredientResults}` : newQuery = `&ingredient=${newIngredientResults}`;
+    //   const finalQuery = currentSearch.concat(newQuery);
+    //   navigate(finalQuery);
+    // } else {
+    //   !currentSearch ? newQuery = `?name=${newNameResult}` : newQuery = `&name=${newNameResult}`;
+    //   const finalQuery = currentSearch.concat(newQuery);
+    //   navigate(finalQuery);
+    // };
   };
 
   const handleScroll = () => {
@@ -73,22 +82,18 @@ const Filtertab = () => {
     
     
   const handleTagRemove = (index) => {
-    const newResults = [...searchResults];
+    const newResults = [...searchIngredientResults];
     newResults.splice(index, 1);
-    setSearchResults(newResults);
+    setSearchIngredientResults(newResults);
     
     const currentSearch = window.location.search;
     let newQuery = "";
 
     if (relavance === "ingred") {
-      !currentSearch ? newQuery = `?ingredient=${searchResults}` : newQuery = `&ingredient=${searchResults}`;
+      !currentSearch ? newQuery = `?ingredient=${newResults}` : newQuery = `&ingredient=${newResults}`;
       const finalQuery = currentSearch.concat(newQuery);
       navigate(finalQuery);
-    } else {
-      !currentSearch ? newQuery = `?name=${searchResults}` : newQuery = `&name=${searchResults}`;
-      const finalQuery = currentSearch.concat(newQuery);
-      navigate(finalQuery);
-    };
+    }
     
     if (newResults.length === 0) {
       window.location.href = window.location.origin + window.location.pathname;
@@ -98,25 +103,43 @@ const Filtertab = () => {
 
   useEffect(() => {
     const currentSearch = window.location.search;
-
+    console.log(currentSearch);
     axios.get(`http://localhost:3001/recipe${currentSearch}`).then(response => {
       setCount(response.data.recipes.length);
       setRecievedRecipes(response.data.recipes);
       console.log(response.data.recipes);
     });
-  }, [searchResults]);
+  }, [currentSearch]);
       
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
+  useEffect(() => {
+    let currentSearch = new URLSearchParams(window.location.search);
+    
+    if(searchNameResult !== ""){
+      currentSearch.set("name", searchNameResult);
+    };
+    if(searchIngredientResults.length > 0){
+      currentSearch.set("ingredient", searchIngredientResults);
+    };
+    if(level > 0){
+      currentSearch.set("level", level);
+    }
+
+
+    let finalSearch = currentSearch.toString();
+    setCurrentSearch(finalSearch);
+    navigate(`?${finalSearch}`);
+  }, [searchNameResult, searchIngredientResults, level]); 
 
   useEffect(() => {
-    const search = new URLSearchParams(window.location.search);
+    const search = new URLSearchParams(window.location);
     const query = search.get("query");
     if (query) {
-      setSearchResults(query.split(","));
+      setSearchIngredientResults(query.split(","));
     }
   }, []);
 
@@ -128,9 +151,10 @@ const Filtertab = () => {
       queryParam = "ingredient";
     }
     
-    const query = searchResults.join("&");
+    let query = searchIngredientResults.join("&");
+    relavance === "ingred" ? query = searchIngredientResults.join("&") : query = searchNameResult;
     const newQuery = `?${queryParam}=${query}`;
-  }, [searchResults, relavance]);
+  }, [searchIngredientResults, relavance, searchNameResult]);
   
   
   // const handleTagRemove = (index) => {
@@ -192,7 +216,7 @@ const Filtertab = () => {
         <div className='headtag'>
             
       <div className="result-container">
-        {searchResults.map((result, index) => (
+        {searchIngredientResults.map((result, index) => (
         <p className='ingred' key={index}>{result}
                     <span className='canc' onClick={() => handleTagRemove(index)}>x</span>
 </p>
@@ -202,7 +226,7 @@ const Filtertab = () => {
         ))}
       </div>
         </div>
-       <Difficulty/>
+       <Difficulty handleCheckboxClick={handleCheckboxClick}/>
         <p className='sep-tab'>___________________________________</p>
 
 
