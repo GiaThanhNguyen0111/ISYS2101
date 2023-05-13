@@ -50,7 +50,6 @@ const RecipeItem = (props) => {
     }
 
     const instructions = props.recipe.cooking_directions.split(/\r?\n/);
-    console.log(instructions);
     var prep = "10m";
     var cook = "15m";
     var total = "25m";
@@ -67,12 +66,6 @@ const RecipeItem = (props) => {
         if (instructions[index] === "Ready In") {
             total = instructions[index + 1];
         }
-
-        // if (index == instructions.length - 1) {
-        //     if (prep === "") prep = "16 m";
-        //     if (cook === "") cook = "17 m";
-        //     if (total === "") total = "33 m";
-        // }
     }
 
     const level_num = props.recipe.level;

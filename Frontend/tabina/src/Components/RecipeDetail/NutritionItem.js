@@ -9,7 +9,7 @@ const NutritiontItem = (props) => {
             <div className='nutrition-item-big'>
                 <img src = {salmon} className='nutrition-item-big-img' alt={props.item[0] + 'nutrition'}/>
             </div>
-            <span className='nutrition-item-title'>{props.item[0]}</span>
+            <span className='nutrition-item-title'>{props.item[1].name}</span>
             <span className='nutrition-item-amount'>{props.item[1].displayValue}{props.item[1].unit}</span>
         </div>
         </>
