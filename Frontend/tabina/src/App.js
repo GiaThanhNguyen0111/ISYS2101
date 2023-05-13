@@ -10,8 +10,8 @@ import Home from './Pages/Home';
 import LevelLastBlank from './Components/RecipeDetail/LevelLastBlank';
 import Filtertab from './Components/Searchpage';
 import NutritionItem from './Components/RecipeDetail/NutritionItem';
-import MyAccount from './Pages/MyAccount';
-import AboutUs from './Pages/PoliciesPage'
+import Registerform from './Components/Login/Registerform';
+import Loginform from './Components/Login/Loginform';
 
 
 const App = () => {
@@ -24,6 +24,8 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Loginform />} />
+        <Route path="/register" element={<Registerform />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Filtertab/>} />
         <Route path="/component-test" element={<NutritionItem />} />

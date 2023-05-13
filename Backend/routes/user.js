@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('../controllers/user');
 const { getUserLogin, postUserLogin, getUserRegister, postUserRegister, getUserLogout } = require('../models/user');
 
+
 const router = express.Router();
 // GET: root
 router.get("/", userController.getRoot);
