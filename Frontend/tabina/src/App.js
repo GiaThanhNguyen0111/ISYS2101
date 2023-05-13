@@ -31,6 +31,8 @@ const App = () => {
         <Route path="/component-test" element={<NutritionItem />} />
         <Route path='/filter' element={< Filtertab/>} />
       </Routes>
+
+      <MyAccount />
     </>
   );
 };

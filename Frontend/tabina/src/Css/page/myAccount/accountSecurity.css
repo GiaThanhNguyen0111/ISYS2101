@@ -1,0 +1,60 @@
+.accountsecurity-container {
+    background-color: #FFFFFF;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+    padding: 30px 50px;
+    border-radius: 10px;
+    width: 900px;
+}
+
+.accountsecurity-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-label {
+    font-weight: 700;
+    margin: 25px 0 5px 0;
+}
+
+.login-title {
+    font-weight: 700;
+    margin: 25px 0 0 0;
+}
+
+.accountsecurity-form input[type=text] {
+    border-radius: 7px;
+    height: 40px;
+    padding: 0 0 0 10px;
+}
+
+.accountsecurity-btn {
+    background-color: black;
+    color: #FFFFFF;
+    height: 40px;
+    width: 110px;
+    border-radius: 20px;
+    font-weight: 700;
+    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.account-radio-container {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.account-radio-container label {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-radio-container label span {
+    font-size: 15px;
+}
+
+.account-radio-container label input {
+    height: 15px;
+    width: 15px;
+}

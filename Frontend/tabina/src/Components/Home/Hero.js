@@ -1,11 +1,12 @@
 import React from 'react';
-import '../../Css/hero.css';
+import '../../Css/page/home/hero.css';
 import bookImg from '../../Image/img/recipe/Hero book image.png';
 import curveShape from '../../Image/img/recipe/Curve Shape (Hero).png';
 
 function Hero() {
   return (
     <div className="hero-wrapper">
+      <div className='hero-background'></div>
 
       <div className="hero-left">
         <h1 className="hero-title">The best food for everyone</h1>
