@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Difficulty from './Searchpage/Filtertab/Difficuly';
 import StarRating from './Searchpage/Filtertab/StarRating';
+import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
@@ -178,6 +179,7 @@ const Filtertab = () => {
             <p className='ingred' key={index}>{result}
               <span className='canc' onClick={() => handleTagRemove(index)}>x</span>
             </p>
+            // <IngredientItem key={index} value={result} onClick={() => handleTagRemove(index)} />
             ))}
           </div>
         </div>
@@ -195,7 +197,7 @@ const Filtertab = () => {
           
           <div className='recipe-area'>
           {recievedRecipes.map((recipe) => (
-          <div key={recipe.id} className='repcard'>
+          <div key={recipe._id} className='repcard'>
             <Link to={`/recipes/${recipe._id}`} state={{ recipe }}>
               <Suspense fallback={<RecipeItem recipe={recipe} />}>
                 <LazyRecipeItem recipe={recipe} />
