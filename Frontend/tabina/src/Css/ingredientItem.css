@@ -8,7 +8,9 @@
 
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding: 8px 15px;
+    gap: 20px;
 }
 
 .ingredient-item-name {
@@ -16,6 +18,11 @@
     font-size: 20px;
     line-height: 24px;
     display: flex;
-    align-items: center;
     color: #28161C;
+}
+
+.ingredient-item-x {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/user');
-const { getUserLogin, postUserLogin, getUserRegister, postUserRegister, getUserLogout } = require('../models/user');
-
+// const { getUserLogin, postUserLogin, getUserRegister, postUserRegister, getUserLogout } = require('../models/user');
+const isLoggedIn = require('../controllers/session');
 
 const router = express.Router();
 // GET: root
@@ -31,6 +31,9 @@ router.post("/auth/google/facebook", userController.postAuthFacebook, function(r
     res.redirect('/');
 });
 
+router.post('/updateUserInfo', isLoggedIn, userController.updateUserInformation);
+
+router.get('/userInfo', isLoggedIn, userController.findUserById);
 
 router.get('/posts');
 router.post('/post');

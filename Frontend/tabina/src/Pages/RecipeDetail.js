@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import '../Css/page/recipe-detail.css';
 import food from '../Image/img/recipe/salmon.jpg';
 import salmon from '../Image/img/recipe/IgSalmon.png'
@@ -28,14 +28,16 @@ import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
 
 const RecipeDetail = () => {
-    const { state } = useLocation(); // <-- access route state
+    // <-- access route state
+    const { state } = useLocation(); 
 
-    const { recipe } = state || {}; // <-- unpack the item from state
+    // <-- unpack the item from state
+    const { recipe } = state || {}; 
 
-    // const {recipeId} = useParams();
+    // const params = useParams();
 
     // const [recieveId, setRecieveId] = useState("test id");
-    // const [thisRecipe, setThisRecipe] = useState({});
+    // const [recipes, setRecipes] = useState([]);
 
     // const thisRecipe = recipesData.find(rep => rep._id === recipeId)
 
@@ -48,13 +50,17 @@ const RecipeDetail = () => {
     // console.log(recieveId);
 
     // useEffect(() => {
-    //     axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${recieveId}`).then(response => {
-    //         setThisRecipe(response.data.recipes[0]);
+    //     axios.get(`http://localhost:3001/getRecipeDetail?recipeID=${params.recipeId}`).then(response => {
+    //         console.log(response);
+    //         setRecipes(response.data.recipes);
     //     });
-    // }, []);
+    // }, [params.recipeId]);
 
-    console.log(recipe);
     const thisRecipe = recipe;
+
+    if (!thisRecipe) {
+        return <Navigate to="/not-found" replace/>
+    }
 
     // handle properties from the recieved recipe
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);

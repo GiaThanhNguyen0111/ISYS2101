@@ -3,6 +3,7 @@ import './Css/app.css';
 import {
   BrowserRouter as Router,
   Routes,
+  Navigate,
   Route
 } from 'react-router-dom';
 import RecipeDetail from './Pages/RecipeDetail';
@@ -12,6 +13,9 @@ import Filtertab from './Components/Searchpage';
 import NutritionItem from './Components/RecipeDetail/NutritionItem';
 import Registerform from './Components/Login/Registerform';
 import Loginform from './Components/Login/Loginform';
+import MyAccount from './Pages/MyAccount';
+import PersonalInfo from './Components/MyAccount/PersonalInfo';
+import NotFound from './Pages/NotFound';
 
 
 const App = () => {
@@ -30,9 +34,16 @@ const App = () => {
         <Route path='/search' element={<Filtertab/>} />
         <Route path="/component-test" element={<NutritionItem />} />
         <Route path='/filter' element={< Filtertab/>} />
-      </Routes>
+        <Route path='/myaccount' element={< MyAccount/>} />
+        <Route path="/accpersonalInfo" element={<PersonalInfo />} />
+        <Route path="/not-found" element={<NotFound />} />
 
-      
+        {/* catch all wrong route */}
+        <Route
+            path="*"
+            element={<Navigate to="/not-found" replace />}
+        />
+      </Routes>
     </>
   );
 };
