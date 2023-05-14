@@ -32,7 +32,7 @@ const App = () => {
         <Route path='/filter' element={< Filtertab/>} />
       </Routes>
 
-      <MyAccount />
+      
     </>
   );
 };
