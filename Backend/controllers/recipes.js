@@ -6,13 +6,13 @@ const { isString } = require('lodash');
 exports.getAllRecipe = async (req, res) => {
     try {
         let ingredients = req.query.ingredient || "All";
-        isString(ingredients) ? ingredients = ingredients.split() : ingredients = ingredients;
+        ingredients = ingredients.split(',');
         let level = req.query.level || "All";
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
         let name = req.query.name;
-        console.log(isString(ingredients));
-        console.log([...ingredients]);
+        // console.log(isString(ingredients));
+        // console.log([...ingredients]);
 
         
 
@@ -50,6 +50,7 @@ exports.getAllRecipe = async (req, res) => {
         const recipes = await recipeModel.Recipe.aggregate(aggregate);
 
         const response = {recipes};
+        // console.log(response);
         res.status(200).json(response); 
 
     } catch (err) {
@@ -169,7 +170,7 @@ exports.postFilterByRating = (req, res) => {
     req.query ? newQuery = "&level=".concat(chosenRating) : "?level=".concat(chosenRating);
 
     res.redirect(`/recipe${query}${newQuery}`);
-};
+}; 
 
 exports.getRecipeById = async (req, res) => {
     const recipeId = req.query.recipeID;

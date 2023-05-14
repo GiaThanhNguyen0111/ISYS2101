@@ -12,7 +12,9 @@ import Filtertab from './Components/Searchpage';
 import NutritionItem from './Components/RecipeDetail/NutritionItem';
 import Registerform from './Components/Login/Registerform';
 import Loginform from './Components/Login/Loginform';
-import MyAccount from './Pages/MyAccount'
+import MyAccount from './Pages/MyAccount';
+import PersonalInfo from './Components/MyAccount/PersonalInfo';
+
 
 const App = () => {
   return (
@@ -30,9 +32,9 @@ const App = () => {
         <Route path='/search' element={<Filtertab/>} />
         <Route path="/component-test" element={<NutritionItem />} />
         <Route path='/filter' element={< Filtertab/>} />
+        <Route path='/myaccount' element={< MyAccount/>} />
+        <Route path="/accpersonalInfo" element={<PersonalInfo />} />
       </Routes>
-
-      <MyAccount />
     </>
   );
 };
