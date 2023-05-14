@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     facebookId: String,
     fullName: String,
     DOB: String,
-    Phone: Number,
+    Phone: String,
     Address: String,
     category: [category.categorySchema]
 });

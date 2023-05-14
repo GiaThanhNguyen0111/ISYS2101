@@ -82,8 +82,8 @@ exports.getUserLogout = async (req, res, next) => {
 exports.findUserById = async (req, res, next) => {
     const userId = req.session.passport.user._id;
 
-    await userModel.User.find({_id: userId}).then(result => {
-        const response = {result};
+    await userModel.User.find({_id: userId}).then(user => {
+        const response = {user};
 
         res.status(200).json(response);
     }). catch(err => {
@@ -95,10 +95,13 @@ exports.updateUserInformation = async (req, res, next) => {
     const userId = req.session.passport.user._id;
     const DOB = req.body.date_of_birth;
     const Address = req.body.address;
+    const Phone = req.body.phoneNumber;
 
+    console.log(req.user);
     await userModel.User.findOneAndUpdate({_id: userId}, {
         DOB: DOB,
-        Address: Address
+        Address: Address,
+        Phone: Phone
     }). then(response => {
         console.log(response);
         res.redirect('/accpersonalInfo')

@@ -31,7 +31,7 @@ router.post("/auth/google/facebook", userController.postAuthFacebook, function(r
     res.redirect('/');
 });
 
-router.patch('/updateUserInfo', isLoggedIn, userController.updateUserInformation);
+router.post('/updateUserInfo', isLoggedIn, userController.updateUserInformation);
 
 router.get('/userInfo', isLoggedIn, userController.findUserById);
 
