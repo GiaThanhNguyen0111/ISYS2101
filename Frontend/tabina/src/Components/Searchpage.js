@@ -158,7 +158,7 @@ const Filtertab = () => {
         <>
       <div className='page-contain'>
         <div className="searchbar-container">
-                <input type="text" placeholder="Add Ingredients" className='searchbar' onChange={handleChange} value={searchTerm} />
+                <input type="text" placeholder="Search" className='searchbar' onChange={handleChange} value={searchTerm} />
                 <button className='searchbtn' onClick={handleButtonClick}>+</button>
                 <>
                 <select value={relavance} onChange={handleRelavance} className='relchoice'>
