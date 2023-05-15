@@ -18,7 +18,8 @@
     font-weight: 600; 
 }
 
-.sidebar-selection:hover {
+.sidebar-selection:hover{
     background-color: #F4EDE5;
     border-radius: 10px;
+    transition: background-color 200ms ease-out
 }

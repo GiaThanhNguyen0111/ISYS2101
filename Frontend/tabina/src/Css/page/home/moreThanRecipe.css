@@ -101,6 +101,13 @@
     width: 9rem;
     border-radius: 2rem;
     font-size: 110%;
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+.mtr-about-btn:hover {
+    background-color: #FAF8FF ;
+    color: #28161C;
 }
 
 @media only screen and (max-width: 1350px) {
