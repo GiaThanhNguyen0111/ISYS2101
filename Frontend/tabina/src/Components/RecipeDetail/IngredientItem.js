@@ -7,6 +7,7 @@ const IngredientItem = (props) => {
         <>
         <div className='ingredient-item'>
             <span className='ingredient-item-name'>{props.value}</span>
+            <span className='ingredient-item-x'>x</span>
         </div>
         </>
     )
