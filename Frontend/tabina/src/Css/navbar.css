@@ -6,9 +6,12 @@
   padding: 15px 40px;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
   background-color: #FFFFFF;
+  position: fixed;
+  top: 0;
   z-index: 2;
+
 }
-  
+    
 /* Logo image */
 .nav-logo {
   width: 100px;

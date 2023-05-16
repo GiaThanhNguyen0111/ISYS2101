@@ -1,8 +1,9 @@
+/* Define default styles for footer */
 footer {
   background-color: #000000;
   color: #fff;
   padding: 50px 0;
-
+  max-width: 100%;
 }
 
 .footer-columns {
@@ -50,5 +51,5 @@ footer {
   margin-top: 20px;
   width: 100px;
   height: 100px;
-
 }
+
