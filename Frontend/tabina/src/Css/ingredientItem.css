@@ -15,7 +15,7 @@
 
 .ingredient-item-name {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2em;
     line-height: 24px;
     display: flex;
     color: #28161C;
@@ -23,6 +23,6 @@
 
 .ingredient-item-x {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2em;
     line-height: 24px;
 }

@@ -50,21 +50,23 @@ const RecipeItem = (props) => {
     }
 
     const instructions = props.recipe.cooking_directions.split(/\r?\n/);
-    var prep = "10m";
-    var cook = "15m";
-    var total = "25m";
+    var time = {
+        prep: "10m",
+        cook: "15m",
+        total: "25m"
+    }
 
     for (let index = 0; index < instructions.length; index++) {
         if (instructions[index] === "Prep") {
-            prep = instructions[index + 1];
+            time.prep = (instructions[index + 1]).replaceAll(" ", "");
         }
 
         if (instructions[index] === "Cook") {
-            cook = instructions[index + 1];
+            time.cook = (instructions[index + 1]).replaceAll(" ", "");
         }
 
         if (instructions[index] === "Ready In") {
-            total = instructions[index + 1];
+            time.total = (instructions[index + 1]).replaceAll(" ", "");
         }
     }
 
@@ -97,7 +99,7 @@ const RecipeItem = (props) => {
                     Preparation time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {prep}
+                    {time.prep}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
@@ -105,7 +107,7 @@ const RecipeItem = (props) => {
                     Cooking time:
                 </span>
                 <span className='recipe-item-desc-line-2'>
-                    {cook}
+                    {time.cook}
                 </span>
             </div>
             <div className='recipe-item-desc-line'>

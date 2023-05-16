@@ -9,7 +9,9 @@ const recipeSchema = new mongoose.Schema({
     cooking_directions: String,
     nutritions: Array,
     level: Number,
-    rating: Number
+    rating: Number,
+    meal_type: String,
+    category: String
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
