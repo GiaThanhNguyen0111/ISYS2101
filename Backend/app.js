@@ -7,6 +7,7 @@ const passport = require("passport");
 const userRoute = require('./routes/user');
 const recipeModel = require('./models/recipe');
 const ingredientModel = require('./models/ingredient');
+const postModel = require('./models/post');
 const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 const cors = require('cors');
@@ -43,7 +44,11 @@ const importData = async () => {
 
 mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
 .then(result => {
-    console.log("Connect to MongoDB successfully")
+    console.log("Connect to MongoDB successfully");
+    const post = new postModel.Post ({
+      instruction: "Hello"
+    });
+    post.save();
 })
 .catch(err => {
     console.log(err)
