@@ -1,12 +1,10 @@
 import React, {useState, useEffect, lazy, Suspense} from 'react'
 import '../Css/searchbar.css';
 import '../Css/filtertab.css'
-import RecipeItem from './RecipeItem';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Difficulty from './Searchpage/Filtertab/Difficuly';
 import StarRating from './Searchpage/Filtertab/StarRating';
-import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
@@ -32,15 +30,16 @@ const Filtertab = () => {
   const handleChange = (event) => {
     event.preventDefault();
     setSearchTerm(event.target.value);
-  }
+  };
 
   const handleCheckboxClick = (value) => {
     setLevel(value);
-  }
+  };
 
   const handleCheckboxRatingClick = (value) => {
     setRating(value);
-  }
+
+  };
   
   const handleButtonClick = () => {
     const userInput = document.querySelector(".searchbar").value;
@@ -121,9 +120,13 @@ const Filtertab = () => {
     };
     if(level > 0){
       currentSearch.set("level", level);
+    } else if (level === '0') {
+      currentSearch.delete("level");
     };
     if(rating > 0 ) {
       currentSearch.set("rating", rating);
+    } else if (rating === "0") {
+      currentSearch.delete("rating");
     };
 
 
@@ -158,7 +161,7 @@ const Filtertab = () => {
         <>
       <div className='page-contain'>
         <div className="searchbar-container">
-                <input type="text" placeholder="Add Ingredients" className='searchbar' onChange={handleChange} value={searchTerm} />
+                <input type="text" placeholder="Search" className='searchbar' onChange={handleChange} value={searchTerm} />
                 <button className='searchbtn' onClick={handleButtonClick}>+</button>
                 <>
                 <select value={relavance} onChange={handleRelavance} className='relchoice'>
@@ -167,7 +170,7 @@ const Filtertab = () => {
                 </select></>
         </div>
 
-        <div className='filter-tab'>
+        <div className='filter-tab' >
             {/* All the tab */}
         <div className='heading-tab'>  
             <p>Ingredients</p>
@@ -198,11 +201,11 @@ const Filtertab = () => {
           <div className='recipe-area'>
           {recievedRecipes.map((recipe) => (
           <div key={recipe._id} className='repcard'>
-            <Link to={`/recipes/${recipe._id}`} state={{ recipe }}>
-              <Suspense fallback={<RecipeItem recipe={recipe} />}>
-                <LazyRecipeItem recipe={recipe} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Link to={`/recipes/${recipe._id}`} state={{ recipe }}>
+                  <LazyRecipeItem recipe={recipe} />
+                </Link>
               </Suspense>
-            </Link>
           </div>
         ))}
           </div>

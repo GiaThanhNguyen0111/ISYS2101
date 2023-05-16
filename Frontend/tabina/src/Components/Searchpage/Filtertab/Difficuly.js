@@ -62,6 +62,10 @@ const Difficulty = (props) => {
                 <input type='radio' className='diff-option' name="level" onClick={event => handleCheckboxClick(event.target.value)} value="1"/>
                 <span className='class-lvl'>Beginner</span>
             </label>
+            <label className='diff-level'>
+                <input type='radio' className='diff-option' name="level" onClick={event => handleCheckboxClick(event.target.value)} value="0"/>
+                <span className='class-lvl'>None</span>
+            </label>
 
         </div>
     </>

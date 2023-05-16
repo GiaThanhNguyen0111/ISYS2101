@@ -43,7 +43,14 @@ exports.postUserRegister = async (req, res) => {
 };
 
 exports.getUserLogin = (req, res) => {
-    res.send("Login Page");
+    var isLoggedIn = false;
+    if(req.session.passport){
+        isLoggedIn = true;
+    } else {
+        isLoggedIn = false;
+    };
+
+    res.status(200).json({isLoggedIn: isLoggedIn});
 };
 
 
