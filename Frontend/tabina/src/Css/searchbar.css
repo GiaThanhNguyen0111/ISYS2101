@@ -1,6 +1,9 @@
+* {
+  overflow-x: hi;
+}
 .searchbar {
     
-    width: 700px;
+    width: 40%;
     height: 30px;
     background: #FFFFFF;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
@@ -12,25 +15,24 @@
   .searchbar-container {
 background: #F4EDE5;
 height: 60px;
-width: 1200px;
 margin-left: 400px;
-position: absolute;
+position: relative;
 grid-column: 1 / 3; /* span across both columns */
 
 
   }
  
   .searchbtn {
-    height: 31.8px;
+    height: 32px;
     width: 30px;
     background: #F8DEC3;
     border-radius:  5px;
     font-size: 20px;
     position: relative;
     right: 30px;
-    top: 2px;
     cursor: pointer;
     transition: background-color 0.3s ease; 
+    top: 2px;
 
   }
 
@@ -66,8 +68,8 @@ outline: none;
 .searchbar-container {
   background: #F4EDE5;
   height: 60px;
-  width: 100%;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 2;
@@ -75,15 +77,17 @@ outline: none;
 }
 
 .filter-tab {
-  width: 400px;
   background: #FFFFFF;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 60px; 
   left: 0;
   height: calc(100% - 60px);
-  margin-top: 40px;
+  margin-top: 75px;
   overflow: scroll;
+  z-index: 1;
+  width: 400px;
+
 }
 
 .recipe-area {
@@ -107,14 +111,7 @@ outline: none;
   justify-content: space-evenly;
   }
   
-  .filter-tab {
-  width: 400px;
-  background: #FFFFFF;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-  margin-top: 77px;
-  z-index: 1;
-  }
-  
+
   .canc {
       cursor: pointer;
   }

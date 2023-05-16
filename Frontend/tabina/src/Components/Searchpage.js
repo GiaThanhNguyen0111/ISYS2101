@@ -167,7 +167,7 @@ const Filtertab = () => {
                 </select></>
         </div>
 
-        <div className='filter-tab'>
+        <div className='filter-tab' >
             {/* All the tab */}
         <div className='heading-tab'>  
             <p>Ingredients</p>
