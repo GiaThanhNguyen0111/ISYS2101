@@ -1,7 +1,6 @@
 const passport = require('passport');
 const userModel = require('../models/user');
 const ejs = require('ejs');
-const user = require('../models/user');
 
 exports.getRoot = (req, res) => {
     res.send("Hello");
@@ -45,7 +44,7 @@ exports.postUserRegister = async (req, res) => {
 
 exports.getUserLogin = (req, res) => {
     var isLoggedIn = false;
-    if (req.session.passport) {
+    if(req.session.passport){
         isLoggedIn = true;
     } else {
         isLoggedIn = false;
