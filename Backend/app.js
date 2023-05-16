@@ -11,7 +11,7 @@ const postModel = require('./models/post');
 const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 const cors = require('cors');
-// const fs = require('fs');
+const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,10 +45,7 @@ const importData = async () => {
 mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
 .then(result => {
     console.log("Connect to MongoDB successfully");
-    const post = new postModel.Post ({
-      instruction: "Hello"
-    });
-    post.save();
+    // importData();
 })
 .catch(err => {
     console.log(err)
@@ -65,7 +62,7 @@ app.use(recipesRoute);
 
 // const data = JSON.parse(fs.readFileSync('./util/recipes.json', 'utf-8'))
 
-// console.log(data)
+// console.log(data);
 
 
 const PORT = process.env.PORT || 3001;
