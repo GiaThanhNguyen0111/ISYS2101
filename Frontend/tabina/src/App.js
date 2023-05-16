@@ -32,8 +32,7 @@ const App = () => {
         <Route path="/register" element={<Registerform />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Filtertab/>} />
-        <Route path="/component-test" element={<NutritionItem />} />
-        <Route path='/filter' element={< Filtertab/>} />
+        <Route path='/recipes' element={< Filtertab/>} />
         <Route path='/myaccount' element={< MyAccount/>} />
         <Route path="/accpersonalInfo" element={<PersonalInfo />} />
         <Route path="/not-found" element={<NotFound />} />
@@ -43,6 +42,9 @@ const App = () => {
             path="*"
             element={<Navigate to="/not-found" replace />}
         />
+ 
+        {/* route for component test */}
+        <Route path="/component-test" element={<NutritionItem />} />
       </Routes>
     </>
   );
