@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Difficulty from './Searchpage/Filtertab/Difficuly';
 import StarRating from './Searchpage/Filtertab/StarRating';
+import Mealtype from './Searchpage/Filtertab/Mealtype';
+import Category from './Searchpage/Filtertab/Category';
 
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
@@ -203,10 +205,14 @@ const Filtertab = () => {
             <p className="sep-tab">___________________________________</p>
             <StarRating handleCheckboxClick={handleCheckboxRatingClick} />
             <p className="sep-tab">___________________________________</p>
+            <Mealtype />
+            <p className="sep-tab">___________________________________</p>
+            <Category />
+
           </div>
         </div>
       )}
-          <div clas style={{marginTop: '10px', marginLeft: '52%', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
+          <div style={{marginTop: '10px', marginLeft: '52%', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
             <p >{count} Recipe Found!</p>
           </div>
           

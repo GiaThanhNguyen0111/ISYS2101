@@ -7,20 +7,23 @@ const Mealtype = () => {
  
         </div>
         <label className='diff-level'>
-                 <input type='checkbox'  className='diff-option' />
+                 <input type='radio'  className='diff-option' name='mealtype' />
                  <span  className='class-lvl'>Appetizer</span>
              </label>
              <label className='diff-level'>
-                 <input type='checkbox'  className='diff-option' />
+                 <input type='radio'  className='diff-option' name='mealtype' />
                  <span  className='class-lvl'>Main</span>
              </label>
              <label className='diff-level'>
-                 <input type='checkbox'  className='diff-option' />
+                 <input type='radio'  className='diff-option' name='mealtype' />
                  <span  className='class-lvl'>Dessert</span>
              </label>
+             <label className='diff-level'>
+                 <input type='radio'  className='diff-option' name='mealtype' />
+                 <span  className='class-lvl'>None</span>
+             </label>
              <br/>
-             <br/>
-             <br/>
+
              
  
  
