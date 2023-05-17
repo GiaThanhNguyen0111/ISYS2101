@@ -32,6 +32,11 @@
   font-weight: 300;
 }
 
+.nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
 #login-button {
   border-radius: 40px;
   width: 100px;
@@ -111,11 +116,13 @@
   }
 
   #login-button:hover {
+    text-decoration: none;
     background-color: #28161C;
     color: #FFFFFF;
   }
 
   .nav-link:hover {
+    text-decoration: none;
     background-color: #28161C;
     color: #FAF8FF;
   }

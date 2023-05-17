@@ -61,7 +61,11 @@ const PersonalInfo = () => {
         <label for="address-label" className='text-label'>Address</label>
         <input type="text" id="address-input" name="address" placeholder={address} value={address} onChange={e => changeAddress(e.target.value)}/>
 
-        <button type='submit' className='personalinfo-btn'>UPDATE</button>
+        <div className='personalinfo-btn-container'>
+          <button type='submit' className='personalinfo-btn-update'>UPDATE</button>
+          <button className='personalinfo-btn-logout'>LOG OUT</button>
+        </div>
+        
       </form>
     </div>
   )

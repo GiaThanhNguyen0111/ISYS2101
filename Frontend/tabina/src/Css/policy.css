@@ -1,15 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .page-title {
     display: flex;
     padding-top: 4%;
     justify-content: center;
     font-size: 250%;
-    border-top: solid 1px #e1e1e1;
 }
 
 .page-text {
@@ -17,6 +10,7 @@
     justify-content: center;
     margin: 4% 28%;
     font-size: 115%;
+    line-height: 30px;
 }
 
 .policy-title {
@@ -32,6 +26,7 @@
     justify-content: flex-start;
     margin: 1% 28% 4% 28%;
     font-size: 105%;
+    line-height: 25px;
 }
 
 @media only screen and (max-width: 1000px) {

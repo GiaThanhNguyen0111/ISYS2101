@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Css/page/myAccount/myAccount.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Sidebar from '../Components/MyAccount/Sidebar'
 import PersonalInfo from '../Components/MyAccount/PersonalInfo'
 import AccountSecurity from '../Components/MyAccount/AccountSecurity';
@@ -15,12 +15,11 @@ function MyAccount() {
 
         <div className='myacc-content'>
           <Sidebar className='myacc-content-sidebar'/>
-
-          <Routes className='myacc-content-form'>
-            <Route path="/accpersonalInfo" element={<PersonalInfo />} />
-            <Route path="/accSecurity" element={<AccountSecurity />} />
-            <Route path="/accPreferences" element={<Preferences />} />
-          </Routes>
+      
+          <div className='myacc-content-form'>
+          <Outlet />
+          </div>
+          
         </div>
     </div>
   )

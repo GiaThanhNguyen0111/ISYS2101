@@ -1,65 +1,37 @@
 import React from "react";
 import '../Css/footer.css';
-import tabina from '../Image/logo/Tabina.png'
-
+import tabina from '../Image/logo/footer-tabina-logo.png'
+import fb from '../Image/img/recipe/facebook (1).png'
+import ig from '../Image/img/recipe/instagram (1).png'
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     
     <footer>
-      <div className="footer-columns" >
+      <div className="footer-content-container" >
+        <img src={tabina} className="footer-logo"/>
         <div className="footer-column">
-          <img src= {tabina} className="tabina" />
+          <h2>Home</h2>
         </div>
         <div className="footer-column">
-          <h3>Home</h3>
-          <ul>
-            <li>Find your recipe</li>
-            <li>Delicious recipe</li>
-            <li>Popular dishes</li>
-            <li></li>
-          </ul>
-          
+          <h2>Recipes</h2>
+          <a>Mexican</a>
+          <a>Italian</a>
+          <a>Asian</a>
         </div>
         <div className="footer-column">
-          <h3>Recipes</h3>
-          <ul>
-            <li>Mexican</li>
-            <li>Italy</li>
-            <li>Asian</li>
-            <li>Euroupean</li>
-          </ul>
+          <h2>About</h2>
+          <Link to='/policy' >Privacy</Link>
+          <Link to='/policy' >Policies</Link>
         </div>
         <div className="footer-column">
-          <h3>About</h3>
-          <ul>
-            <li>Blog</li>
-            <li>FAQs</li>
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <div className="footer-column">
-          <h3>Follow Us</h3>
-          <ul className="social-media-icons">
-            <li>
-              
-                <i className="fab fa-facebook-f"></i>
-            
-            </li>
-            <li>
-             
-                <i className="fab fa-twitter"></i>
-        
-            </li>
-            <li>
-              <a href="#">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
+          <h2>Contact</h2>
+          <a href="https://www.facebook.com/tran.thanh.ne/" target="_blank"><img src={fb}/>Facebook</a>
+          <a><img src={ig}/>Instagram</a>
         </div>
       </div>
-    </footer>
+      <div className="footer-copyright">Copyright c 2023 Group 14</div>
+      </footer>
   );
 }
 

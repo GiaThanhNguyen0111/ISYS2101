@@ -3,7 +3,7 @@
     box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
     padding: 30px 50px;
     border-radius: 10px;
-    width: 900px;
+    display: block;
 }
 
 .personalinfo-form {
@@ -22,7 +22,13 @@
     padding: 0 0 0 10px;
 }
 
-.personalinfo-btn {
+.personalinfo-btn-container {
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: space-between;
+}
+
+.personalinfo-btn-update {
     background-color: black;
     color: #FFFFFF;
     height: 40px;
@@ -30,5 +36,28 @@
     border-radius: 20px;
     font-weight: 700;
     box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-    margin-top: 25px;
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.personalinfo-btn-update:hover {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+.personalinfo-btn-logout {
+    background-color: #FFFFFF;
+    color: black;
+    height: 40px;
+    width: 110px;
+    border-radius: 20px;
+    font-weight: 700;
+    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.personalinfo-btn-logout:hover {
+    background-color: black;
+    color: #FFFFFF;
 }

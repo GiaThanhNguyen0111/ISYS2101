@@ -8,9 +8,8 @@ import { Link } from 'react-router-dom'
 function Sidebar() {
   return (
     <div className='sidebar-container'>
-      <Link to='/accpersonalInfo' className='sidebar-selection'><img src={user}/><span>Personal Information</span></Link>
-      <Link to='/accSecurity' className='sidebar-selection'><img src={verified}/><span>Account Security</span></Link>
-      <Link to='/accPreferences' className='sidebar-selection'><img src={preferences}/><span>Preferences</span></Link>
+      <Link to='/myaccount/accpersonalInfo' className='sidebar-selection'><img src={user}/><span>Personal Information</span></Link>
+      <Link to='/myaccount/accsecurity' className='sidebar-selection' ><img src={verified}/><span>Account Security</span></Link>
     </div>
   )
 }
