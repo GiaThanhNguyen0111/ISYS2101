@@ -111,7 +111,7 @@ exports.updateUserInformation = async (req, res, next) => {
         Phone: Phone
     }). then(response => {
         console.log(response);
-        res.redirect('/accpersonalInfo')
+        res.redirect('/myaccount/accpersonalInfo');
     }).catch(err => {
         console.log(err);
     });
