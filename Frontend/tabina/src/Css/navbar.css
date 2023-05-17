@@ -8,8 +8,7 @@
   position: fixed;
   top: 0;
   z-index: 2;
-  width: 100%;
-
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
     
 /* Logo image */
@@ -31,6 +30,11 @@
   color: #333;
   padding: 10px;
   font-weight: 300;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 #login-button {
@@ -117,6 +121,7 @@
   }
 
   .nav-link:hover {
+    text-decoration: none;
     background-color: #28161C;
     color: #FAF8FF;
   }

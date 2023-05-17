@@ -38,6 +38,9 @@ import axios from 'axios';
 //     return newString;
 // }
 
+console.log(window.screen.width);
+console.log(window.screen.height);
+
 const RecipeDetail = () => {
     // <-- access route state
     const { state } = useLocation(); 

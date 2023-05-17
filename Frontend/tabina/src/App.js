@@ -16,6 +16,8 @@ import Loginform from './Components/Login/Loginform';
 import MyAccount from './Pages/MyAccount';
 import PersonalInfo from './Components/MyAccount/PersonalInfo';
 import NotFound from './Pages/NotFound';
+import PolicyPage from './Pages/PoliciesPage'
+import AccountSecurity from './Components/MyAccount/AccountSecurity';
 
 
 const App = () => {
@@ -33,9 +35,12 @@ const App = () => {
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
         <Route path='/search' element={<Filtertab/>} />
         <Route path='/recipes' element={< Filtertab/>} />
-        <Route path='/myaccount' element={< MyAccount/>} />
-        <Route path="/accpersonalInfo" element={<PersonalInfo />} />
+        <Route path='/myaccount' element={< MyAccount/>}> 
+          <Route path="/myaccount/accpersonalInfo" element={<PersonalInfo />} />
+          <Route path='/myaccount/accsecurity' element={< AccountSecurity/>}/>
+        </Route>
         <Route path="/not-found" element={<NotFound />} />
+        <Route path='/policy' element={<PolicyPage />}/>
 
         {/* catch all wrong route */}
         <Route
