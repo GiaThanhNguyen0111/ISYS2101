@@ -4,34 +4,10 @@ import starColor from '../../../Image/img/recipe/starColor.png'
 import { useNavigate } from 'react-router-dom'
 
 const StarRating = (props) => {
-    // const [selectedRating, setSelectedRating] = useState(null);
-
-    // const handleCheckRating = (event) => {
-    //     const rating = event.target.nextSibling.innerHTML;
-    //     const isChecked = event.target.checked;
-
-    //     if (isChecked) {
-    //       setSelectedRating(rating);
-    //     } else {
-    //       setSelectedRating(null);
-    //     }
-    //   };
-    const {handleCheckboxClick} = props;
+    const {handleCheckboxClick, rating} = props;
 
 
-const navigate = useNavigate();
-
-// useEffect(() => {
-//   const currentSearch = window.location.search; 
-//   let newQuery = '';
-//   !currentSearch ? newQuery = `?rating=${selectedRating}` : newQuery = `&rating=${selectedRating}`;
-//   let finalQuery = currentSearch.concat(newQuery);
-//   selectedRating === null ? finalQuery = currentSearch : finalQuery = currentSearch.concat(newQuery);
-//   navigate(finalQuery);
-  
-// }, [selectedRating]);
-      
-    
+    const navigate = useNavigate();
 
     return (
         <>
@@ -44,7 +20,7 @@ const navigate = useNavigate();
 
 
 <label className='diff-level' >
-<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="5" />
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="5" checked={rating === '5'}/>
 <p style={{display: 'none'}}>5</p>
 
 <div className='star-rat'>
@@ -61,7 +37,7 @@ const navigate = useNavigate();
 {/* 4 star */}
 
 <label className='diff-level'>
-<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="4"  />
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="4" checked={rating === '4'} />
 <p style={{display: "none"}}>4</p>
 <div className='star-rat'>
 <img src= {starColor} className='st-cl' alt='rating color'/>
@@ -77,7 +53,7 @@ const navigate = useNavigate();
 {/* 3 star */}
 
 <label className='diff-level'>
-<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="3"  />
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="3" checked={rating === '3'} />
 <p style={{display: "none"}}>3</p>
 
 <div className='star-rat'>
@@ -95,7 +71,7 @@ const navigate = useNavigate();
 {/* 2 star */}
 
  <label className='diff-level'>
- <input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="2"  />
+ <input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="2" checked={rating === '2'} />
 <p style={{display: "none"}}>2</p>
 
 <div className='star-rat'>
@@ -112,7 +88,7 @@ const navigate = useNavigate();
 {/* 1 star */}
 
 <label className='diff-level'>
-<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="1"  />
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="1" checked={rating === '1'} />
 <p style={{display: "none"}}>1</p>
 
 <div className='star-rat'>
@@ -126,7 +102,7 @@ const navigate = useNavigate();
     
 </label>
 <label className='diff-level'>
-<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="0"  />
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="0" checked={rating === '0'}/>
 <p style={{display: "none"}}>0</p>
 
 <div className='star-rat' style={{marginLeft: "15px", fontSize: "23px"}}>
