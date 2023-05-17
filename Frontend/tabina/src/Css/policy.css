@@ -10,6 +10,7 @@
     justify-content: center;
     margin: 4% 28%;
     font-size: 115%;
+    line-height: 30px;
 }
 
 .policy-title {
@@ -25,6 +26,7 @@
     justify-content: flex-start;
     margin: 1% 28% 4% 28%;
     font-size: 105%;
+    line-height: 25px;
 }
 
 @media only screen and (max-width: 1000px) {
