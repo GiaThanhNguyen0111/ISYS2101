@@ -5,11 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Difficulty from './Searchpage/Filtertab/Difficuly';
 import StarRating from './Searchpage/Filtertab/StarRating';
+import Mealtype from './Searchpage/Filtertab/Mealtype';
+import Category from './Searchpage/Filtertab/Category';
 
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
 const Filtertab = () => {
   const navigate = useNavigate();
+
+  const [showOffcanvas, setShowOffcanvas] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [relavance, setRelavance] = useState("");
@@ -33,6 +37,11 @@ const Filtertab = () => {
     event.preventDefault();
     setSearchTerm(event.target.value);
   };
+
+  const toggleOffcanvas = () => {
+    setShowOffcanvas(!showOffcanvas);
+  };
+  
 
   const handleCheckboxClick = (value) => {
     setLevel(value);
@@ -182,31 +191,40 @@ const Filtertab = () => {
                 </select></>
         </div>
 
-        <div className='filter-tab' >
-            {/* All the tab */}
-        <div className='heading-tab'>  
-            <p>Ingredients</p>
-        </div>
-        {/* Recipe tab */}
-        <div className='headtag'>  
-          <div className="result-container">
-            {searchIngredientResults.map((result, index) => (
-            <p className='ingred' key={index}>{result}
-              <span className='canc' onClick={() => handleTagRemove(index)}>x</span>
-            </p>
-            // <IngredientItem key={index} value={result} onClick={() => handleTagRemove(index)} />
-            ))}
+        <button className="filter-tab-button" onClick={toggleOffcanvas} > 
+        Filter
+      </button>
+      {showOffcanvas && (
+        <div className="offcanvas">
+          <div className="filter-tab">
+            <div className="heading-tab">
+              <p>Ingredients</p>
+              <span style={{position: 'absolute', marginLeft: '300px', top: '20px', fontSize: '25px', fontWeight: '700'}}>x</span>
+            </div>
+            <div className="headtag">
+              <div className="result-container">
+                {searchIngredientResults.map((result, index) => (
+                  <p className="ingred" key={index}>
+                    {result}
+                    <span className="canc" onClick={() => handleTagRemove(index)}>
+                      x
+                    </span>
+                  </p>
+                ))}
+              </div>
+            </div>
+            <Difficulty handleCheckboxClick={handleCheckboxClick} />
+            <p className="sep-tab">___________________________________</p>
+            <StarRating handleCheckboxClick={handleCheckboxRatingClick} />
+            <p className="sep-tab">___________________________________</p>
+            <Mealtype />
+            <p className="sep-tab">___________________________________</p>
+            <Category />
+
           </div>
         </div>
-        <Difficulty handleCheckboxClick={handleCheckboxClick}/>
-        <p className='sep-tab'>___________________________________</p>
-
-        <StarRating handleCheckboxClick={handleCheckboxRatingClick}/>
-        {/* end rating tab */}
-        <p className='sep-tab'>___________________________________</p>
-        </div>
-          <div>
-          <div style={{marginTop: '10px', paddingLeft: '1000px', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
+      )}
+          <div style={{marginTop: '10px', marginLeft: '52%', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
             <p >{count} Recipe Found!</p>
           </div>
           
@@ -221,8 +239,10 @@ const Filtertab = () => {
           </div>
         ))}
           </div>
+          
         </div>
-      </div>
+      
+      
       </>
     )
 }

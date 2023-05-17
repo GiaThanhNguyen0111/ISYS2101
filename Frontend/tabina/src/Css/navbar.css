@@ -4,11 +4,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
   background-color: #FFFFFF;
   position: fixed;
   top: 0;
   z-index: 2;
+  width: 100%;
 
 }
     

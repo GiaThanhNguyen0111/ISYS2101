@@ -17,9 +17,11 @@ class Layout extends React.Component {
     render(){
         return (
         <>
+        <div className='layout-container'>
             <Navbar />
             <main>{this.props.children}</main>
             <Footer />
+        </div>
         </>
         )
     }
