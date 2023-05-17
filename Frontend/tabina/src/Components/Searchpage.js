@@ -212,7 +212,7 @@ const Filtertab = () => {
           </div>
         </div>
       )}
-          <div style={{marginTop: '10px', marginLeft: '52%', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
+          <div style={{marginTop: '80px', marginLeft: '52%', fontSize: '30px', position: 'absolute', zIndex: -1 }}>
             <p >{count} Recipe Found!</p>
           </div>
           
