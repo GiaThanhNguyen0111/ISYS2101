@@ -22,19 +22,13 @@
     padding: 0 0 0 10px;
 }
 
-.submit-btn {
-    display: flex  ;
-    align-items: center;
-    margin-top: 25px;
-    gap: 20px;
+.personalinfo-btn-container {
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: space-between;
 }
 
-.submit-btn span {
-    color: green;
-    display: none;
-}
-
-.personalinfo-btn {
+.personalinfo-btn-update {
     background-color: black;
     color: #FFFFFF;
     height: 40px;
@@ -46,7 +40,24 @@
     cursor: pointer;
 }
 
-.personalinfo-btn:hover {
+.personalinfo-btn-update:hover {
     background-color: #FFFFFF;
     color: black;
+}
+
+.personalinfo-btn-logout {
+    background-color: #FFFFFF;
+    color: black;
+    height: 40px;
+    width: 110px;
+    border-radius: 20px;
+    font-weight: 700;
+    box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.personalinfo-btn-logout:hover {
+    background-color: black;
+    color: #FFFFFF;
 }
