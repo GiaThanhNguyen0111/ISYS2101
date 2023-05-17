@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Mealtype = (props) => {
-    const {handleButtonClick} = props;
+    const {handleButtonClick, mealType} = props;
 
     return (
         <><div>
@@ -9,15 +9,15 @@ const Mealtype = (props) => {
  
         </div>
         <label className='diff-level'>
-                 <input type='radio'  className='diff-option' name='mealtype' value="appetizer" onClick={e => handleButtonClick(e.target.value)}/>
+                 <input type='radio'  className='diff-option' name='mealtype' value="appetizer" onClick={e => handleButtonClick(e.target.value)} checked={mealType === 'appetizer'}/>
                  <span  className='class-lvl'>Appetizer</span>
              </label>
              <label className='diff-level'>
-                 <input type='radio'  className='diff-option' name='mealtype' value="main" onClick={e => handleButtonClick(e.target.value)}/>
+                 <input type='radio'  className='diff-option' name='mealtype' value="main" onClick={e => handleButtonClick(e.target.value)} checked={mealType === "main"}/>
                  <span  className='class-lvl'>Main</span>
              </label>
              <label className='diff-level'>
-                 <input type='radio'  className='diff-option' name='mealtype' value="dessert" onClick={e => handleButtonClick(e.target.value)}/>
+                 <input type='radio'  className='diff-option' name='mealtype' value="dessert" onClick={e => handleButtonClick(e.target.value)} checked={mealType === "dessert"}/>
                  <span  className='class-lvl'>Dessert</span>
              </label>
              <label className='diff-level'>

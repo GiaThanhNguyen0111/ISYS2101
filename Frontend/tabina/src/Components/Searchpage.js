@@ -14,7 +14,6 @@ const Filtertab = () => {
   const navigate = useNavigate();
 
   const [showOffcanvas, setShowOffcanvas] = useState(true);
-
   const [searchTerm, setSearchTerm] = useState('');
   const [relavance, setRelavance] = useState("");
   const [count , setCount] = useState(0);
@@ -32,6 +31,7 @@ const Filtertab = () => {
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
   };
+
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -114,6 +114,18 @@ const Filtertab = () => {
     if (!(JSON.parse(localStorage.getItem('ingredient')) === null )) {
       setSearchIngredientResults(JSON.parse(localStorage.getItem('ingredient')));
     };
+    if (!(JSON.parse(localStorage.getItem('level')) === null )) {
+      setLevel(JSON.parse(localStorage.getItem('level')));
+    };
+    if (!(JSON.parse(localStorage.getItem('rating')) === null )) {
+      setRating(JSON.parse(localStorage.getItem('rating')));
+    };
+    if (!(JSON.parse(localStorage.getItem('mealType')) === null )) {
+      setMealType(JSON.parse(localStorage.getItem('mealType')));
+    };
+    if (!(JSON.parse(localStorage.getItem('category')) === null )) {
+      setCategory(JSON.parse(localStorage.getItem('category')));
+    };
     console.log(JSON.parse(localStorage.getItem('ingredient')));
   }, []);
 
@@ -123,8 +135,27 @@ const Filtertab = () => {
     } else if (searchIngredientResults.length === 0) {
       localStorage.removeItem('ingredient');
     };
-    console.log(JSON.stringify(searchIngredientResults));
-  }, [searchIngredientResults]);
+    if (level != 0 ) {
+      localStorage.setItem('level', JSON.stringify(level));
+    } else {
+      localStorage.removeItem('level');
+    };
+    if (rating != 0) {
+      localStorage.setItem('rating', JSON.stringify(rating));
+    } else {
+      localStorage.removeItem('rating');
+    };
+    if (mealType !== "") {
+      localStorage.setItem('mealType', JSON.stringify(mealType));
+    } else {
+      localStorage.removeItem('mealType');
+    };
+    if (category !== "") {
+      localStorage.setItem('category', JSON.stringify(category));
+    } else {
+      localStorage.removeItem('category');
+    };
+  }, [searchIngredientResults, level, rating, mealType, category]);
 
   useEffect(() => {
     let currentSearch = new URLSearchParams(window.location.search);
@@ -222,13 +253,13 @@ const Filtertab = () => {
                 ))}
               </div>
             </div>
-            <Difficulty handleCheckboxClick={handleCheckboxClick} />
+            <Difficulty handleCheckboxClick={handleCheckboxClick} level={level}/>
             <p className="sep-tab">___________________________________</p>
-            <StarRating handleCheckboxClick={handleCheckboxRatingClick} />
+            <StarRating handleCheckboxClick={handleCheckboxRatingClick} rating={rating}/>
             <p className="sep-tab">___________________________________</p>
-            <Mealtype handleButtonClick={handleMealTypeClick}/>
+            <Mealtype handleButtonClick={handleMealTypeClick} mealType={mealType}/>
             <p className="sep-tab">___________________________________</p>
-            <Category handleButtonClick={handleCategoryClick}/>
+            <Category handleButtonClick={handleCategoryClick} category={category}/>
 
           </div>
         </div>
