@@ -6,37 +6,10 @@ import '../../Css/page/myAccount/sidebar.css'
 import { Link } from 'react-router-dom'
 
 function Sidebar() {
-  const showAccountSecurityPage = () => {
-    var accSecuritypage = document.getElementsByClassName('accountsecurity-container');
-    var personalInfopage = document.getElementsByClassName('personalinfo-container');
-
-    for (var i=0;i<accSecuritypage.length;i+=1){
-      accSecuritypage[i].style.display = 'block';
-    }
-
-    for (var i=0;i<personalInfopage.length;i+=1){
-      personalInfopage[i].style.display = 'none';
-    }
-  }
-
-  const showPersonalInfoPage = () => {
-    var accSecuritypage = document.getElementsByClassName('accountsecurity-container');
-    var personalInfopage = document.getElementsByClassName('personalinfo-container');
-
-    for (var i=0;i<accSecuritypage.length;i+=1){
-      accSecuritypage[i].style.display = 'none';
-    }
-
-    for (var i=0;i<personalInfopage.length;i+=1){
-      personalInfopage[i].style.display = 'block';
-    }
-  }
-
   return (
     <div className='sidebar-container'>
-      <a className='sidebar-selection' onClick={showPersonalInfoPage}><img src={user}/><span>Personal Information</span></a>
-      <a className='sidebar-selection' onClick={showAccountSecurityPage}><img src={verified}/><span>Account Security</span></a>
-      <a className='sidebar-selection'><img src={preferences}/><span>Preferences</span></a>
+      <Link to='/myaccount/accpersonalInfo' className='sidebar-selection'><img src={user}/><span>Personal Information</span></Link>
+      <Link to='/myaccount/accsecurity' className='sidebar-selection' ><img src={verified}/><span>Account Security</span></Link>
     </div>
   )
 }
