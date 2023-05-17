@@ -125,6 +125,15 @@ const navigate = useNavigate();
 </div>
     
 </label>
+<label className='diff-level'>
+<input type='radio' name='rating' className='diff-option' onClick={event => handleCheckboxClick(event.target.value)} value="0"  />
+<p style={{display: "none"}}>0</p>
+
+<div className='star-rat' style={{marginLeft: "15px", fontSize: "23px"}}>
+    None
+</div>
+    
+</label>
 
 
 

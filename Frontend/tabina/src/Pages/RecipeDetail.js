@@ -27,6 +27,17 @@ import LevelBlank from '../Components/RecipeDetail/LevelBlank';
 import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
 
+
+// const removeSpace = (s) => {
+//     const splitString = s.split(" ");
+//     let newString = ""
+//     for (let index = 0; index < splitString.length; index++) {
+//         newString += splitString[index]
+//     }
+
+//     return newString;
+// }
+
 const RecipeDetail = () => {
     // <-- access route state
     const { state } = useLocation(); 
@@ -65,29 +76,29 @@ const RecipeDetail = () => {
     // handle properties from the recieved recipe
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);
     var steps = [];
-    var prep = "10m";
-    var cook = "15m";
-    var total = "25m";
+    var time = {
+        prep: "10m",
+        cook: "15m",
+        total: "25m"
+    }
 
     for (let index = 0; index < instructions.length; index++) {
         if (instructions[index] === "Prep") {
-            prep = instructions[index + 1];
+            time.prep = (instructions[index + 1]).replaceAll(" ", "");
         }
 
         if (instructions[index] === "Cook") {
-            cook = instructions[index + 1];
+            time.cook = (instructions[index + 1]).replaceAll(" ", "");
         }
 
         if (instructions[index] === "Ready In") {
-            total = instructions[index + 1];
+            time.total = (instructions[index + 1]).replaceAll(" ", "");
         }
 
         if (instructions[index].length > 10) {
             steps.push(instructions[index]);
         }
     }
-    
-    console.log(steps);
 
     const level_num = thisRecipe.level;
 
@@ -119,7 +130,7 @@ const RecipeDetail = () => {
         {/* <h1>{recieveId}</h1> */}
         <div className='recipe-detail'>
             <div className='recipe-detail-breadcrumb'>
-                <p><Link to={`/`}>Home</Link> &gt; <Link to={`/`}>Recipe</Link> &gt; {thisRecipe.name}</p>
+                <p><Link to={`/`}>Home</Link> &gt; <Link to={`/filter`}>Recipe</Link> &gt; {thisRecipe.name}</p>
             </div>
             {}
             <div className='recipe-detail-content'>
@@ -227,15 +238,15 @@ const RecipeDetail = () => {
                             <div className='recipe-detail-content-right-info-time-container'>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Total</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{total}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{time.total}</span>
                                 </div>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Prep</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{prep}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{time.prep}</span>
                                 </div>
                                 <div className='recipe-detail-content-right-info-time-total'>
                                     <span className='recipe-detail-content-right-info-time-total-title'>Cook</span>
-                                    <span className='recipe-detail-content-right-info-time-total-value'>{cook}</span>
+                                    <span className='recipe-detail-content-right-info-time-total-value'>{time.cook}</span>
                                 </div>
                             </div>        
                         </div>
@@ -245,7 +256,8 @@ const RecipeDetail = () => {
                                 {thisRecipe.ingredients.map((value) => (
                                     <IngredientItem value = {value} />
                                 ))}
-                            </div>    
+                            </div>  
+                            {/* <button className='recipe-detail-content-right-info-ingredients-dropdown'>Click</button> */}
                         </div>
                         <div className='recipe-detail-content-right-info-calo'>
                             <img src={bulb} className='recipe-detail-content-right-info-calo-img-left' alt="fun fact"/>

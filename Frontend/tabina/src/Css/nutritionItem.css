@@ -1,6 +1,6 @@
 .nutrition-item {
     max-height: 60px;
-    width: 633px;
+    max-width: 633px;
     display: flex;
     align-items: center;
     margin-bottom: 7px;
@@ -18,25 +18,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex-shrink: 0;
+}
+
+.nutrition-item-big span {
+    font-weight: 600;
+    font-size: 2em;
 }
 
 .nutrition-item-big-img {
-    height: 50px;
-    width: 50px;
+    height: 83.33%;
+    width: 83.33%;
 }
 
 .nutrition-item-title {
     font-weight: 600;
-    font-size: 30px;
+    font-size: 3em;
     line-height: 36.31px;
-    margin-left: 20px;
+    margin-left: 3%;
 }
 
 .nutrition-item-amount {
     flex-grow: 1;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 1.5%;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 3em;
     line-height: 36.31px;
 }

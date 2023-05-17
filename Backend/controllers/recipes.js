@@ -11,10 +11,12 @@ exports.getAllRecipe = async (req, res) => {
         let rating = req.query.rating || "All";
         let sort = req.query.sort || 'rating';
         let name = req.query.name;
+
+        let mealType = req.query.mealType;
+        let category = req.query.category;
+
         // console.log(isString(ingredients));
         // console.log([...ingredients]);
-
-        
 
         level === "All" ? (level = 0) : (level = Number(req.query.level));
         rating === "All" ? (rating = 0 ) : (rating = Number(req.query.rating));
@@ -44,7 +46,9 @@ exports.getAllRecipe = async (req, res) => {
             {$match: {"level": {$gte: level}}},
             {$sort: sortBy},
             {$limit: 100},
-            !(ingredients == "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null
+            !(ingredients == "All") ? {$match: {"ingredients": {$in: [...ingredients]}}} : null,
+            !mealType ? null : {$match: {"meal_type": mealType}},
+            !category ? null : {$match: {"category": category}}
         ].filter(Boolean);
         console.log(aggregate);
         const recipes = await recipeModel.Recipe.aggregate(aggregate);
@@ -103,31 +107,6 @@ exports.deleteRecipe = async (req, res) => {
     });
 };
 
-
-// exports.getSearchByName = async (req, res) => {
-//     try {
-//         let recipes = await recipeModel.Recipe.aggregate([
-//             {
-//                 "$search": {
-//                     "autocomplete": {
-//                         "query": `${req.query.name}`,
-//                         "path": "name",
-//                         "fuzzy": {
-//                             "maxEdits": 2
-//                         },
-//                     }
-//                 }
-//             }
-//         ]).limit(10);
-
-//         const response = {recipes}
-
-//         res.status(200).json(response);
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({message: err.message});
-//     }
-// };
 
 exports.postSearchByName = async (req, res) => {
     const recipeName = req.body.name;

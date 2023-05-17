@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/user');
+const postController = require('../controllers/post');
 // const { getUserLogin, postUserLogin, getUserRegister, postUserRegister, getUserLogout } = require('../models/user');
 const isLoggedIn = require('../controllers/session');
 
@@ -35,10 +36,10 @@ router.post('/updateUserInfo', isLoggedIn, userController.updateUserInformation)
 
 router.get('/userInfo', isLoggedIn, userController.findUserById);
 
-router.get('/posts');
-router.post('/post');
-router.patch('/post/:postId');
-router.delete('/post');
+router.get('/posts', isLoggedIn, postController.getAllPost);
+router.post('/post', isLoggedIn, postController.postPost);
+router.post('/post/:postId', isLoggedIn, postController.updatePostById);
+router.delete('/post/:postId', isLoggedIn, postController.deletePostById);
 
 
 
