@@ -1,59 +1,61 @@
-* {
-  overflow-x: hi;
-}
+
 .searchbar {
-    
-    width: 40%;
-    height: 30px;
-    background: #FFFFFF;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    margin-left: 50px;
-    margin-top: 12px;
-  }
- 
-  .searchbar-container {
-background: #F4EDE5;
-height: 60px;
-margin-left: 400px;
-position: relative;
-grid-column: 1 / 3; /* span across both columns */
+  width: 40%;
+  height: 30px;
+  background: #FFFFFF;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin-left: 50px;
+  margin-top: 12px;
+}
+
+.searchbar-container {
+  background: #F4EDE5;
+
+  margin-left: 400px;
+  position: relative;
+  grid-column: 1 / 3; /* span across both columns */
+  background: #F4EDE5;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin-top: 100px;
+}
 
 
-  }
- 
-  .searchbtn {
-    height: 32px;
-    width: 30px;
-    background: #F8DEC3;
-    border-radius:  5px;
-    font-size: 20px;
-    position: relative;
-    right: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-    top: 2px;
+.searchbtn {
+  height: 32px;
+  width: 30px;
+  background: #F8DEC3;
+  border-radius: 5px;
+  font-size: 20px;
+  position: relative;
+  right: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  top: 2px;
+}
 
-  }
+.searchbtn:hover {
+  background-color: #e67e22;
+}
 
-  .searchbtn:hover {
-    background-color: #e67e22; 
-  }
- 
- 
-  .relchoice {
-    background: #FFFFFF;
-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-width: 180px;
-height: 35px;
-margin-left: 200px;
-font-size: 15px;
-border: none;
-outline: none;
-  }
+.relchoice {
+  background: #FFFFFF;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 180px;
+  height: 35px;
+  margin-left: 200px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+}
 
-.searchbar  {
+.searchbar {
   border: none;
   outline: none;
 }
@@ -65,29 +67,17 @@ outline: none;
 
 
 
-.searchbar-container {
-  background: #F4EDE5;
-  height: 60px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  margin-top: 100px;
-}
-
 .filter-tab {
   background: #FFFFFF;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
   position: fixed;
-  top: 60px; 
+  top: 60px;
   left: 0;
   height: calc(100% - 60px);
   margin-top: 75px;
   overflow: scroll;
-  z-index: 1;
+  z-index: 2;
   width: 400px;
-
 }
 
 .recipe-area {
@@ -95,11 +85,13 @@ outline: none;
   flex-direction: row;
   max-width: 200px;
   margin-top: 200px;
-  margin-left: 400px; 
-  padding-top: 150px; 
+  margin-left: 400px;
+  padding-top: 150px;
   margin-bottom: 40px;
+  max-width: 200px;
+  top: 100px;
+  margin-top: 80px;
 }
-
 
 .ingred {
   width: 80px;
@@ -109,40 +101,38 @@ outline: none;
   border-radius: 20px;
   display: flex;
   justify-content: space-evenly;
-  }
-  
+}
 
-  .canc {
-      cursor: pointer;
-  }
-  
-  .heading-tab {
-      background: #F4EDE5;
-      padding-top: 0.1px;
-  
-  }
-  
-  .heading-tab p {
-      font-size: 25px;
-      font-weight: 600;
-      padding-left: 50px;
-      padding-bottom: 20px;
-  }
-  
-  .diff {
-      text-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
-      padding-left: 50px;
-      font-size: 25px;
-      font-weight: 600;
-  }
-  
-  .diff-level {
-      padding-left: 50px;
-      display: block;
-  }
-  
-  .diff-option {
-      background: #FFFFFF;
+.canc {
+  cursor: pointer;
+}
+
+.heading-tab {
+  background: #F4EDE5;
+  padding-top: 0.1px;
+}
+
+.heading-tab p {
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 50px;
+  padding-bottom: 20px;
+}
+
+.diff {
+  text-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+  padding-left: 50px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.diff-level {
+  padding-left: 50px;
+  display: block;
+}
+
+.diff-option {
+  background: #FFFFFF;
   border: 1px solid #000000;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -151,72 +141,104 @@ outline: none;
   }
   
   .sep-tab {
-      font-size: 20px;
-      display: flex;
-      justify-content: center;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
   }
   
   .class-lvl {
-      font-size: 22px;
-      display: inline-block;
-      margin-left: 15px;
+  font-size: 22px;
+  display: inline-block;
+  margin-left: 15px;
   }
   
-  
   .star-rat {
-      display: inline-block;
-     
+  display: inline-block;
   }
   
   .st-cl {
-      width: 22px;
-      height: 22px;
-      margin-left: 15px;
-  
+  width: 22px;
+  height: 22px;
+  margin-left: 15px;
   }
   
-  .recipe-area {
-      display: flex;
-      flex-direction: row;
-      max-width: 200px;
-      top: 100px;
-      margin-top: 80px;
-  
-  
-  }
+ 
   
   .repcard {
-      margin-left: 50px !important;
+  margin-left: 50px !important;
   }
   
   .recipe-area {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 20px;
-      margin-left: 400px;
-      z-index: -1;
-    }
-  
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-left: 400px;
+  z-index: -1;
+  }
   
   /* Bao Hoang */
   .headtag .ingredient-item {
-      cursor: pointer;
-      height: 30px;
+  cursor: pointer;
+  height: 30px;
   }
   
   .headtag {
-      margin: 28px 50px 37px 50px
+  margin: 28px 50px 37px 50px;
   }
   
   .result-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
   }
   
   .searchbar-container {
-      margin-top: 135px;
+  margin-top: 135px;
+  }
+
+  @media screen and (max-width: 800px) {
+    .filter-tab {
+      display: none;
+    }
+
+    .searchbar-container {
+      margin-left: 0;
+      z-index: 1;
+    }
+
+    .recipe-area {
+      margin-left: 0;
+    }
+    .recipe-area {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .recipe-area {
+      grid-template-columns: repeat(1, 1fr);
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .relchoice {
+      width: 120px;
+      margin-left: 0;
+    }
+        
+    .searchbar {
+      width: 300px;
+    }
+
+    .relchoice {
+      margin-top: 10px;
+      margin-left: 11%;
+    }
+
+    .searchbar-container {
+      height: 100px;
+    }
   }
   
-    
+
+
