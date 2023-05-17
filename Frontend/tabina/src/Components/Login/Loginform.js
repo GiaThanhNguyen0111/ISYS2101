@@ -4,20 +4,23 @@ import Footer from '../Footer';
 import { Link } from 'react-router-dom';
 
 const Loginform = () => {
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <>
         <div className='loginpage-container'>
             <p style={{display: 'flex', justifyContent: 'center', marginTop: '50px', fontSize: '30px', fontWeight: 550 }}>Login</p>
 
-            <form action='/login' method='post' className='formbox'>
+            <form action='https://damp-anchorage-45936.herokuapp.com/login' method='post' className='formbox'>
                 <div>
                     <p className='form-title' >Email</p>
-                    <input type='name' placeholder='Username' name='username' className='input-lg'></input>
+                    <input type='name' placeholder='Username' name='username' className='input-lg' value={username}></input>
                 </div>
 
                 <div>
                     <p className='form-title'>Password</p>
-                    <input type='password' placeholder='Password' name='password' className='input-lg'></input>
+                    <input type='password' placeholder='Password' name='password' className='input-lg' value={password}></input>
                 </div>
                 
                 <div className='btn-container'>

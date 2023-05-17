@@ -3,7 +3,7 @@ const userModel = require('../models/user');
 const ejs = require('ejs');
 
 exports.getRoot = (req, res) => {
-    res.send("Hello");
+    console.log("oke");
 };
 
 exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
@@ -74,7 +74,7 @@ exports.postUserLogin = (req, res) => {
             console.log(err);
         } else {
             await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
-                res.redirect("/");
+                res.status(200).json({isLoggedIn: true});
                 console.log("login Successfully");
                 console.log(req.session.passport);
             })
@@ -119,7 +119,6 @@ exports.updateUserInformation = async (req, res, next) => {
         Phone: Phone
     }). then(response => {
         console.log(response);
-        res.redirect('/myaccount/accpersonalInfo');
     }).catch(err => {
         console.log(err);
     });

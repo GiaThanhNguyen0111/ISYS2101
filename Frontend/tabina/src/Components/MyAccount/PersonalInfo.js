@@ -34,7 +34,7 @@ const PersonalInfo = () => {
   };
 
   const handleLogOut = () => {
-    axios.get('/logout').then(response => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/logout').then(response => {
       console.log(response);
     }).catch(err => {
       console.log(err);
@@ -42,7 +42,7 @@ const PersonalInfo = () => {
   }
 
   useEffect(() => {
-    axios.get('/userInfo').then(response => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/userInfo').then(response => {
       setAddress(response.data.user[0].Address);
       setDob(response.data.user[0].DOB);
       setEmail(response.data.user[0].username);

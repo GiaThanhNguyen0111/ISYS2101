@@ -2,7 +2,7 @@
   "name": "tabina",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "https://damp-anchorage-45936.herokuapp.com",
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
