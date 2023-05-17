@@ -26,6 +26,7 @@ import LevelLastBlank from '../Components/RecipeDetail/LevelLastBlank';
 import LevelBlank from '../Components/RecipeDetail/LevelBlank';
 import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
+import Tag from '../Components/Tag';
 
 
 // const removeSpace = (s) => {
@@ -75,6 +76,8 @@ const RecipeDetail = () => {
     if (!thisRecipe) {
         return <Navigate to="/not-found" replace/>
     }
+
+    console.log(thisRecipe);
 
     // handle properties from the recieved recipe
     const instructions = thisRecipe.cooking_directions.split(/\r?\n/);
@@ -133,7 +136,7 @@ const RecipeDetail = () => {
         {/* <h1>{recieveId}</h1> */}
         <div className='recipe-detail'>
             <div className='recipe-detail-breadcrumb'>
-                <p><Link to={`/`}>Home</Link> &gt; <Link to={`/filter`}>Recipe</Link> &gt; {thisRecipe.name}</p>
+                <p><Link to={`/`}>Home</Link> &gt; <Link to={`/recipes`}>Recipe</Link> &gt; {thisRecipe.name}</p>
             </div>
             {}
             <div className='recipe-detail-content'>
@@ -233,6 +236,10 @@ const RecipeDetail = () => {
                                     </div>
                                 }
                             {/* </div> */}
+                        </div>
+                        <div className='recipe-detail-content-right-title-tag'>
+                            <Tag str={thisRecipe.category} />
+                            <Tag str={thisRecipe.meal_type} />
                         </div>
                     </div>
                     <div className='recipe-detail-content-right-info'>

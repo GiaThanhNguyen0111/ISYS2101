@@ -179,6 +179,17 @@
     margin-right: 0px;
 }
 
+.recipe-detail-content-right-title-tag {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.recipe-detail .tag-block-span {
+    font-size: 2.4em;
+    line-height: normal;
+}
+
 .recipe-detail-content-right-info {
     display: flex;
     flex-direction: column;
@@ -587,6 +598,11 @@
 
         margin-right: 15px;
         margin-bottom: 10px;
+    }
+    
+    .recipe-detail-content-right-title-tag {
+        margin-top: 30px;
+        gap: 10px;
     }
 }
 

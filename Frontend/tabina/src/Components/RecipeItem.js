@@ -3,6 +3,7 @@ import '../Css/recipeItem.css'
 import food from '../Image/img/recipe/salmon.jpg'
 import StarColor from './StarColor';
 import StarBlank from './StarBlank';
+import Tag from './Tag';
 
 const RecipeItem = (props) => {
     const testData = {
@@ -77,21 +78,9 @@ const RecipeItem = (props) => {
         <div className='recipe-item'>
             <img src = {props.recipe.image_url} className='recipe-item-img' alt={props.recipe.name}/>
             <h3>{props.recipe.name}</h3>
-            <div className='recipe-item-rating'>
-            {
-                [
-                    ...Array(props.recipe.rating),
-                ].map((value) => (
-                    <StarColor />
-                ))
-            }
-            {
-                [
-                    ...Array(5 - props.recipe.rating),
-                ].map((value) => (
-                    <StarBlank />
-                ))
-            }
+            <div className='recipe-item-tag'>
+                <Tag str={props.recipe.category}/>
+                <Tag str={props.recipe.meal_type}/>
             </div>
             
             <div className='recipe-item-desc-line'>
@@ -111,34 +100,48 @@ const RecipeItem = (props) => {
                 </span>
             </div>
             <div className='recipe-item-desc-line'>
-                <span className='recipe-item-desc-line-1'>
+                {/* <span className='recipe-item-desc-line-1'>
                     Difficulty:
-                </span>
-                {/* <span className='recipe-item-desc-line-2'>
-                    {difficulty}
                 </span> */}
+                
+                <div className='recipe-item-rating'>
+                {
+                    [
+                        ...Array(props.recipe.rating),
+                    ].map((value) => (
+                        <StarColor />
+                    ))
+                }
+                {
+                    [
+                        ...Array(5 - props.recipe.rating),
+                    ].map((value) => (
+                        <StarBlank />
+                    ))
+                }
+                </div>
                 {level_num == 1 &&
-                    <span className='recipe-item-desc-line-2'>
+                    <span className='recipe-item-desc-line-2 recipe-item-desc-line-2-level'>
                         Beginner
                     </span>
                 }
                 {level_num == 2 &&
-                    <span className='recipe-item-desc-line-2'>
+                    <span className='recipe-item-desc-line-2 recipe-item-desc-line-2-level'>
                         Average
                     </span>
                 }
                 {level_num == 3 &&
-                    <span className='recipe-item-desc-line-2'>
+                    <span className='recipe-item-desc-line-2 recipe-item-desc-line-2-level'>
                         Intermediate
                     </span>
                 }
                 {level_num == 4 &&
-                    <span className='recipe-item-desc-line-2'>
+                    <span className='recipe-item-desc-line-2 recipe-item-desc-line-2-level'>
                         Expert
                     </span>
                 }
                 {level_num == 5 &&
-                    <span className='recipe-item-desc-line-2'>
+                    <span className='recipe-item-desc-line-2 recipe-item-desc-line-2-level'>
                         World-class
                     </span>
                 }
