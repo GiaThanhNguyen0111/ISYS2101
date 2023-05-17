@@ -33,6 +33,14 @@ const PersonalInfo = () => {
     setAddress(value);
   };
 
+  const handleLogOut = () => {
+    axios.get('/logout').then(response => {
+      console.log(response);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
   useEffect(() => {
     axios.get('/userInfo').then(response => {
       setAddress(response.data.user[0].Address);
@@ -61,7 +69,11 @@ const PersonalInfo = () => {
         <label for="address-label" className='text-label'>Address</label>
         <input type="text" id="address-input" name="address" placeholder={address} value={address} onChange={e => changeAddress(e.target.value)}/>
 
-        <button type='submit' className='personalinfo-btn'>UPDATE</button>
+        <div className='personalinfo-btn-container'>
+          <button type='submit' className='personalinfo-btn-update'>UPDATE</button>
+          <button className='personalinfo-btn-logout' onClick={handleLogOut}>LOG OUT</button>
+        </div>
+        
       </form>
     </div>
   )

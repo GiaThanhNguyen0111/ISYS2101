@@ -1,71 +1,80 @@
-
-
-.formbox {
+.loginpage-container {
   display: flex;
-  justify-content: center;
-  width: 90%;
-  background: #FFFFFF;
-  border-radius: 10px;
-  box-shadow: 3px 5px 20px rgba(0,0,0,0.25);
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 152px;
-
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
 }
 
+.formbox {
+  background-color: #FFFFFF;
+  width: 512px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+}
+
+.formbox div {
+  width: 100%;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 30px 0 10px 0;
+}
 
 .input-lg {
-  width: 750px;
+  box-sizing: border-box;
+  border-radius: 7px;
   height: 40px;
-  border: 2px solid #000000;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: white;
-  padding-left: 10px;
+  padding: 0 0 0 10px;
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0 0 0 ;
+  justify-content: space-between;
+}
+
+.btn-container button {
+  transition: 200ms ease-out;
 }
 
 .loginbtn {
-  font-size: 18px;
-  background: #28161C;
-  box-sizing: border-box;
-  border-radius: 40px;
-  padding: 10px 30px;
-  color: #FAF8FF;
-  margin-top: 40px;
-  margin-left: 85%;
-  margin-bottom: 20px;
+  color: #FFFFFF;
+  background-color: #28161C;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: 500;
-  box-shadow: 20px 15px 30px rgba(0, 0, 0, 0.15);
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.createaccbtn {
+  color: #28161C;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
 }
 
 .loginbtn:hover {
-  background-color: #4f2b3d;
+  color: #28161C;
+  background-color: #FFFFFF;
 }
 
+.createaccbtn:hover {
+  color: #FFFFFF;
+  background-color: #28161C;
+}
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 700px) {
   .formbox {
-    flex-direction: column;
-    margin-bottom: 50px;
-  }
-  
-  .input-lg {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    width: 85%;
-    height: 30px;
-  }
-  
-  .loginbtn {
-    margin-left: 65%;
-    margin-right: auto;
-    font-size: 15px;
-  }
-
-  .form-title {
-    margin-left: 20px;
-  
+    width: 80%;
   }
 }
