@@ -87,7 +87,10 @@ exports.getUserLogout = async (req, res, next) => {
         if(err){
             return next(err);
         }
-        res.redirect("/");
+        req.session.destroy((err) => {
+            console.log(err);
+            res.redirect("/");
+        })
     });
 };
 

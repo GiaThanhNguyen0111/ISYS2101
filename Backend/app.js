@@ -12,8 +12,23 @@ const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 const cors = require('cors');
 const fs = require('fs');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
+.then(result => {
+    console.log("Connect to MongoDB successfully");
+    // importData();
+})
+.catch(err => {
+    console.log(err)
+});
 
 const app = express();
+const store = new MongoDBStore({
+  uri: `mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?w=majority`,
+  collection: 'sessions'
+})
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.set('view engine', 'ejs');
@@ -22,6 +37,12 @@ app.use(session({
     secret: "Our little secret.",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 24* 60 * 60 * 1000
+    },
+    store: store
 }));
 
 //Initialize passport and use session
@@ -42,14 +63,6 @@ const importData = async () => {
   }
   
 
-mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
-.then(result => {
-    console.log("Connect to MongoDB successfully");
-    // importData();
-})
-.catch(err => {
-    console.log(err)
-});
 
 mongoose.set('bufferCommands', false);
 
