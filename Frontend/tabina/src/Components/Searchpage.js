@@ -51,6 +51,14 @@ const Filtertab = () => {
     setRating(value);
 
   };
+
+  const handleMealTypeClick = (value) => {
+    setMealType(value);
+  };
+  
+  const handleCategoryClick = (value) => {
+    setCategory(value);
+  }
   
   const handleButtonClick = () => {
     const userInput = document.querySelector(".searchbar").value;
@@ -147,9 +155,10 @@ const Filtertab = () => {
     if( category === '' ) {
       currentSearch.delete('category');
     } else if (category !== ''){
-      currentSearch.set('category', mealType);
+      currentSearch.set('category', category);
     };
 
+    
 
     let finalSearch = currentSearch.toString();
     setCurrentSearch(finalSearch);
@@ -217,9 +226,9 @@ const Filtertab = () => {
             <p className="sep-tab">___________________________________</p>
             <StarRating handleCheckboxClick={handleCheckboxRatingClick} />
             <p className="sep-tab">___________________________________</p>
-            <Mealtype />
+            <Mealtype handleButtonClick={handleMealTypeClick}/>
             <p className="sep-tab">___________________________________</p>
-            <Category />
+            <Category handleButtonClick={handleCategoryClick}/>
 
           </div>
         </div>
