@@ -1,0 +1,17 @@
+.tag-block {
+    background: #FAF8FF;
+    border: 1px solid #28161C;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.tag-block-span {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+
+    margin: 3px 5px;
+}

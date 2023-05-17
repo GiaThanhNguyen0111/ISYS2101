@@ -16,6 +16,7 @@ import Loginform from './Components/Login/Loginform';
 import MyAccount from './Pages/MyAccount';
 import PersonalInfo from './Components/MyAccount/PersonalInfo';
 import NotFound from './Pages/NotFound';
+import Tag from './Components/Tag';
 import PolicyPage from './Pages/PoliciesPage'
 import AccountSecurity from './Components/MyAccount/AccountSecurity';
 
@@ -49,7 +50,7 @@ const App = () => {
         />
  
         {/* route for component test */}
-        <Route path="/component-test" element={<NutritionItem />} />
+        <Route path="/component-test" element={<Tag />} />
       </Routes>
     </>
   );

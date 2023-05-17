@@ -42,15 +42,20 @@ exports.postUserRegister = async (req, res) => {
     })
 };
 
-exports.getUserLogin = (req, res) => {
-    var isLoggedIn = false;
-    if(req.session.passport){
-        isLoggedIn = true;
-    } else {
-        isLoggedIn = false;
-    };
-
-    res.status(200).json({isLoggedIn: isLoggedIn});
+exports.getUserLogin = async (req, res) => {
+    if (req.session.passport){
+        const userId = req.session.passport.user._id;
+        console.loh(req.session.passport);
+        let isLoggedIn = false;
+        await userModel.User.findById({_id: userId}).then(result => {
+            result === null ? isLoggedIn = false : isLoggedIn = true
+        }).catch(err => {
+            console.log(err);
+        })
+    
+    
+        res.status(200).json({isLoggedIn: isLoggedIn});
+    }
 };
 
 

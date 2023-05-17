@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import "../../Css/page/home/popularRecipe.css"; //import component-specific CSS
-import StarRatings from 'react-star-ratings';
 import RecipeItem from "../RecipeItem";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 import recipesData from "../../test-data/recipesData";
 
 const PopularRecipe = () => {
   
+  const [popularRecipes, setPopularRecipes] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/recipe`).then(response => {
+      setPopularRecipes(response.data.recipes.slice(0, 9));
+    });
+  }, []);
+
   return (
     <div className="popular-recipe-container">
 
@@ -33,10 +41,12 @@ const PopularRecipe = () => {
           },
         }}
       >
-        {recipesData.map((recipe) => (
+        {popularRecipes.map((recipe) => (
 
-          <SplideSlide key={recipe.id}>
-            <Link to={`/recipes/${recipe.id}`}><RecipeItem recipe = {recipe}/></Link>
+          <SplideSlide key={recipe._id}>
+            <Link to={`/recipes/${recipe._id}`} state={{ recipe }}>
+              <RecipeItem recipe = {recipe} />
+            </Link>
           </SplideSlide>
         ))}
       </Splide>
