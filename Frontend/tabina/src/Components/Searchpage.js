@@ -22,6 +22,8 @@ const Filtertab = () => {
   const [currentSearch, setCurrentSearch] = useState('');
   const [level, setLevel] = useState(0);
   const [rating, setRating] = useState(0);
+  const [mealType, setMealType] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleRelavance = (event) => {
     setRelavance(event.target.value);
@@ -128,13 +130,23 @@ const Filtertab = () => {
     } else if (rating === "0") {
       currentSearch.delete("rating");
     };
+    if( mealType === '' ) {
+      currentSearch.delete('mealType');
+    } else if (mealType !== ''){
+      currentSearch.set('mealType', mealType);
+    };
+    if( category === '' ) {
+      currentSearch.delete('category');
+    } else if (category !== ''){
+      currentSearch.set('category', mealType);
+    };
 
 
     let finalSearch = currentSearch.toString();
     setCurrentSearch(finalSearch);
     navigate(`?${finalSearch}`);  
     console.log(finalSearch);
-  }, [searchNameResult, searchIngredientResults, level, rating]); 
+  }, [searchNameResult, searchIngredientResults, level, rating, mealType, category]); 
 
   useEffect(() => {
     const search = new URLSearchParams(window.location);
