@@ -45,7 +45,7 @@ exports.postUserRegister = async (req, res) => {
 exports.getUserLogin = async (req, res) => {
     if (req.session.passport){
         const userId = req.session.passport.user._id;
-        console.loh(req.session.passport);
+        console.log(req.session.passport);
         let isLoggedIn = false;
         await userModel.User.findById({_id: userId}).then(result => {
             result === null ? isLoggedIn = false : isLoggedIn = true
