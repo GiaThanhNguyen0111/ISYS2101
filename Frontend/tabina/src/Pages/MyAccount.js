@@ -16,11 +16,11 @@ function MyAccount() {
         <div className='myacc-content'>
           <Sidebar className='myacc-content-sidebar'/>
 
-          <Routes className='myacc-content-form'>
-            <Route path="/accpersonalInfo" element={<PersonalInfo />} />
-            <Route path="/accSecurity" element={<AccountSecurity />} />
-            <Route path="/accPreferences" element={<Preferences />} />
-          </Routes>
+          <div className='myacc-content-form'>
+          <PersonalInfo />
+          <AccountSecurity />
+          </div>
+          
         </div>
     </div>
   )
