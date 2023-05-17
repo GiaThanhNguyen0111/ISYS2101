@@ -16,6 +16,7 @@ import Loginform from './Components/Login/Loginform';
 import MyAccount from './Pages/MyAccount';
 import PersonalInfo from './Components/MyAccount/PersonalInfo';
 import NotFound from './Pages/NotFound';
+import PolicyPage from './Pages/PoliciesPage'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='/myaccount' element={< MyAccount/>} />
         <Route path="/accpersonalInfo" element={<PersonalInfo />} />
         <Route path="/not-found" element={<NotFound />} />
+        <Route path='/policy' element={<PolicyPage />}/>
 
         {/* catch all wrong route */}
         <Route

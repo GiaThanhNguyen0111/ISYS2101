@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <div className='btnlist' id='btnlist'>
           <Link to="/" className='nav-link' id='nav-link'>Home</Link>
-          <Link to="/about" className='nav-link' id='nav-link'>About</Link>
+          <Link to="/policy" className='nav-link' id='nav-link'>About</Link>
           <Link to="/contact" className='nav-link' id='nav-link'>Contact</Link>
           {isLoggedIn ? <Link to="/myaccount" className='nav-link'>My Account</Link>
           : <button className='nav-link' id = 'login-button' onClick={handleButtonClick}>Login</button>}

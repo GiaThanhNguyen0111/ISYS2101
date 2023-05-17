@@ -13,6 +13,11 @@ footer {
   justify-content: space-between;
 }
 
+.footer-logo {
+  width: 180px;
+  height: auto;
+}
+
 .footer-column h2,.footer-column a {
   color: #FAF8FF;
 }
@@ -57,4 +62,16 @@ footer {
   width: 65%;
   border-top: #FAF8FF solid 1px;
   opacity: 0.8;
+}
+
+@media (max-width: 1100px) {
+  .footer-content-container {
+    flex-direction: column;
+  }
+
+  .footer-logo {
+    align-self: center;
+    width: 100px;
+    height: auto;
+  }
 }
