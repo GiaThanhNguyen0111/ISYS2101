@@ -116,6 +116,7 @@
   }
 
   #login-button:hover {
+    text-decoration: none;
     background-color: #28161C;
     color: #FFFFFF;
   }
