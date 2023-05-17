@@ -31,9 +31,7 @@ const Difficulty = (props) => {
     //     selectedDifficulties === null ? finalQuery = currentSearch : finalQuery = currentSearch.concat(newQuery);
     //     console.log(selectedDifficulties);  
     //     navigate(finalQuery);
-    // }, [selectedDifficulties]);
-
-      
+    // }, [selectedDifficulties]);      
 
     return (
         <>
