@@ -3,7 +3,7 @@ const userModel = require('../models/user');
 const ejs = require('ejs');
 
 exports.getRoot = (req, res) => {
-    console.log("oke");
+    res.send("This is Tabina's SERVER");
 };
 
 exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
@@ -48,14 +48,12 @@ exports.getUserLogin = async (req, res) => {
         console.log(req.session.passport);
         let isLoggedIn = false;
         await userModel.User.findById({_id: userId}).then(result => {
-            result === null ? isLoggedIn = false : isLoggedIn = true
+            result === null ? isLoggedIn = false : isLoggedIn = true;
+            res.status(200).json({isLoggedIn: isLoggedIn});
         }).catch(err => {
             console.log(err);
-        })
-    
-    
-        res.status(200).json({isLoggedIn: isLoggedIn});
-    }
+        });
+    };
 };
 
 
