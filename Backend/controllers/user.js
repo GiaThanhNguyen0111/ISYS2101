@@ -1,6 +1,7 @@
 const passport = require('passport');
 const userModel = require('../models/user');
 const ejs = require('ejs');
+const { response } = require('express');
 
 exports.getRoot = (req, res) => {
     res.send("This is Tabina's SERVER");
@@ -43,16 +44,17 @@ exports.postUserRegister = async (req, res) => {
 };
 
 exports.getUserLogin = async (req, res) => {
-    if (req.session.passport){
+    console.log(req.session.passport);
+    if (req.session.passport) {
         const userId = req.session.passport.user._id;
-        console.log(req.session.passport);
-        let isLoggedIn = false;
-        await userModel.User.findById({_id: userId}).then(result => {
-            result === null ? isLoggedIn = false : isLoggedIn = true;
-            res.status(200).json({isLoggedIn: isLoggedIn});
-        }).catch(err => {
-            console.log(err);
-        });
+        let isAuth = false;
+        await userModel.User.find({_id: userId}).then(response => {
+            response === null ? isAuth = false : isAuth = true; 
+        })
+        console.log(isAuth);
+        res.json({isLoggedIn: isAuth});
+    } else {
+        res.json({isLoggedIn: false});
     };
 };
 
@@ -71,7 +73,7 @@ exports.postUserLogin = (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
+            await passport.authenticate("local", {failureMessage: true})(req, res, function(){
                 res.status(200).json({isLoggedIn: true});
                 console.log("login Successfully");
                 console.log(req.session.passport);

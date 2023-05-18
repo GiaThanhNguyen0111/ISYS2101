@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import '../Css/navbar.css'
 import tabina from '../Image/tabina.png'
 import icon from '../Image/img/recipe/hamburger-menu-icon.png'
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,11 +24,12 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/login').then(res => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/login', {withCredentials: true}).then(res => {
       const isAuth = res.data.isLoggedIn;
+      console.log(isAuth);
       setIsLoggedIn(isAuth);
     })
-  }, [])
+  }, [isLoggedIn]);
 
 
   return (
