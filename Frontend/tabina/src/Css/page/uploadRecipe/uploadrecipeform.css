@@ -1,0 +1,59 @@
+.upload-recipe-form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+}
+
+.upload-recipe-form-heading {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.upload-recipe-form-form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+}
+
+.upload-recipe-label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-recipe-label-input label {
+    font-weight: 600;
+}
+
+.upload-recipe-input-box {
+    height: 35px;
+    border-radius: 7px;
+    border: solid 0.8px;
+    padding: 0 10px;
+}
+
+.upload-recipe-label-input select {
+    cursor: pointer;
+}
+
+.recipe-upload-btn {
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    background-color: black;
+    color: #FFFFFF;
+    border-radius: 20px;
+    align-self: flex-end;
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.recipe-upload-btn:hover {
+    background-color: #FFFFFF;
+    color: black;
+}

@@ -15,9 +15,9 @@ function Footer() {
         </div>
         <div className="footer-column">
           <h2>Recipes</h2>
-          <a>Mexican</a>
-          <a>Italian</a>
-          <a>Asian</a>
+          <a>Appetizer</a>
+          <a>Dinner</a>
+          <a>Dessert</a>
         </div>
         <div className="footer-column">
           <h2>About</h2>
