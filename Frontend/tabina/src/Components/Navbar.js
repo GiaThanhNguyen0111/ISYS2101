@@ -23,7 +23,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    axios.get('/login').then(res => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/login').then(res => {
       const isAuth = res.data.isLoggedIn;
       setIsLoggedIn(isAuth);
     })

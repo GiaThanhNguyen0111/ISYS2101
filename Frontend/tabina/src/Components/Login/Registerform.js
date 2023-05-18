@@ -7,7 +7,7 @@ const Registerform = () => {
         <h1 style={{display: 'flex', justifyContent: 'center', marginTop: '50px'}}>Register</h1>
         
         <div className='formboxre'>
-            <form action='/register' method='POST'>
+            <form action='https://damp-anchorage-45936.herokuapp.com/register' method='POST'>
                 <div>
                 <p style={{fontWeight: '700', fontSize: '20px', marginBottom: 0, paddingBottom: 10}} className='reg-title' >Email</p>
                     <input type='email' placeholder='Username' name='username' className='input-reg'></input>

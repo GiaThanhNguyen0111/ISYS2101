@@ -16,11 +16,11 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
 .then(result => {
-    console.log("Connect to MongoDB successfully");
-    // importData();
+  console.log("Connect to MongoDB successfully");
+  // importData();
 })
 .catch(err => {
-    console.log(err)
+  console.log(err)
 });
 
 const app = express();
@@ -29,8 +29,8 @@ const store = new MongoDBStore({
   collection: 'sessions'
 })
 
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 // Create session
 app.use(session({
