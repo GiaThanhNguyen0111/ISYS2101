@@ -46,7 +46,9 @@ const Navbar = () => {
       boxShadow: pathname === '/posts' ? 'none' : '15px 15px 15px rgba(0, 0, 0, 0.15)', 
       }}>
         <div className='logo-and-icon'>
-          <img src={tabina}  className='nav-logo'/>
+          <Link to={`/`}>
+            <img src={tabina}  className='nav-logo'/>
+          </Link>
           <img src={icon} className='responsive-btn' onClick={myFunction}/>
         </div>
         <div className='btnlist' id='btnlist'>
