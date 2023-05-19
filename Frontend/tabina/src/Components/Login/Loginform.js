@@ -3,7 +3,6 @@ import '../../Css/form.css'
 import Footer from '../Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-axios.defaults.withCredentials = true;
 
 const Loginform = () => {
     const [username, setUserName] = useState('');
@@ -18,7 +17,7 @@ const Loginform = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
-
+    axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         console.log(username);
         console.log(password);
@@ -29,7 +28,8 @@ const Loginform = () => {
         },{
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            },
+            withCredentials: true
         }).then(response => {
             console.log(response.data.isLoggedIn);
             if (response.data.isLoggedIn === true) {

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import '../../Css/page/myAccount/personalInfo.css'
 import axios from 'axios';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 const PersonalInfo = () => {
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-
+  const navigate = useNavigate();
   // const handleOnClick = () => {
   //   const userInfo = {
   //     DOB: dob,
@@ -34,15 +34,16 @@ const PersonalInfo = () => {
   };
 
   const handleLogOut = () => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/logout').then(response => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/logout', {withCredentials: true}).then(response => {
       console.log(response);
     }).catch(err => {
       console.log(err);
     });
+    navigate('/');
   }
 
   useEffect(() => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/api/userInfo').then(response => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/userInfo', {withCredentials: true}).then(response => {
       setAddress(response.data.user[0].Address);
       setDob(response.data.user[0].DOB);
       setEmail(response.data.user[0].username);
@@ -55,7 +56,7 @@ const PersonalInfo = () => {
 
   return (
     <div className='personalinfo-container'>
-      <form className='personalinfo-form' action='/updateUserInfo' method='POST'>
+      <form className='personalinfo-form'>
 
         <label for="email-label" className='text-label'>Email</label>
         <input type="text" id="email-input" name="email" placeholder={email} value={email} onChange={e => changeEmail(e.target.value)}/>
@@ -70,7 +71,7 @@ const PersonalInfo = () => {
         <input type="text" id="address-input" name="address" placeholder={address} value={address} onChange={e => changeAddress(e.target.value)}/>
 
         <div className='personalinfo-btn-container'>
-          <button type='submit' className='personalinfo-btn-update'>UPDATE</button>
+          <button className='personalinfo-btn-update'>UPDATE</button>
           <button className='personalinfo-btn-logout' onClick={handleLogOut}>LOG OUT</button>
         </div>
         

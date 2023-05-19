@@ -7,18 +7,18 @@ exports.getRoot = (req, res) => {
     res.send("This is Tabina's SERVER");
 };
 
-exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
+// exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
 
-exports.postAuthGoogle = passport.authenticate("google", { failureRedirect: "/login" });
+// exports.postAuthGoogle = passport.authenticate("google", { failureRedirect: "/login" });
 
 
-exports.getAuthFacebook = passport.authenticate("facebook");
+// exports.getAuthFacebook = passport.authenticate("facebook");
 
-exports.postAuthFacebook = passport.authenticate("facebook", { failureRedirect: "/login" });
+// exports.postAuthFacebook = passport.authenticate("facebook", { failureRedirect: "/login" });
 
-exports.getUserRegister = (req, res) => {
-    res.render('register')
-};
+// exports.getUserRegister = (req, res) => {
+//     res.render('register')
+// };
 
 exports.postUserRegister = async (req, res) => {
     var currentUser = new userModel.User({
@@ -44,7 +44,6 @@ exports.postUserRegister = async (req, res) => {
 };
 
 exports.getUserLogin = async (req, res) => {
-    console.log(req.session.passport);
     if (req.session.passport) {
         const userId = req.session.passport.user._id;
         let isAuth = false;
@@ -74,23 +73,20 @@ exports.postUserLogin = (req, res) => {
             console.log(err);
         } else {
             await passport.authenticate("local", {failureMessage: true})(req, res, function(){
-                res.status(200).json({isLoggedIn: true});
+                res.json({isLoggedIn: true});
                 console.log("login Successfully");
                 console.log(req.session.passport);
-            })
-        }
+            });
+        };
     });
 };
 
-exports.getUserLogout = async (req, res, next) => {
-    await req.logout(function(err) {
-        if(err){
-            return next(err);
-        }
-        req.session.destroy((err) => {
+exports.getUserLogout = (req, res, next) => {
+    req.session.destroy((err) => {
+        if(err) {
             console.log(err);
-            res.redirect("/");
-        })
+        };
+        res.redirect('/api/login');
     });
 };
 

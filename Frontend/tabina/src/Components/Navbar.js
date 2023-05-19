@@ -5,7 +5,7 @@ import '../Css/navbar.css'
 import tabina from '../Image/tabina.png'
 import icon from '../Image/img/recipe/hamburger-menu-icon.png'
 
-const Navbar = () => {
+const Navbar = (props) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
@@ -29,11 +29,11 @@ const Navbar = () => {
       console.log(isAuth);
       setIsLoggedIn(isAuth);
     })
-  }, [isLoggedIn]);
+  }, []);
 
 
   return (
-      <nav className='nav'>
+      <nav className='nav' style={{display: props.display}}>
         <div className='logo-and-icon'>
           <img src={tabina}  className='nav-logo'/>
           <img src={icon} className='responsive-btn' onClick={myFunction}/>
