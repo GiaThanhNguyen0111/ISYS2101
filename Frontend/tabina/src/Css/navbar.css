@@ -4,11 +4,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
   position: fixed;
   top: 0;
   z-index: 2;
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+  width: calc(100% - 80px);
+  /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15); */
+
+  /* position: sticky; */
 }
     
 /* Logo image */

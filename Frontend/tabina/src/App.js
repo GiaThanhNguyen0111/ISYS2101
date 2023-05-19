@@ -20,6 +20,8 @@ import Tag from './Components/Tag';
 import PolicyPage from './Pages/PoliciesPage'
 import AccountSecurity from './Components/MyAccount/AccountSecurity';
 import UploadRecipeForm from './Components/UploadRecipe/UploadRecipeForm';
+import Posts from './Pages/Posts';
+import PostItem from './Components/Posts/PostItem';
 
 
 const App = () => {
@@ -43,6 +45,8 @@ const App = () => {
         </Route>
         <Route path="/not-found" element={<NotFound />} />
         <Route path='/policy' element={<PolicyPage />}/>
+
+        <Route path='/posts' element={<Posts />}/>
         <Route path='/upload' element={<UploadRecipeForm />}/>
 
         {/* catch all wrong route */}
@@ -52,7 +56,7 @@ const App = () => {
         />
  
         {/* route for component test */}
-        <Route path="/component-test" element={<Tag />} />
+        <Route path="/component-test" element={<PostItem />} />
       </Routes>
     </>
   );
