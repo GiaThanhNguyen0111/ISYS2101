@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import '../Css/footer.css';
 import tabina from '../Image/logo/footer-tabina-logo.png'
 import fb from '../Image/img/recipe/facebook (1).png'
 import ig from '../Image/img/recipe/instagram (1).png'
 import { Link } from "react-router-dom";
 function Footer() {
+  // const myRef = useRef();
+  // const y = myRef.current.offsetTop;
+
   return (
     
-    <footer>
+    <footer id="footer-id">
       <div className="footer-content-container" >
         <img src={tabina} className="footer-logo"/>
         <div className="footer-column">

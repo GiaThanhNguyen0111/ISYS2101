@@ -18,6 +18,8 @@ const PopularRecipe = () => {
     });
   }, []);
 
+  console.log(popularRecipes);
+
   return (
     <div className="popular-recipe-container">
 

@@ -4,11 +4,15 @@ import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import '../Css/navbar.css'
 import tabina from '../Image/tabina.png'
 import icon from '../Image/img/recipe/hamburger-menu-icon.png'
+import { useLocation } from 'react-router-dom';
 
 const Navbar = (props) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  // const [screenSize, setScreenSize] = useState("");
+
+  const { pathname } = useLocation();
+
   function myFunction() {
     var x = document.getElementById("btnlist");
     if (x.className === "btnlist") {
@@ -31,11 +35,20 @@ const Navbar = (props) => {
     })
   }, []);
 
+  // useEffect(() => {
+  //   setScreenSize(window.screen.width);
+  // }, [pathname])
+
+  // console.log(screenSize);
 
   return (
-      <nav className='nav' style={{display: props.display}}>
+      <nav className='nav' style={[{backgroundColor: pathname === '/posts' ? 'rgba(255, 255, 255, 0)': '#FFFFFF', 
+      boxShadow: pathname === '/posts' ? 'none' : '15px 15px 15px rgba(0, 0, 0, 0.15)', 
+      }, {display: props.display}]}>
         <div className='logo-and-icon'>
-          <img src={tabina}  className='nav-logo'/>
+          <Link to={`/`}>
+            <img src={tabina}  className='nav-logo'/>
+          </Link>
           <img src={icon} className='responsive-btn' onClick={myFunction}/>
         </div>
         <div className='btnlist' id='btnlist'>
