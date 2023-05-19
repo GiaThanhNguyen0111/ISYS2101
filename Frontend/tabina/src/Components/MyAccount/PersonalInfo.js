@@ -42,7 +42,7 @@ const PersonalInfo = () => {
   }
 
   useEffect(() => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/userInfo').then(response => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/userInfo').then(response => {
       setAddress(response.data.user[0].Address);
       setDob(response.data.user[0].DOB);
       setEmail(response.data.user[0].username);

@@ -5,6 +5,10 @@ const postController = require('../controllers/post');
 const isLoggedIn = require('../controllers/session');
 
 const router = express.Router();
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 // GET: root
 router.get("/", userController.getRoot);
 

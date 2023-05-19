@@ -28,11 +28,12 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/login').then(res => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/login', {withCredentials: true}).then(res => {
       const isAuth = res.data.isLoggedIn;
+      console.log(isAuth);
       setIsLoggedIn(isAuth);
     })
-  }, [])
+  }, [isLoggedIn]);
 
   // useEffect(() => {
   //   setScreenSize(window.screen.width);

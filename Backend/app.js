@@ -24,14 +24,22 @@ mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD
 });
 
 const app = express();
+app.use(bodyParser.urlencoded({extended: true}));
 const store = new MongoDBStore({
   uri: `mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?w=majority`,
   collection: 'sessions'
 })
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.set('view engine', 'ejs');
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+    credentials: true,
+    exposedHeaders: ["set-cookie"],
+    allowedHeaders: ['Content-Type', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept'],
+  };
+app.use(cors(corsOptions));
+
 // Create session
 app.use(session({
     secret: "Our little secret.",
@@ -67,11 +75,11 @@ const importData = async () => {
 mongoose.set('bufferCommands', false);
 
 
-app.use(userRoute);
+app.use('/api',userRoute);
 
-app.use(ingredientRoute);
+app.use('/api',ingredientRoute);
 
-app.use(recipesRoute);
+app.use('/api',recipesRoute);
 
 // const data = JSON.parse(fs.readFileSync('./util/recipes.json', 'utf-8'))
 
