@@ -1,9 +1,10 @@
 const passport = require('passport');
 const userModel = require('../models/user');
 const ejs = require('ejs');
+const { response } = require('express');
 
 exports.getRoot = (req, res) => {
-    res.send("Hello");
+    res.send("This is Tabina's SERVER");
 };
 
 exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
@@ -43,19 +44,18 @@ exports.postUserRegister = async (req, res) => {
 };
 
 exports.getUserLogin = async (req, res) => {
-    if (req.session.passport){
+    console.log(req.session.passport);
+    if (req.session.passport) {
         const userId = req.session.passport.user._id;
-        console.log(req.session.passport);
-        let isLoggedIn = false;
-        await userModel.User.findById({_id: userId}).then(result => {
-            result === null ? isLoggedIn = false : isLoggedIn = true
-        }).catch(err => {
-            console.log(err);
+        let isAuth = false;
+        await userModel.User.find({_id: userId}).then(response => {
+            response === null ? isAuth = false : isAuth = true; 
         })
-    
-    
-        res.status(200).json({isLoggedIn: isLoggedIn});
-    }
+        console.log(isAuth);
+        res.json({isLoggedIn: isAuth});
+    } else {
+        res.json({isLoggedIn: false});
+    };
 };
 
 
@@ -73,8 +73,8 @@ exports.postUserLogin = (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
-                res.redirect("/");
+            await passport.authenticate("local", {failureMessage: true})(req, res, function(){
+                res.status(200).json({isLoggedIn: true});
                 console.log("login Successfully");
                 console.log(req.session.passport);
             })
@@ -87,7 +87,10 @@ exports.getUserLogout = async (req, res, next) => {
         if(err){
             return next(err);
         }
-        res.redirect("/");
+        req.session.destroy((err) => {
+            console.log(err);
+            res.redirect("/");
+        })
     });
 };
 
@@ -116,7 +119,6 @@ exports.updateUserInformation = async (req, res, next) => {
         Phone: Phone
     }). then(response => {
         console.log(response);
-        res.redirect('/myaccount/accpersonalInfo');
     }).catch(err => {
         console.log(err);
     });

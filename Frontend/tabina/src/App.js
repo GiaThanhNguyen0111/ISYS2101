@@ -19,6 +19,7 @@ import NotFound from './Pages/NotFound';
 import Tag from './Components/Tag';
 import PolicyPage from './Pages/PoliciesPage'
 import AccountSecurity from './Components/MyAccount/AccountSecurity';
+import UploadRecipeForm from './Components/UploadRecipe/UploadRecipeForm';
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
         </Route>
         <Route path="/not-found" element={<NotFound />} />
         <Route path='/policy' element={<PolicyPage />}/>
+        <Route path='/upload' element={<UploadRecipeForm />}/>
 
         {/* catch all wrong route */}
         <Route

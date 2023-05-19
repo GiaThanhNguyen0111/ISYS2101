@@ -8,8 +8,12 @@
   },
   "author": "Gia Thanh Nguyen, Bao Hoang, Huy Doan, Khue",
   "license": "ISC",
+  "engines": {
+    "node": "16.16.0"
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
+    "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",

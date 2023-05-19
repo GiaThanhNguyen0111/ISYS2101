@@ -13,7 +13,7 @@ const PopularRecipe = () => {
   const [popularRecipes, setPopularRecipes] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/recipe`).then(response => {
+    axios.get(`https://damp-anchorage-45936.herokuapp.com/api/recipe`).then(response => {
       setPopularRecipes(response.data.recipes.slice(0, 9));
     });
   }, []);

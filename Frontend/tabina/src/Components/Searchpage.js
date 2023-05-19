@@ -98,7 +98,7 @@ const Filtertab = () => {
   useEffect(() => {
     const urlSearch = window.location.search;
     console.log(urlSearch);
-    axios.get(`http://localhost:3001/recipe${urlSearch}`).then(response => {
+    axios.get(`https://damp-anchorage-45936.herokuapp.com/api/recipe${urlSearch}`).then(response => {
       setCount(response.data.recipes.length);
       setRecievedRecipes(response.data.recipes);
       console.log(response.data.recipes);
