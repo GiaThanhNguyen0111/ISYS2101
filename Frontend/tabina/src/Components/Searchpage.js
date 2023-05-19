@@ -234,12 +234,10 @@ const Filtertab = () => {
         <button className="filter-tab-button" onClick={toggleOffcanvas} > 
         Filter
       </button>
-      {showOffcanvas && (
-        <div className="offcanvas">
+ 
           <div className="filter-tab">
             <div className="heading-tab">
               <p>Ingredients</p>
-              <span style={{position: 'absolute', marginLeft: '300px', top: '20px', fontSize: '25px', fontWeight: '700'}}>x</span>
             </div>
             <div className="headtag">
               <div className="result-container">
@@ -280,7 +278,6 @@ const Filtertab = () => {
         ))}
           </div>
           
-        </div>
       
       
       </>
