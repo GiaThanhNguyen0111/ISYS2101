@@ -11,7 +11,7 @@
   width: calc(100% - 80px);
   /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15); */
 
-  /* position: sticky; */
+  position: sticky;
 }
     
 /* Logo image */

@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../Css/page/posts/posts.css";
 import hills from '../Image/img/post/hills.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import postsData from "../test-data/postsData";
 import PostItem from "../Components/Posts/PostItem";
 import tabina from '../Image/tabina.png'
 
 const Posts = () => {
   
+  const navigate = useNavigate();
+
+  const navigateUpload = () => {
+    navigate('/upload');
+  }
+
   return (
     <>
     <div className="posts">
@@ -17,7 +23,7 @@ const Posts = () => {
                 <Link className="posts-header-nav-link">Posts</Link>
                 <Link className="posts-header-nav-link">My Posts</Link>
                 <div className="posts-header-nav-link-button">
-                  <button className="posts-header-nav-button">Upload</button>
+                  <button className="posts-header-nav-button" onClick={navigateUpload}>Upload</button>
                 </div>
                 
             </div>

@@ -40,7 +40,7 @@ const PostItem = (props) => {
             <div className='post-item-info'>
                 <span className='post-item-info-author'>{test[0].author_id}</span>
                 <img src={dot} className='post-item-info-img' />
-                <span className='post-item-info-time'>{test[0].date}</span>
+                <span className='post-item-info-author'>{test[0].date}</span>
             </div>
             <div className='post-item-content'>
                 <div className='post-item-content-block'>

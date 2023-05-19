@@ -16,7 +16,10 @@ function Hero() {
           <Link to={`/recipes`}>
             <button className="hero-cta" id='get-recipe'>GET RECIPES</button>  
           </Link>
+          
+          <Link to={`/posts`}>
           <button className="hero-cta" id='share-recipe'>SHARE RECIPES</button>
+          </Link>
         </div>
       </div>
 

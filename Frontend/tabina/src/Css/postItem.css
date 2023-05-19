@@ -12,7 +12,7 @@
     display: inline-block;
     
     font-weight: 700;
-    font-size: 40px;
+    font-size: 4em;
     
     margin: 25px 30px 2px 30px;
 }
@@ -27,7 +27,8 @@
 }
 
 .post-item-info-author {
-
+    font-weight: 300;
+    font-size: 2em;
 }
 
 .post-item-info-img {
@@ -59,7 +60,7 @@
 
 .post-item-content-block-name {
     font-weight: 600;
-    font-size: 30px;
+    font-size: 3em;
 
     max-width: 219px;
     /* flex-grow: 1; */
@@ -67,7 +68,7 @@
 
 .post-item-content-block-list {
     font-weight: 300;
-    font-size: 30px;
+    font-size: 3em;
     text-align: justify;
     /* max-width: 921px; */
 
