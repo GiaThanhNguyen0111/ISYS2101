@@ -5,6 +5,10 @@ const postController = require('../controllers/post');
 const isLoggedIn = require('../controllers/session');
 
 const router = express.Router();
+router.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://nameless-river-06908.herokuapp.com');
+    next();
+});
 // GET: root
 router.get("/", userController.getRoot);
 
@@ -14,23 +18,23 @@ router.get('/login', userController.getUserLogin);
 router.post('/login', userController.postUserLogin);
 
 // GET: Register page.
-router.get('/register', userController.getUserRegister);
+// router.get('/register', userController.getUserRegister);
 // POST: Registered data. 
 router.post('/register', userController.postUserRegister);
 
 router.get('/logout', userController.getUserLogout);
 
-router.get("/auth/google", userController.getAuthGoogle);
-router.post("/auth/google/secrets", userController.postAuthGoogle, function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
+// router.get("/auth/google", userController.getAuthGoogle);
+// router.post("/auth/google/secrets", userController.postAuthGoogle, function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+// });
 
-router.get("/auth/facebook", userController.getAuthFacebook);
-router.post("/auth/google/facebook", userController.postAuthFacebook, function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
+// router.get("/auth/facebook", userController.getAuthFacebook);
+// router.post("/auth/google/facebook", userController.postAuthFacebook, function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+// });
 
 router.post('/updateUserInfo', isLoggedIn, userController.updateUserInformation);
 

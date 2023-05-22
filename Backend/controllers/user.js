@@ -1,23 +1,24 @@
 const passport = require('passport');
 const userModel = require('../models/user');
 const ejs = require('ejs');
+const { response } = require('express');
 
 exports.getRoot = (req, res) => {
     res.send("This is Tabina's SERVER");
 };
 
-exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
+// exports.getAuthGoogle = passport.authenticate("google", { scope: ['profile'] });
 
-exports.postAuthGoogle = passport.authenticate("google", { failureRedirect: "/login" });
+// exports.postAuthGoogle = passport.authenticate("google", { failureRedirect: "/login" });
 
 
-exports.getAuthFacebook = passport.authenticate("facebook");
+// exports.getAuthFacebook = passport.authenticate("facebook");
 
-exports.postAuthFacebook = passport.authenticate("facebook", { failureRedirect: "/login" });
+// exports.postAuthFacebook = passport.authenticate("facebook", { failureRedirect: "/login" });
 
-exports.getUserRegister = (req, res) => {
-    res.render('register')
-};
+// exports.getUserRegister = (req, res) => {
+//     res.render('register')
+// };
 
 exports.postUserRegister = async (req, res) => {
     var currentUser = new userModel.User({
@@ -33,26 +34,26 @@ exports.postUserRegister = async (req, res) => {
     await userModel.User.register(currentUser, req.body.password, function(err, user) {
         if(err) {
             console.log(err);
-            res.redirect("/register");
+            res.redirect('/api/login')
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/");
+                res.redirect("/api/login");
             })
         };
     })
 };
 
 exports.getUserLogin = async (req, res) => {
-    if (req.session.passport){
+    if (req.session.passport) {
         const userId = req.session.passport.user._id;
-        console.log(req.session.passport);
-        let isLoggedIn = false;
-        await userModel.User.findById({_id: userId}).then(result => {
-            result === null ? isLoggedIn = false : isLoggedIn = true;
-            res.status(200).json({isLoggedIn: isLoggedIn});
-        }).catch(err => {
-            console.log(err);
-        });
+        let isAuth = false;
+        await userModel.User.find({_id: userId}).then(response => {
+            response === null ? isAuth = false : isAuth = true; 
+        })
+        console.log(isAuth);
+        res.json({isLoggedIn: isAuth});
+    } else {
+        res.json({isLoggedIn: false});
     };
 };
 
@@ -71,24 +72,21 @@ exports.postUserLogin = (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            await passport.authenticate("local", {failureRedirect: "/login", failureMessage: true})(req, res, function(){
-                res.status(200).json({isLoggedIn: true});
+            await passport.authenticate("local", {failureMessage: true})(req, res, function(){
+                res.json({isLoggedIn: true});
                 console.log("login Successfully");
                 console.log(req.session.passport);
-            })
-        }
+            });
+        };
     });
 };
 
-exports.getUserLogout = async (req, res, next) => {
-    await req.logout(function(err) {
-        if(err){
-            return next(err);
-        }
-        req.session.destroy((err) => {
+exports.getUserLogout = (req, res, next) => {
+    req.session.destroy((err) => {
+        if(err) {
             console.log(err);
-            res.redirect("/");
-        })
+        };
+        res.redirect('/api/login');
     });
 };
 
@@ -104,14 +102,14 @@ exports.findUserById = async (req, res, next) => {
     })
 }
 
-exports.updateUserInformation = async (req, res, next) => {
+exports.updateUserInformation = (req, res, next) => {
     const userId = req.session.passport.user._id;
-    const DOB = req.body.date_of_birth;
+    const DOB = req.body.dob;
     const Address = req.body.address;
     const Phone = req.body.phoneNumber;
 
-    console.log(req.user);
-    await userModel.User.findOneAndUpdate({_id: userId}, {
+    console.log(req.session.passport.user);
+    userModel.User.findOneAndUpdate({_id: userId}, {
         DOB: DOB,
         Address: Address,
         Phone: Phone

@@ -12,6 +12,7 @@ const ingredientRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 const cors = require('cors');
 const fs = require('fs');
+const { NONAME } = require("dns");
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?retryWrites=true&w=majority`)
@@ -24,23 +25,50 @@ mongoose.connect(`mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD
 });
 
 const app = express();
+app.use(bodyParser.urlencoded({extended: true}));
 const store = new MongoDBStore({
   uri: `mongodb+srv://${process.env.USER_ATLAS}:${process.env.PASSWORD_ATLAS}@cluster0.uqccxfj.mongodb.net/recipeDB1?w=majority`,
   collection: 'sessions'
 })
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.set('view engine', 'ejs');
+// var corsOptions = {
+//     origin: ['http://localhost:3000', 'https://551c-203-210-139-59.ngrok-free.app'],
+//     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+//     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+//     credentials: true,
+//     exposedHeaders: ["set-cookie"],
+//     allowedHeaders: ['Content-Type', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+//   };
+// app.use(cors(corsOptions));
+
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'https://nameless-river-06908.herokuapp.com');
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,content-type,set-cookie');
+
+  res.setHeader('Access-Control-Expose-Headers', 'set-cookie');
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
+
 // Create session
+app.set('trust proxy', 1);
 app.use(session({
     secret: "Our little secret.",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      httpOnly: true,
-      secure: false,
-      maxAge: 24* 60 * 60 * 1000
+      maxAge: 24* 60 * 60 * 1000,
+      sameSite: 'none',
+      httpOnly: false,
+      secure: true
     },
     store: store
 }));
@@ -67,11 +95,11 @@ const importData = async () => {
 mongoose.set('bufferCommands', false);
 
 
-app.use(userRoute);
+app.use('/api',userRoute);
 
-app.use(ingredientRoute);
+app.use('/api',ingredientRoute);
 
-app.use(recipesRoute);
+app.use('/api',recipesRoute);
 
 // const data = JSON.parse(fs.readFileSync('./util/recipes.json', 'utf-8'))
 

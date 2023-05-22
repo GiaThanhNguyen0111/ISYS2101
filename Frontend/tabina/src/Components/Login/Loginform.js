@@ -4,12 +4,12 @@ import Footer from '../Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Loginform = () => {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    
     const handleChange = (e) => {
         setUserName(e.target.value);
     };
@@ -17,17 +17,20 @@ const Loginform = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
-
+    axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
-        console.log(username);
-        console.log(password);
         e.preventDefault();
-        axios.post('https://damp-anchorage-45936.herokuapp.com/login',{
+        axios.post('https://damp-anchorage-45936.herokuapp.com/api/login',{
             username: username,
             password: password
+        },{
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            withCredentials: true
         }).then(response => {
             console.log(response.data.isLoggedIn);
-            if (response.data.isLoggedIn) {
+            if (response.data.isLoggedIn === true) {
                 navigate('/');
             } else {
                 navigate('/login');

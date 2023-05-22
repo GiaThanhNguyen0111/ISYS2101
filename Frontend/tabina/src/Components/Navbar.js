@@ -4,10 +4,15 @@ import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import '../Css/navbar.css'
 import tabina from '../Image/tabina.png'
 import icon from '../Image/img/recipe/hamburger-menu-icon.png'
-const Navbar = () => {
+import { useLocation } from 'react-router-dom';
+
+const Navbar = (props) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  // const [screenSize, setScreenSize] = useState("");
+
+  const { pathname } = useLocation();
+
   function myFunction() {
     var x = document.getElementById("btnlist");
     if (x.className === "btnlist") {
@@ -23,17 +28,25 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    axios.get('https://damp-anchorage-45936.herokuapp.com/login').then(res => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/login', {withCredentials: true}).then(res => {
       const isAuth = res.data.isLoggedIn;
+      console.log(isAuth);
       setIsLoggedIn(isAuth);
     })
-  }, [])
+  }, []);
 
+  // useEffect(() => {
+  //   setScreenSize(window.screen.width);
+  // }, [pathname])
+
+  // console.log(screenSize);
 
   return (
-      <nav className='nav'>
+      <nav className='nav' style={{display: props.display}}>
         <div className='logo-and-icon'>
-          <img src={tabina}  className='nav-logo'/>
+          <Link to={`/`}>
+            <img src={tabina}  className='nav-logo'/>
+          </Link>
           <img src={icon} className='responsive-btn' onClick={myFunction}/>
         </div>
         <div className='btnlist' id='btnlist'>
