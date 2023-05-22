@@ -18,7 +18,7 @@ class Layout extends React.Component {
         return (
         <>
         <div className='layout-container'>
-            <Navbar />
+            {/* <Navbar /> */}
             <main>{this.props.children}</main>
             <Footer />
         </div>

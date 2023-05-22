@@ -8,7 +8,7 @@ import Navbar from '../Components/Navbar';
 function Home() {
     return (
         <div>
-        <Navbar display={"none"}/>
+        <Navbar/>
         <Hero />
         <PopularRecipe />
         <MoreThanRecipe  />

@@ -1,9 +1,12 @@
 import React from 'react';
 import "../Css/policy.css"
+import Navbar from '../Components/Navbar';
 
 function PoliciesPage() {
   return (
     <div>
+      <Navbar />
+
       <h1 className="page-title">Privacy Policy and Terms of Use</h1>
       <p className='page-text'>At Tabina, we value the privacy of our users and take our responsibility for protecting it seriously. This Privacy Policy outlines how we collect, use, disclose, and process personal information in connection with our cooking recipe website (the "Website") and any mobile applications (the "Apps") that link to this Privacy Policy. We are dedicated to providing our users with the best possible experience and strive to maintain the trust of our community of users. This policy describes how we collect, use, and disclose information in connection with our Services, which include recipes, cooking tips, and related content, products, and features offered on or through the Website and Apps.</p>
 

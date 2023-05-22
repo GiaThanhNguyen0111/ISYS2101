@@ -7,6 +7,7 @@ import Difficulty from './Searchpage/Filtertab/Difficuly';
 import StarRating from './Searchpage/Filtertab/StarRating';
 import Mealtype from './Searchpage/Filtertab/Mealtype';
 import Category from './Searchpage/Filtertab/Category';
+import Navbar from './Navbar';
 
 const LazyRecipeItem = lazy(() => import('./RecipeItem'));
 
@@ -220,6 +221,7 @@ const Filtertab = () => {
     return (
 
         <>
+      <Navbar />
       <div className='page-contain'>
         <div className="searchbar-container">
                 <input type="text" placeholder="Search" className='searchbar' onChange={handleChange} value={searchTerm} />

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../../Css/registerform.css'
+import Navbar from '../Navbar';
 
 const Registerform = () => {
     const navigate = useNavigate();
