@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import postsData from "../test-data/postsData";
 import PostItem from "../Components/Posts/PostItem";
 import tabina from '../Image/tabina.png'
+import axios from "axios";
 
 const Posts = () => {
   
@@ -13,6 +14,17 @@ const Posts = () => {
   const navigateUpload = () => {
     navigate('/upload');
   }
+
+  useEffect(() => {
+    axios.get('https://damp-anchorage-45936.herokuapp.com/api/posts',{
+      withCredentials: true
+    }).then(response => {
+      const posts = response.data;
+      console.log(posts);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [])
 
   return (
     <>

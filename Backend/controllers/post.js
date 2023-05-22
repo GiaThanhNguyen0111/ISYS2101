@@ -16,7 +16,6 @@ exports.postPost = async (req, res, next) => {
 
         await newPost.save().then(response => {
             console.log(response);
-            res.redirect('/posts');
         });
     } 
     catch (err) {

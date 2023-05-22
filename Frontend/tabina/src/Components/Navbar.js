@@ -33,7 +33,7 @@ const Navbar = (props) => {
       console.log(isAuth);
       setIsLoggedIn(isAuth);
     })
-  }, []);
+  }, [isLoggedIn]);
 
   // useEffect(() => {
   //   setScreenSize(window.screen.width);
