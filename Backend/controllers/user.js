@@ -34,10 +34,10 @@ exports.postUserRegister = async (req, res) => {
     await userModel.User.register(currentUser, req.body.password, function(err, user) {
         if(err) {
             console.log(err);
-            res.redirect("/register");
+            res.redirect('/api/login')
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/");
+                res.redirect("/api/login");
             })
         };
     })
@@ -102,14 +102,14 @@ exports.findUserById = async (req, res, next) => {
     })
 }
 
-exports.updateUserInformation = async (req, res, next) => {
+exports.updateUserInformation = (req, res, next) => {
     const userId = req.session.passport.user._id;
-    const DOB = req.body.date_of_birth;
+    const DOB = req.body.dob;
     const Address = req.body.address;
     const Phone = req.body.phoneNumber;
 
-    console.log(req.user);
-    await userModel.User.findOneAndUpdate({_id: userId}, {
+    console.log(req.session.passport.user);
+    userModel.User.findOneAndUpdate({_id: userId}, {
         DOB: DOB,
         Address: Address,
         Phone: Phone

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../Css/page/myAccount/personalInfo.css'
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const PersonalInfo = () => {
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
@@ -40,7 +40,28 @@ const PersonalInfo = () => {
       console.log(err);
     });
     navigate('/');
-  }
+  };
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+
+      axios.post('https://damp-anchorage-45936.herokuapp.com/api/updateUserInfo', {
+        dob: dob,
+        phoneNumber: phoneNumber,
+        address: address
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        withCredentials: true
+      }).then(response => {
+        console.log(response);
+      }).then(() => {
+        navigate("/myaccount/accpersonalinfo");
+      }).catch(err => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     axios.get('https://damp-anchorage-45936.herokuapp.com/api/userInfo', {withCredentials: true}).then(response => {
@@ -56,7 +77,7 @@ const PersonalInfo = () => {
 
   return (
     <div className='personalinfo-container'>
-      <form className='personalinfo-form'>
+      <form className='personalinfo-form' onSubmit={handleSubmit}>
 
         <label for="email-label" className='text-label'>Email</label>
         <input type="text" id="email-input" name="email" placeholder={email} value={email} onChange={e => changeEmail(e.target.value)}/>
@@ -71,7 +92,7 @@ const PersonalInfo = () => {
         <input type="text" id="address-input" name="address" placeholder={address} value={address} onChange={e => changeAddress(e.target.value)}/>
 
         <div className='personalinfo-btn-container'>
-          <button className='personalinfo-btn-update'>UPDATE</button>
+          <button type='submit' className='personalinfo-btn-update'>UPDATE</button>
           <button className='personalinfo-btn-logout' onClick={handleLogOut}>LOG OUT</button>
         </div>
         

@@ -59,6 +59,7 @@ app.use(function (req, res, next) {
 });
 
 // Create session
+app.set('trust proxy', 1);
 app.use(session({
     secret: "Our little secret.",
     resave: false,
@@ -66,7 +67,8 @@ app.use(session({
     cookie: {
       maxAge: 24* 60 * 60 * 1000,
       sameSite: 'none',
-      httpOnly: false
+      httpOnly: false,
+      secure: true
     },
     store: store
 }));

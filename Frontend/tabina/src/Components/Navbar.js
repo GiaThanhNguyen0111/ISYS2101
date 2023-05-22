@@ -42,9 +42,7 @@ const Navbar = (props) => {
   // console.log(screenSize);
 
   return (
-      <nav className='nav' style={[{backgroundColor: pathname === '/posts' ? 'rgba(255, 255, 255, 0)': '#FFFFFF', 
-      boxShadow: pathname === '/posts' ? 'none' : '15px 15px 15px rgba(0, 0, 0, 0.15)', 
-      }, {display: props.display}]}>
+      <nav className='nav' style={{display: props.display}}>
         <div className='logo-and-icon'>
           <Link to={`/`}>
             <img src={tabina}  className='nav-logo'/>

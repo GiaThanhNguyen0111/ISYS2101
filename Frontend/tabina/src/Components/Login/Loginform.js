@@ -19,8 +19,6 @@ const Loginform = () => {
     }
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
-        console.log(username);
-        console.log(password);
         e.preventDefault();
         axios.post('https://damp-anchorage-45936.herokuapp.com/api/login',{
             username: username,
