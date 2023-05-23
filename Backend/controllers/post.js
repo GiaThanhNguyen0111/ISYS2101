@@ -1,22 +1,25 @@
 const postModel = require('../models/post');
 
-exports.postPost = async (req, res, next) => {
+exports.postPost = (req, res) => {
     const userId = req.session.passport._id;
     const title = req.body.title;
     const instruction = req.body.instruction;
     const ingredients = req.body.ingredients.split(',');
+    const level = req.body.level;
 
     try {
         const newPost = new postModel.Post ({
             author_id: userId,
             title: title,
             instruction: instruction,
-            ingredients: ingredients
+            ingredients: ingredients,
+            level: level
         });
 
-        await newPost.save().then(response => {
+        newPost.save().then(response => {
             console.log(response);
         });
+        res.send('Upload succeed');
     } 
     catch (err) {
         res.status(500).json({message: err.message});
@@ -58,11 +61,13 @@ exports.updatePostById = async (req, res) => {
         const title = req.body.title;
         const instruction = req.body.instruction;
         const ingredients = req.body.ingredient.split(',');
+        const level = req.body.level; 
 
         await postModel.Post.findOneAndUpdate({_id: postId}, {
             title: title,
             instruction: instruction,
-            ingredients: ingredients
+            ingredients: ingredients,
+            level: level
         });
         res.redirect('/posts');
     }

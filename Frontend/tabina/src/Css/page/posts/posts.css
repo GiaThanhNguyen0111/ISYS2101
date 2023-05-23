@@ -86,7 +86,7 @@
 
 .posts-body-content {
     margin: 0px 0px 100px 50px;
-
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 45px;

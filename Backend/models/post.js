@@ -1,12 +1,12 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
-
 const postSchema = new mongoose.Schema({
-    author_id: ObjectId,
+    author_id: String,
     title: String,
     instruction: String,
-    ingredients: Array
+    ingredients: Array,
+    level: String
 }, {
     timestamps: true
 });

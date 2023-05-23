@@ -9,6 +9,8 @@ import axios from "axios";
 
 const Posts = () => {
   
+  const [loadedData, setLoadedData] = useState([]);
+
   const navigate = useNavigate();
 
   const navigateUpload = () => {
@@ -19,13 +21,14 @@ const Posts = () => {
     axios.get('https://damp-anchorage-45936.herokuapp.com/api/posts',{
       withCredentials: true
     }).then(response => {
-      const posts = response.data;
+      const posts = response.data.posts;
       console.log(posts);
+      setLoadedData([...posts]);
     }).catch(err => {
       console.log(err);
     });
   }, [])
-
+  console.log(loadedData);
   return (
     <>
     <div className="posts">
@@ -42,12 +45,11 @@ const Posts = () => {
         </div>
         <div className="posts-body">
             <div className="posts-body-content">
-              {/* {postsData.map((post) => {
-                <PostItem post={post} />
-              })} */}
-              <PostItem />
-              <PostItem />
-              <PostItem />
+              {loadedData.map((post) => (
+                <div key={post._id}>
+                  <PostItem post={post} />
+                </div>
+              ))}
             </div>
             <div className="posts-body-ad">
               <img src={tabina}  className='nav-logo'/>

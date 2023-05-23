@@ -23,12 +23,14 @@ function UploadRecipeForm() {
         setLevel(e.target.value);
     };
 
+    axios.defaults.withCredentials =true;
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('https://damp-anchorage-45936.herokuapp.com/api/post', {
             title: title,
             ingredients: ingredients,
-            instruction: instruction
+            instruction: instruction,
+            level: level
         }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
