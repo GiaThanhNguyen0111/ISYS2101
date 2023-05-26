@@ -43,6 +43,7 @@ const Loginform = () => {
 
     return (
         <>
+        <Navbar/>
         <div className='loginpage-container'>
             <p style={{display: 'flex', justifyContent: 'center', marginTop: '50px', fontSize: '30px', fontWeight: 550 }}>Login</p>
 

@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import tabina from '../Image/logo/Tabina_transparent.png'
 import { Link } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
 import '../Css/page/not-found.css'
 
 const NotFound = () => {
     return (
         <>
+        <Navbar />
         <div className='not-found'>
             <img src={tabina} />
             <h1>404</h1>

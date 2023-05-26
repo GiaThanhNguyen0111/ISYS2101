@@ -32,7 +32,7 @@ function PoliciesPage() {
       <p className="policy-text">We may update this policy from time to time to reflect changes in our practices or applicable laws. If we make any material changes to this policy, we will notify you by email or by posting a notice on our Website and Apps. Your continued use of our Website and Apps after any changes to this policy will constitute your acceptance of the changes.</p>
 
       <h2 className="policy-title">Contact Us</h2>
-      <p className="policy-text">If you have any questions or concerns about this policy, please contact us at support@tabina.com. We are committed to addressing your concerns and resolving any issues you may have.</p>
+      <p className="policy-text" style={{display: 'inline-block'}}>If you have any questions or concerns about this policy, please contact us at <strong>support@tabina.com</strong>. We are committed to addressing your concerns and resolving any issues you may have.</p>
     </div>
   );
 }

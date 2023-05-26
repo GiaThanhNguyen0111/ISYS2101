@@ -14,23 +14,37 @@ function Footer() {
       <div className="footer-content-container" >
         <img src={tabina} className="footer-logo"/>
         <div className="footer-column">
-          <h2>Home</h2>
+          <Link to={`/home`} style={{textDecoration: 'none'}}>
+            <h2>Home</h2>
+          </Link> 
         </div>
         <div className="footer-column">
-          <h2>Recipes</h2>
-          <a>Appetizer</a>
-          <a>Dinner</a>
-          <a>Dessert</a>
+          <Link to={`/recipes`} style={{textDecoration: 'none'}}>
+            <h2>Recipes</h2>
+          </Link> 
+          <Link to={`/recipes?mealType=appetizer`}>
+            Appetizer
+          </Link> 
+          <Link to={`/recipes?category=grains`}>
+            Grains
+          </Link> 
+          <Link to={`/recipes?mealType=dessert`}>
+            Dessert
+          </Link> 
         </div>
         <div className="footer-column">
-          <h2>About</h2>
+          <Link to={`/policy`} style={{textDecoration: 'none'}}>
+            <h2>About</h2>
+          </Link> 
           <Link to='/policy' >Privacy</Link>
           <Link to='/policy' >Policies</Link>
         </div>
         <div className="footer-column">
-          <h2>Contact</h2>
+          <Link to={`/contact`} style={{textDecoration: 'none'}}>
+            <h2>Contact</h2>
+          </Link> 
           <a href="https://www.facebook.com/tran.thanh.ne/" target="_blank"><img src={fb}/>Facebook</a>
-          <a><img src={ig}/>Instagram</a>
+          <a href="https://www.instagram.com/"><img src={ig}/>Instagram</a>
         </div>
       </div>
       <div className="footer-copyright">Copyright c 2023 Group 14</div>

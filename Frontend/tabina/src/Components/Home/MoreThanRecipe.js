@@ -8,6 +8,8 @@ import dashboard from '../../Image/img/recipe/dashboard.png';
 import cooking from '../../Image/img/recipe/cooking.png';
 import recipe from '../../Image/img/recipe/recipe.png';
 import fastFood from '../../Image/img/recipe/fast-food.png';
+import { Link } from 'react-router-dom';
+
 import "../../Css/page/home/moreThanRecipe.css";
 
 
@@ -34,7 +36,9 @@ function MoreThanRecipe() {
           <li>Diverse food labels<img src={fastFood} alt='icon'/></li>
         </ul>
 
-        <button className='mtr-about-btn'>ABOUT</button>
+        <Link to={`/policy`}>
+          <button className='mtr-about-btn'>ABOUT</button>
+        </Link>
       </div>
     </div>
   )

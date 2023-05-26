@@ -36,7 +36,6 @@ const Posts = () => {
             <img src={hills} className="posts-header-background" />
             <div className="posts-header-nav">
                 <Link className="posts-header-nav-link">Posts</Link>
-                <Link className="posts-header-nav-link">My Posts</Link>
                 <div className="posts-header-nav-link-button">
                   <button className="posts-header-nav-button" onClick={navigateUpload}>Upload</button>
                 </div>

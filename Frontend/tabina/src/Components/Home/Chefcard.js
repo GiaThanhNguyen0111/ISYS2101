@@ -8,6 +8,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import '../../Css/page/home/chefcard.css'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Link } from 'react-router-dom';
 
 const Chefcard = () => {
     return (
@@ -63,7 +64,9 @@ const Chefcard = () => {
             </Splide>
 
             <div>
+                <Link to={`/recipes`}>
                 <button className='rcpbtn'>VIEW MORE RECIPE</button>
+                </Link>
             </div>
 
         </div>

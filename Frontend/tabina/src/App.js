@@ -22,6 +22,7 @@ import AccountSecurity from './Components/MyAccount/AccountSecurity';
 import UploadRecipeForm from './Components/UploadRecipe/UploadRecipeForm';
 import Posts from './Pages/Posts';
 import PostItem from './Components/Posts/PostItem';
+import ContactPage from './Pages/ContactPage';
 
 
 const App = () => {
@@ -34,10 +35,11 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Loginform />} />
         <Route path="/register" element={<Registerform />} />
         <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
-        <Route path='/search' element={<Filtertab/>} />
+        {/* <Route path='/search' element={<Filtertab/>} /> */}
         <Route path='/recipes' element={< Filtertab/>} />
         <Route path='/myaccount' element={< MyAccount/>}> 
           <Route path="/myaccount/accpersonalInfo" element={<PersonalInfo />} />
@@ -45,6 +47,7 @@ const App = () => {
         </Route>
         <Route path="/not-found" element={<NotFound />} />
         <Route path='/policy' element={<PolicyPage />}/>
+        <Route path='/contact' element={<ContactPage />}/>
 
         <Route path='/posts' element={<Posts />}/>
         <Route path='/upload' element={<UploadRecipeForm />}/>
