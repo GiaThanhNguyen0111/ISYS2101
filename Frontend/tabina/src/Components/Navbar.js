@@ -42,7 +42,7 @@ const Navbar = (props) => {
   // console.log(screenSize);
 
   return (
-      <nav className='nav' style={{display: props.display}}>
+      <nav className='nav' style={{background: props.display, boxShadow: props.display}}>
         <div className='logo-and-icon'>
           <Link to={`/`}>
             <img src={tabina}  className='nav-logo'/>

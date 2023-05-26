@@ -6,6 +6,7 @@ import postsData from "../test-data/postsData";
 import PostItem from "../Components/Posts/PostItem";
 import tabina from '../Image/tabina.png'
 import axios from "axios";
+import Navbar from "../Components/Navbar";
 
 const Posts = () => {
   
@@ -31,7 +32,8 @@ const Posts = () => {
   console.log(loadedData);
   return (
     <>
-    <div className="posts">
+    <Navbar display='none'/>
+    <div className="posts" >
         <div className="posts-header">
             <img src={hills} className="posts-header-background" />
             <div className="posts-header-nav">
