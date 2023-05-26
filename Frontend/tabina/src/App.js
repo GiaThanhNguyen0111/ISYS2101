@@ -43,7 +43,7 @@ const App = () => {
         <Route path='/recipes' element={< Filtertab/>} />
         <Route path='/myaccount' element={< MyAccount/>}> 
           <Route path="/myaccount/accpersonalInfo" element={<PersonalInfo />} />
-          <Route path='/myaccount/accsecurity' element={< AccountSecurity/>}/>
+          {/* <Route path='/myaccount/accsecurity' element={< AccountSecurity/>}/> */}
         </Route>
         <Route path="/not-found" element={<NotFound />} />
         <Route path='/policy' element={<PolicyPage />}/>

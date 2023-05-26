@@ -55,7 +55,7 @@ const Posts = () => {
             <div className="posts-body-ad">
               <img src={tabina}  className='nav-logo'/>
               <span className="posts-body-ad-title">Join our community on platforms</span>
-              <span className="posts-body-ad-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam alias dolorum nesciunt doloribus. A eos, minima repellendus error dicta consequuntur fugiat temporibus nisi saepe et vel amet porro, alias delectus!</span>
+              <span className="posts-body-ad-desc">Post your favorite recipes, whether they're cherished family classics or innovative creations. Share detailed step-by-step instructions, ingredient lists, cooking times, and even personal tips to ensure fellow food lovers can recreate your delicious dishes</span>
               <button className='nav-link'>Join Now</button>
             </div>
         </div>

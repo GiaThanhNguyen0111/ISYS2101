@@ -1,5 +1,6 @@
 .posts {
     font-size: 10px;
+    
 }
 
 .post-header {
@@ -123,6 +124,7 @@
 
     /* font-size: 10px; */
     overflow-y: scroll;
+    z-index: 10000;
 }
 
 .posts .nav-logo {
@@ -145,7 +147,7 @@
 
 .posts-body-ad-desc {
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
 
     margin-bottom: 30px;

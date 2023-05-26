@@ -9,7 +9,7 @@ function Sidebar() {
   return (
     <div className='sidebar-container'>
       <Link to='/myaccount/accpersonalInfo' className='sidebar-selection'><img src={user}/><span>Personal Information</span></Link>
-      <Link to='/myaccount/accsecurity' className='sidebar-selection' ><img src={verified}/><span>Account Security</span></Link>
+      {/* <Link to='/myaccount/accsecurity' className='sidebar-selection' ><img src={verified}/><span>Account Security</span></Link> */}
     </div>
   )
 }
