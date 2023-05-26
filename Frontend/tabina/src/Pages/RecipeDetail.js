@@ -27,6 +27,7 @@ import LevelBlank from '../Components/RecipeDetail/LevelBlank';
 import IngredientItem from '../Components/RecipeDetail/IngredientItem';
 import axios from 'axios';
 import Tag from '../Components/Tag';
+import Navbar from '../Components/Navbar';
 
 
 // const removeSpace = (s) => {
@@ -129,6 +130,7 @@ const RecipeDetail = () => {
 
     return thisRecipe ? (
         <>
+        <Navbar />
         {/* this one is 6458f1e9e53e500f2252bc86 ? */}
         {/* <h1>{recieveId}</h1> */}
         <div className='recipe-detail'>

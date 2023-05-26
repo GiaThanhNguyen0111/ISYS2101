@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import '../../Css/page/uploadRecipe/uploadrecipeform.css'
+import Navbar from '../Navbar';
 
 function UploadRecipeForm() {
 
@@ -48,6 +49,8 @@ function UploadRecipeForm() {
 
 
   return (
+    <>
+    <Navbar />
     <div className='upload-recipe-form-container'>
         <div className='upload-recipe-form-heading'>Recipe Details</div>
 
@@ -77,7 +80,7 @@ function UploadRecipeForm() {
                 <input className='upload-recipe-input-box' type='text' placeholder='e.g. Vegan'></input>
             </div> */}
 
-            <div className='upload-recipe-label-input'> 
+            {/* <div className='upload-recipe-label-input'> 
                 <label>Level :</label>
                 <select className='upload-recipe-input-box' value={level} onChange={handleLevelChange}>
                     <option value='World Class'>World Class</option>
@@ -87,11 +90,12 @@ function UploadRecipeForm() {
                     <option value='Beginner'>Beginner</option>
                     <option value='None'>None</option>
                 </select>
-            </div>
+            </div> */}
 
             <button type='submit' className='recipe-upload-btn'>Upload</button>
         </form>
     </div>
+    </>
   )
 }
 
