@@ -23,7 +23,7 @@ const PostItem = (props) => {
         <div className='post-item'>
             <h3 className='post-item-title'>{post.title}</h3>
             <div className='post-item-info'>
-                <span className='post-item-info-author'>11111</span>
+                <span className='post-item-info-author'>Thanh Nguyen</span>
                 <img src={dot} className='post-item-info-img' />
                 <span className='post-item-info-author'>{post.createdAt}</span>
             </div>
